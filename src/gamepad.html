@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamePad Test</title>
+    <link rel="import" href="component.html">
+    <script src="main.js"></script>
+    <style>
+        #ball {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+          background-color: red;
+  
+          background-image: -webkit-radial-gradient(40% 40%, circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));;
+          background-image: -moz-radial-gradient(40% 40%, circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));;
+          background-image: -ms-radial-gradient(40% 40%, circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));;
+          background-image: radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  
+          position: relative;
+        }
+      </style>
+  
+</head>
+<body>
+    <p id="gamepad-info">Waiting for Gamepad.</p>
+    <div id="ball"></div>
+    
+    <script>
+        var gamepadInfo = document.getElementById("gamepad-info");
+var ball = document.getElementById("ball");
+var start;
+var a = 0;
+var b = 0;
+
+var rAF = window.requestAnimationFrame;
+var rAFStop = window.cancelRequestAnimationFrame;
+
+function gameStart() {
+    gameLoop();
+}
+function gameStop() {
+    gamepadInfo.innerHTML = "Waiting for gamepad.";
+    rAFStop(start);
+}
+
+function gameLoop() {
+  if(navigator.webkitGetGamepads) {
+    var gp = navigator.webkitGetGamepads()[0];
+
+    if(gp.buttons[0] == 1) {
+      b--;
+    } else if(gp.buttons[1] == 1) {
+      a++;
+    } else if(gp.buttons[2] == 1) {
+      b++;
+    } else if(gp.buttons[3] == 1) {
+      a--;
+    }
+  } else {
+    var gp = navigator.getGamepads()[0];
+
+    if(gp.buttons[0].value > 0 || gp.buttons[0].pressed == true) {
+      b--;
+    } else if(gp.buttons[1].value > 0 || gp.buttons[1].pressed == true) {
+      a++;
+    } else if(gp.buttons[2].value > 0 || gp.buttons[2].pressed == true) {
+      b++;
+    } else if(gp.buttons[3].value > 0 || gp.buttons[3].pressed == true) {
+      a--;
+    }
+  }
+
+  ball.style.left = a*2 + "px";
+  ball.style.top = b*2 + "px";
+
+  var start = rAF(gameLoop);
+};
+        test();
+    </script>
+</body>
+</html>
