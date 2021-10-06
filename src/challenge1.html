@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {font-family: 'Consolas', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    </style>
+  </head>
+    <body>
+        <p> Challenge 1 - Odometry</p>
+<div>
+<svg viewBox="-12 -2 98 124" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box {fill:rgb(132, 140, 150); stroke:blue; stroke-width:0.2}
+    #grid {fill:none; stroke-width:0.1; stroke:orange;}
+    #grid rect {stroke-dasharray: 3;}
+    .bbox {display:none; fill:none; stroke:orange; stroke-width:0.2; stroke:orange;stroke-dasharray: 0.75;}
+    #right-motor {display: none;}
+    #dimensions {stroke: cadetblue; fill:cadetblue}
+    #triangle {stroke: cadetblue; fill:none}
+    <!--    #blocks g {display:none}
+ #dimensions text {stroke:none;} -->
+  </style>
+  <marker class="dim" id="triangle"
+    viewBox="0 0 11 11" refX="11" refY="5" 
+    markerUnits="userSpaceOnUse"
+    markerWidth="3" markerHeight="3"
+    orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 M 11 0 L 11 11" />
+  </marker>
+  <g id="arena" fill="none" stroke="blue" stroke-width="0.1">
+    <rect class="box" width="6" height="120" transform="translate(-7,0)"/> <!--arena -->
+   
+    <g id="grid">
+
+      <rect width="60" height="120"/> <!-- play area -->
+      <rect width="60" height="12" transform="translate(0,12)"/> <!-- play area -->
+      <rect width="60" height="12" transform="translate(0,36)"/> <!-- play area -->
+      <rect width="60" height="12" transform="translate(0,60)"/> <!-- play area -->
+      <rect width="60" height="12" transform="translate(0,84)"/> <!-- play area -->
+      <rect width="60" height="12" transform="translate(0,108)"/> <!-- play area -->
+      
+      <rect width="12" height="120" transform="translate(12,0)"/> <!-- play area -->
+      <rect width="12" height="120" transform="translate(36,0)"/> <!-- play area -->
+    </g>
+   
+    <g id="dimensions">
+      <line x1="6" y1="72" x2="6" y2="24" marker-start="url(#triangle)" marker-end="url(#triangle)"/>
+      <text transform="translate(5,55) rotate(-90) scale(0.2,0.2)" >"48"</text> <!-- dim 1 -->
+      <line x1="6" y1="96" x2="6" y2="84" marker-end="url(#triangle)"/>
+      <text transform="translate(5,95) rotate(-90) scale(0.2,0.2)" >"12"</text> <!-- dim 1 -->
+      <line x1="12" y1="18" x2="36" y2="18" marker-start="url(#triangle)" marker-end="url(#triangle)"/>
+      <text transform="translate(20,15) scale(0.2,0.2)">"24"</text> <!-- dim 1 -->
+    </g>
+    
+    <rect width="20" height="14" stroke-dasharray="0.5" transform="translate(0, 71)" /> <!-- start/goal -->
+    <text transform="translate(0.5, 81) scale(0.2,0.5)" >Start/Stop</text> <!-- start/goal -->
+    
+    <rect class="box" width="22" height="28" transform="translate(13, 25)" /> <!--box1a -->
+    <rect class="box" width="10" height="10" transform="translate(25, 56)" /> <!--box1b -->
+    <rect class="box" width="22" height="22" transform="translate(13, 86)" /> <!--box2 -->
+    <g id="blocks" display="none" transform="translate(60,24)" >
+      <g id="step1" transform="scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">pivotLeft     with:</text>
+        <text transform="translate(60,38) scale(0.8, 0.8)" stroke="none" fill="white">turnDeg</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">90</text>
+      </g>
+      <g id="step2" transform="translate(0,8) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">goStraight     with:</text>
+        <text transform="translate(66,38) scale(0.8, 0.8)" stroke="none" fill="white">inches</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">48</text>
+      </g>
+      <g id="step3" transform="translate(0,16) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">pivotRight     with:</text>
+        <text transform="translate(60,38) scale(0.8, 0.8)" stroke="none" fill="white">turnDeg</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">90</text>
+      </g>
+      <g id="step4" transform="translate(0,24) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">goStraight     with:</text>
+        <text transform="translate(66,38) scale(0.8, 0.8)" stroke="none" fill="white">inches</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">24</text>
+      </g>
+      <g id="step5" transform="translate(0,32) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">pivotRight     with:</text>
+        <text transform="translate(60,38) scale(0.8, 0.8)" stroke="none" fill="white">turnDeg</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">90</text>
+      </g>
+      <g id="step6" transform="translate(0,40) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">goStraight     with:</text>
+        <text transform="translate(66,38) scale(0.8, 0.8)" stroke="none" fill="white">inches</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">60</text>
+      </g>
+      <g id="step7" transform="translate(0,48) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">pivotLeft     with:</text>
+        <text transform="translate(60,38) scale(0.8, 0.8)" stroke="none" fill="white">turnDeg</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">-90</text>
+      </g>
+      <g id="step8" transform="translate(0,56) scale(0.15,0.15)" >
+        <path class="blocklyPath" stroke="none" fill="#995ba5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 123.60086250305176 v 25 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 5 H 29.5 l -6,4 -3,0 -6,-4 H 0 z"/>
+        <text transform="translate(4,18) scale(0.8, 0.8)" stroke="none" fill="white">goStraight     with:</text>
+        <text transform="translate(66,38) scale(0.8, 0.8)" stroke="none" fill="white">inches</text>
+        <path transform="translate(124,24)" class="blocklyPath" stroke="none" fill="#5b67a5" d="m 0,0 H 36.31379318237305 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z"/>
+        <rect transform="translate(132,30)" width="24" height="14" rx="4" stroke="black" fill="white"/>
+        <text transform="translate(134,42) scale(0.8,0.9)" stroke="black" fill="black">-24</text>
+      </g>
+    </g>
+  </g>
+  <g id="robot" fill="none" stroke="black" stroke-width="0.5" transform="translate(0, 72) scale(1,-1) rotate(-15)"> <!-- robot -->
+    <g id="robot-center" transform="rotate(-15)"> <!-- robot -->
+    <rect class="bbox" width="12" height="18" /> <!-- bbox -->
+ 
+    <rect width="0.55" height="3.5"  stroke="red"  stroke-width = "0.2"/> <!-- left wheel -->
+   
+    <rect width="9.5" height="12.0" fill="tan" transform="translate(1.25,1.0)"/>
+   
+    <rect width="8.4" height="4.6" fill="gold" transform="translate(1.8,1.5)"/>
+    <text transform="translate(4,4) scale(0.2,0.2)" fill="black" >\/</text> <!-- start/goal -->
+   
+    <rect width="0.55" height="3.5"  transform="translate(11.45,0)" stroke="green" stroke-width="0.2"/>  <!-- right wheel -->
+  </g>
+  <circle id="right-motor", r="2", stroke="red" stroke-width="0.2"/>
+ </g>
+ 
+</svg>
+</div>
+
+
+        <script type="text/javascript">
+window.addEventListener("gamepadconnected", (event) => {
+  console.log("A gamepad connected:");
+  console.log(event.gamepad);
+});
+window.addEventListener("gamepaddisconnected", (event) => {
+  console.log("A gamepad disconnected:");
+  console.log(event.gamepad);
+});
+var gamepads = navigator.getGamepads();
+console.log(gamepads);
+        </script>
+
+
+    </body>
+    <script type="text/javascript">
+      
+      var PauseAction = function(ticks, cb) {
+        this.progess = 0;
+        this.goal = ticks;
+        this.cb = cb;
+      };
+      PauseAction.prototype.do = function(robot) {
+        if (this.cb) {
+          this.cb(this.progess);
+        }
+        this.progess += 1;
+        if (this.progess > this.goal) {
+          robot.stepComplete()
+        }
+      };
+
+      var RotateAction = function(deg, pivot, step, cb) {
+        this.pivot = pivot;
+        this.progess = 0;
+        this.dir = Math.sign(deg);
+        this.goal = Math.abs(deg);
+        this.step = step;
+        this.cb = cb;
+      };
+      RotateAction.prototype.do = function(robot) {
+        if (this.progess === 0)
+        {
+          this.cb(this.step)
+        }
+        this.rotate(robot);
+      }
+      RotateAction.prototype.rotate = function(robot) {
+        if (this.pivot == "RIGHT"){
+          robot.pivotRight(this.dir);
+        } else  {
+          robot.pivotLeft(this.dir);
+        }
+        this.progess += 1;
+        if (this.progess >= this.goal) {
+          robot.stepComplete()
+        }
+      };
+
+      var MoveAction = function(inches, step, cb) {
+        this.progess = 0;
+        this.dir = Math.sign(inches);
+        this.goal = Math.abs(inches);
+        this.step = step;
+        this.cb = cb;
+      };
+      MoveAction.prototype.do = function(robot) {
+        if (this.progess === 0)
+        {
+          this.cb(this.step)
+        }
+        this.move(robot);
+      }
+      MoveAction.prototype.move = function(robot) {
+        robot.move(this.dir);
+        this.progess += 1;
+        if (this.progess > this.goal) {
+          robot.stepComplete()
+        }
+      };
+
+
+      var Robot = function(position, pose, rm){
+        this.position = position;
+        this.pose = pose;
+        this.rightMotor = rm;
+        // this.x = 0;
+        // this.y = 72;
+        // this.rotation = -90;
+        this.steps = [];
+      };
+      Robot.prototype.busy = function() {
+        return this.steps.length > 0;
+      }
+      Robot.prototype.update = function() {
+        if (this.busy()) {
+          this.steps[0].do(this);
+          this.draw();
+        }
+      };
+      Robot.prototype.stepComplete = function() {
+        this.steps.shift();
+      };
+      Robot.prototype.pivotLeft = function(inc) {
+        this.rotation += inc;
+      };
+      Robot.prototype.pivotRight = function(inc) { // robot is centerd on left wheel :(
+        // move to position so that pivotLeft will put it into location that pivotRight/rotate would do.
+        var d = 12;
+        var rmx = this.x + d * Math.cos(this.rad()); // rm now
+        var rmy = this.y + d * Math.sin(this.rad());
+        this.rotation -= inc;
+        // lm needs to move so that 
+        var rmx1 = this.x + d * Math.cos(this.rad()); // rm after next rotation
+        var rmy1 = this.y + d * Math.sin(this.rad());
+        this.x -= (rmx1 - rmx); // subtract error
+        this.y += (rmy1 - rmy);
+      };
+      Robot.prototype.rad = function() {
+        return this.rotation * Math.PI / 180.0;
+      }
+
+      Robot.prototype.move = function(inc) {
+        var dy = inc * Math.cos(this.rad());
+        var dx = inc * Math.sin(this.rad());
+        this.x -= dx;
+        this.y -= dy;
+      };
+      
+      Robot.prototype.draw = function() {
+        this.position.setAttribute("transform", `translate(${this.x}, ${this.y}) scale(1,-1)`);
+        this.pose.setAttribute("transform", `rotate(${this.rotation})`);
+        this.trackRight();
+      }
+      Robot.prototype.trackRight = function() {
+        var d = 12;
+        var rmx = d * Math.cos(this.rad());
+        var rmy = d * Math.sin(this.rad());
+        this.rightMotor.setAttribute("transform", `translate(${rmx}, ${rmy})`);
+      }
+
+    </script>
+  <script type="text/javascript">
+    var game = {
+      robot: null,
+      opacity: 100,
+      grid: null,
+      dimensions: null,
+
+      init: function(){
+        window.reqFrame = (function(){ return window.requestAnimationFrame})();
+        game.robot = new Robot(
+          document.getElementById("robot"),
+          document.getElementById("robot-center"),
+          document.getElementById("right-motor")
+          );
+
+        game.grid = document.getElementById("grid"),
+        game.dimensions = document.getElementById("dimensions"),
+  
+        game.challenge1();
+        game.main();
+      },
+      challenge1: function() {
+        this.opacity = 100;   
+        this.robot.x = 0;
+        this.robot.y = 72;
+        this.robot.rotation = -90;
+
+        document.getElementById("step1").setAttribute("display", "none")
+        document.getElementById("step2").setAttribute("display", "none")
+        document.getElementById("step3").setAttribute("display", "none")
+        document.getElementById("step4").setAttribute("display", "none")
+        document.getElementById("step5").setAttribute("display", "none")
+        document.getElementById("step6").setAttribute("display", "none")
+        document.getElementById("step7").setAttribute("display", "none")
+        document.getElementById("step8").setAttribute("display", "none")
+        document.getElementById("blocks").setAttribute("display", "block")
+
+        this.pause(20, (ticks) => {
+          if (ticks === 20) {
+          }
+        });
+
+        this.pivotLeft(90,"step1");
+        this.move(48, "step2");
+        this.pivotRight(90, "step3");
+        this.move(24,"step4");
+        this.pivotRight(90, "step5");
+        this.move(60, "step6");
+        this.pivotRight(-90, "step7");
+        this.move(-36, "step8");
+        this.pause(80, (ticks) => {
+          if (ticks === 0) {
+            //this.grid.setAttribute("opacity", 1.0);
+            this.dimensions.setAttribute("opacity", 1.0);
+          }
+        });
+        this.pause(20, (ticks) => {
+          if (ticks === 0) {
+            this.challenge1();
+          }
+        });
+      },
+      main: function (){
+        game.update();
+        reqFrame(game.main);
+      },
+      update: function(){
+        if (this.opacity > 40)
+        {
+          this.dimensions.setAttribute("opacity", this.opacity/100);
+          this.grid.setAttribute("opacity", this.opacity/160);
+          this.opacity -= 1;
+        }
+        this.robot.update();
+        // if (!this.robot.busy())
+        // {
+        //   this.challenge1();
+        // }
+      },
+      pivotLeft: function(deg, step){
+        game.robot.steps.push(new RotateAction(deg, "LEFT", step, (id)=>{
+          document.getElementById(id).setAttribute("display", "block")
+        }));
+      },
+      pivotRight: function(deg, step){
+        game.robot.steps.push(new RotateAction(deg,"RIGHT", step, (id)=>{
+          document.getElementById(id).setAttribute("display", "block")
+        }));
+      },
+      move: function(inches, step){
+        game.robot.steps.push(new MoveAction(inches, step, (id)=>{
+          document.getElementById(id).setAttribute("display", "block")
+        }));        
+      },
+      pause: function(ticks, cb){
+        game.robot.steps.push(new PauseAction(ticks,cb));        
+      }
+    }
+    game.init();
+  </script>
+</html>
+
+
