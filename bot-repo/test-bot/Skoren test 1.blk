@@ -1,0 +1,266 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<variables>
+<variable id="ZHj5}WPE^S:32Z,UuU9{">Move forward</variable>
+<variable id="NGF]Y_4%~(=PC@P@IKaz">Positive max pwr</variable>
+<variable id="zUh{PN=30wu9p5SVwcdI">Negative max pwr</variable>
+<variable id="pR[dYs4e)os|%Z~GItY/">Stop</variable>
+<variable id="B:hD%hcBDMcUe};7$GO/">1 second</variable>
+<variable id="I)-QZJ}FQe)Y%K)$x*dg">5 seconds</variable>
+</variables>
+<block type="dcMotor_setDualProperty_Number" id="Y(/dAv,u`rs4*,U,aB=|" x="22" y="-147">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="FfmAw$:2iffd=5zbE?zD">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="BG}!;oKGF7:yJk,T+SiG">
+<field name="VAR" id="ZHj5}WPE^S:32Z,UuU9{">Move forward</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="c@)_QeIZ83d($2az!]Uq">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="xjtKzch~dudcWJ@hO*R7">
+<field name="VAR" id="ZHj5}WPE^S:32Z,UuU9{">Move forward</field>
+</block>
+</value>
+</block>
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="-184" y="55">
+<field name="NAME">runOpMode</field>
+<comment pinned="false" h="32" w="529">This function is executed when this Op Mode is selected from the Driver Station.</comment>
+<statement name="STACK">
+<block type="comment" id="Lc#BFtj*NTB48YL;eBl.">
+<field name="COMMENT">Put initialization blocks here.</field>
+<next>
+<block type="variables_set" id="DEvkC.uZ{#^wMpYWcKHN">
+<field name="VAR" id="NGF]Y_4%~(=PC@P@IKaz">Positive max pwr</field>
+<value name="VALUE">
+<block type="math_number" id="+Vf=vC91GstVBx``GBN~">
+<field name="NUM">0.85</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="cNx}FWjYFJ?`hqEu8VA*">
+<field name="VAR" id="zUh{PN=30wu9p5SVwcdI">Negative max pwr</field>
+<value name="VALUE">
+<block type="math_number" id="j_WfVP]eTA_$(E6vQCKF">
+<field name="NUM">-0.85</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="oMbs;DU6/}#23JYRB+X,">
+<field name="VAR" id="pR[dYs4e)os|%Z~GItY/">Stop</field>
+<value name="VALUE">
+<block type="math_number" id="lK#%x]$0K)7gNN@b:WBy">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="08j`uK3E:i`E?3,$kh3Y">
+<field name="VAR" id="B:hD%hcBDMcUe};7$GO/">1 second</field>
+<value name="VALUE">
+<block type="math_number" id=".o!~[O2@3?cUVvO^}q:X">
+<field name="NUM">1000</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="k*jB%:fNPJ9Pbpd:f0M-">
+<field name="VAR" id="I)-QZJ}FQe)Y%K)$x*dg">5 seconds</field>
+<value name="VALUE">
+<block type="math_number" id="WaO_+lifpyn4U8/.g*9P">
+<field name="NUM">5000</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="z46.J@Q^zewPftw4L7mh">
+<field name="VAR" id="ZHj5}WPE^S:32Z,UuU9{">Move forward</field>
+<next>
+<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
+<next>
+<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
+<value name="IF0">
+<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
+</value>
+<statement name="DO0">
+<block type="comment" id="(rU-p_T_/B|vExcs}liL">
+<field name="COMMENT">Put run blocks here.</field>
+<next>
+<block type="dcMotor_setProperty_Direction" id="w.#wb92(J05@~0v!=4EB">
+<field name="IDENTIFIER">leftMotorAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"leftMotor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="odF2a*/QN!dix#JJJ(S1">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="GcTpf!Eem|WRvR=5wsu,">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="(iH:k}b9!uj{[{I1H+7f">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="#edgt5oeBeo_Li!JGjGP">
+<field name="VAR" id="NGF]Y_4%~(=PC@P@IKaz">Positive max pwr</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="wlFBMyH9{d[kZrlJ?B?4">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="WVP)L?%s5XU$#pQBJ{Ry">
+<field name="VAR" id="NGF]Y_4%~(=PC@P@IKaz">Positive max pwr</field>
+</block>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="lrdDZ9+-R.Xu$Vo;AO9d">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="*I3I6O^;F/5GH#%+:Sgs">
+<field name="NUM">1000</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="A5FQp}|?[1m}3fTj5a};">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="@Nf5]HEgt(2}FcBD2!FD">
+<field name="NUM">-1</field>
+</shadow>
+<block type="variables_get" id="f0=/w//azcQ-+byfwWz.">
+<field name="VAR" id="zUh{PN=30wu9p5SVwcdI">Negative max pwr</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="/mwvi60Y602lD4^=,K[!">
+<field name="NUM">-1</field>
+</shadow>
+<block type="variables_get" id="}[p1v`$X+3:`oB:5k@0t">
+<field name="VAR" id="zUh{PN=30wu9p5SVwcdI">Negative max pwr</field>
+</block>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="/[e(FLFrzZ-X`sC.BqRq">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="Z`rV5;Qe!qJ-oNj#Y9SN">
+<field name="NUM">1000</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="K[bj|LT8Hj6[e0P)}KCm">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="BED};qe`0!,GvC?Nq?$y">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="i?z:)82]y%S+ULY_)/Yx">
+<field name="VAR" id="NGF]Y_4%~(=PC@P@IKaz">Positive max pwr</field>
+</block>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="3?_p,B}U?PAc}.Q$V_To">
+<field name="NUM">0</field>
+</shadow>
+<block type="variables_get" id="0+1sf=[hw*?$?=s}0]Ow">
+<field name="VAR" id="pR[dYs4e)os|%Z~GItY/">Stop</field>
+</block>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="2Sczj*Q@SC@j*%u)5.aV">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="ycAdh7dss!mEbT,rnoW/">
+<field name="NUM">1000</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="]R.^3vL!!ivgTxo(0+1v">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="_l0K!RpKg0KkeF#dX#bn">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id=",r/itjyctLllYG9Dx4Y/">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
+</next>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="+Y/9=-=Tb2*FgAb=m.m$"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
+

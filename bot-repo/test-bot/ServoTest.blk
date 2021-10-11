@@ -1,0 +1,145 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="50" y="50">
+<field name="NAME">runOpMode</field>
+<comment pinned="true" h="32" w="532.09375">This function is executed when this Op Mode is selected from the Driver Station.</comment>
+<statement name="STACK">
+<block type="comment" id="Lc#BFtj*NTB48YL;eBl.">
+<field name="COMMENT">Put initialization blocks here.</field>
+<next>
+<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
+<next>
+<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
+<value name="IF0">
+<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
+</value>
+<statement name="DO0">
+<block type="comment" id="(rU-p_T_/B|vExcs}liL">
+<field name="COMMENT">Put run blocks here.</field>
+<next>
+<block type="servo_setProperty_Number" id="I#%zPPmHtpQ(|[RDBlzl">
+<field name="IDENTIFIER">servo1AsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"servo1"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="WxuU}dM5NVwSMoi/d7!~">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="telemetry_addNumericData_Number" id="{PsncU2Kvp;$j:i^cvI+">
+<value name="KEY">
+<shadow type="text" id="Z~_BtBj(=u2kbe-=tI#A">
+<field name="TEXT">pos</field>
+</shadow>
+</value>
+<value name="NUMBER">
+<shadow type="math_number" id="W:p|ji2lp.y2-I?WsecW">
+<field name="NUM">123</field>
+</shadow>
+<block type="servo_getProperty_Number" id="/0F1!3T*$D-4V2^~s)Eg">
+<field name="IDENTIFIER">servo1AsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"servo1"}</data>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="REcS`*I/P{8|vJtEnw=$">
+<value name="KEY">
+<shadow type="text" id="dbaM;_*6ZT3sWNW~RXfv">
+<field name="TEXT">dir</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="o.S.YJ}`D0;-3lD`uBV/">
+<field name="TEXT">text</field>
+</shadow>
+<block type="servo_getProperty_Direction" id="7qPyy}]$DQ$/m}D0CNm=">
+<field name="IDENTIFIER">servo1AsServo</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"servo1"}</data>
+</block>
+</value>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$">
+<next>
+<block type="controls_if" id=":WT/E=a4d;3*AfKli$Vi">
+<value name="IF0">
+<block type="touchSensor_getProperty_Boolean" id="tbD8B2-%u+DpIa1v!#M;">
+<field name="IDENTIFIER">touchAsTouchSensor</field>
+<field name="PROP">IsPressed</field>
+<data>{"IDENTIFIER":"touch"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="servo_setProperty_Number" id="LzTVa5U`QytwPNr`Yt5A">
+<field name="IDENTIFIER">servo1AsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"servo1"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="w$Bfh3Utb0$iWy*HaY_.">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="]uGrl::[4S~8**-892%6">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number" id="d#@VCKHohW#WaZl0[5nF">
+<field name="NUM">1</field>
+</shadow>
+</value>
+<value name="B">
+<shadow type="math_number" id="qKo=k*BNd$MCdjC[^%_d">
+<field name="NUM">1</field>
+</shadow>
+<block type="servo_getProperty_Number" id="{ax[8oHmY*p#,9M|~k8p">
+<field name="IDENTIFIER">servo1AsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"servo1"}</data>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="MjDuWaLacP4E3J_XMQs:">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="_z#jZI}=iy,B7u74j=;#">
+<field name="NUM">200</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" /><Enabled value="true" /></Extra>
+

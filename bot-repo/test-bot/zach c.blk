@@ -1,0 +1,190 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<block type="procedures_defnoreturn" id="iMe[?W;=dI/$d@Nx=25V" x="706" y="-15">
+<field name="NAME">Motor initialization</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="comment" id="Lc#BFtj*NTB48YL;eBl.">
+<field name="COMMENT">Put initialization blocks here.</field>
+<next>
+<block type="dcMotor_setProperty_Direction" id="6hS8b+-n*(?9/)]m_1#(">
+<field name="IDENTIFIER">leftMotorAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"leftMotor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="W;?{W4]^sHSAOW*Uq1/M">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="}D-WTRLM3`+x4#}#XxpG">
+<field name="IDENTIFIER">rightMotorAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"rightMotor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="/*Sfy^36EI_o`]z~RoVI">
+<field name="DIRECTION">FORWARD</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_RunMode" id="SAXy[:a9A8x_w,/=dR,.">
+<field name="IDENTIFIER">leftMotorAsDcMotor</field>
+<field name="PROP">Mode</field>
+<data>{"IDENTIFIER":"leftMotor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_runMode" id="9zbI+iAyw=XJcNS12[M3">
+<field name="RUN_MODE">RUN_USING_ENCODER</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_RunMode" id="^,GFq1HCdTWI1_,T^cd1">
+<field name="IDENTIFIER">rightMotorAsDcMotor</field>
+<field name="PROP">Mode</field>
+<data>{"IDENTIFIER":"rightMotor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_runMode" id="p=f3x4FJ?6kn/Q*91pj,">
+<field name="RUN_MODE">RUN_USING_ENCODER</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="285" y="79">
+<field name="NAME">runOpMode</field>
+<comment pinned="false" h="32" w="532">This function is executed when this Op Mode is selected from the Driver Station.</comment>
+<statement name="STACK">
+<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
+<next>
+<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
+<value name="IF0">
+<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
+</value>
+<statement name="DO0">
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="telemetry_addNumericData_Number" id="LeSS-LbnzCY-W8oc1=u+">
+<value name="KEY">
+<shadow type="text" id="b^ATR;Xy6Wgfdl}n(.#]">
+<field name="TEXT">lmp</field>
+</shadow>
+</value>
+<value name="NUMBER">
+<shadow type="math_number">
+<field name="NUM">123</field>
+</shadow>
+<block type="dcMotor_getProperty_Number" id="H,,V@84KWMY[*StF[A?1">
+<field name="IDENTIFIER">leftMotorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"leftMotor"}</data>
+</block>
+</value>
+<next>
+<block type="telemetry_addNumericData_Number" id="_G:g5DQ@xYTC,E^9~-uM">
+<value name="KEY">
+<shadow type="text" id="3oI:Y8,8[KSrn,;96Lo5">
+<field name="TEXT">rmp</field>
+</shadow>
+</value>
+<value name="NUMBER">
+<shadow type="math_number">
+<field name="NUM">123</field>
+</shadow>
+<block type="dcMotor_getProperty_Number" id="r`qt!xjs3~2UJTjak-XS">
+<field name="IDENTIFIER">rightMotorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"rightMotor"}</data>
+</block>
+</value>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="comment" id="(rU-p_T_/B|vExcs}liL">
+<field name="COMMENT">Put run blocks here.</field>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="kjwpQb!}xC)W;uJGalnk" x="927" y="280">
+<field name="NAME">Go forward</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_if" id="!)f4a~J?{k[bn`Mj9vB|">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="DXUt-F84km0I.M~%b}6v">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">DpadUp</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setDualProperty_Number" id="#Ohe2VyVI![ksP_R6,Qm">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="!CZ$]F5{(ytYAbEYJabz">
+<field name="NUM">60</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="?jsYOH=}*]KHN.`,d~N7">
+<field name="NUM">60</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="/AL;GK~2pBcv,$Dt/Ftt">
+<field name="PROP">TargetPosition</field>
+<field name="IDENTIFIER1">leftMotorAsDcMotor</field>
+<field name="IDENTIFIER2">rightMotorAsDcMotor</field>
+<data>{"IDENTIFIER1":"leftMotor","IDENTIFIER2":"rightMotor"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="TGh3Ch/%YO%bZOSkZ;MB">
+<field name="NUM">500</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="#,]QF`jHRsSrm*UQO=)6">
+<field name="NUM">500</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
+
