@@ -14,7 +14,7 @@
 <variable id="{X6RzU`{xhg7$h3UB3G1">STRAFE BOOST</variable>
 <variable id="lVj`;11rdJoTX~bR0Etw">POWER_LIMIT</variable>
 </variables>
-<block type="procedures_defnoreturn" id=".FADp]eREUrAj})H`pR|" x="-3857" y="222">
+<block type="procedures_defnoreturn" id=".FADp]eREUrAj})H`pR|" x="-441" y="31">
 <field name="NAME">showTelemetry</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -339,7 +339,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="A*78_W@ZhPs!zT5+c,yc" x="86" y="1678">
+<block type="procedures_defnoreturn" id="A*78_W@ZhPs!zT5+c,yc" x="108" y="561">
 <field name="NAME">calculateMotorPower</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">

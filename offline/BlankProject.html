@@ -242,20 +242,20 @@ function onLoadGlitch(){
 }
 
 function loadNewBasicOpMode() {
-    currentProjectName = 'NewOpMode';
-    var sampleName = '';
-    var blkFileContent = getSampleBlkFileContent(sampleName);
-    var blocksLoadedCallback = function() {
-          //showJava();
-        };
-    
-    loadBlocks(blkFileContent, blocksLoadedCallback);
-
+  titlePrefix = "OFFLINE";
+  currentProjectName = 'NewOpMode';
+  var sampleName = '';
+  var blkFileContent = getSampleBlkFileContent(sampleName);
+  var blocksLoadedCallback = function() {
+        //showJava();
+      };
+  
+  loadBlocks(blkFileContent, blocksLoadedCallback);
 }
 
 function uploadButtonClicked(input) {
   var file = input.files[0];
-  currentProject = makeUploadProjectName(file.name);
+  currentProjectName = makeUploadProjectName(file.name);
   var reader = new FileReader();
   reader.onload = function(event) {
     // Get the blocks from the uploaded file.
@@ -265,7 +265,7 @@ function uploadButtonClicked(input) {
         };
     
     loadBlocks(blkFileContent, blocksLoadedCallback);
-  };
+   };
   reader.readAsText(file);
 }
 
