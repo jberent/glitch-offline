@@ -130,7 +130,7 @@
       <td class="buttons_td" colspan="2">
         <table width="100%"><tr><td>
           <button onclick="saveButtonClicked()">Save Op Mode</button>
-          <button onclick="exportJavaButtonClicked()">Download Java</button>
+          <input type="file" id="uploadProjectFileInput" accept=".blk" onchange="uploadButtonClicked(this)">
           <button onclick="downloadButtonClicked()">Download Op Mode</button>
           <button id="downloadImageButton" style="display: none" disabled="true"
                   onclick="downloadImageButtonClicked()">Download Image of Blocks</button>
@@ -252,6 +252,31 @@ function loadNewBasicOpMode() {
     loadBlocks(blkFileContent, blocksLoadedCallback);
 
 }
+
+function uploadButtonClicked(input) {
+  var file = input.files[0];
+  currentProject = makeUploadProjectName(file.name);
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    // Get the blocks from the uploaded file.
+    var blkFileContent = event.target.result;
+    var blocksLoadedCallback = function() {
+          //showJava();
+        };
+    
+    loadBlocks(blkFileContent, blocksLoadedCallback);
+  };
+  reader.readAsText(file);
+}
+
+function makeUploadProjectName(uploadFileName) {
+  var lastDot = uploadFileName.lastIndexOf('.');
+  var preferredName = (lastDot == -1)
+      ? uploadFileName
+      : uploadFileName.substr(0, lastDot);
+  return preferredName; // No suffix.
+}
+
 </script>
 </body>
 </html>
