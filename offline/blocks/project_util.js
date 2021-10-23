@@ -395,7 +395,8 @@ function saveBlocksJavaViaHttp(relativeFileName, javaCode, callback) {
 var db = false;
 
 function openOfflineDatabase(callback) {
-  var openRequest = window.indexedDB.open('FtcBlocksDatabase', 1);
+  var dbName = getOfflineConfigurationName();
+  var openRequest = window.indexedDB.open(dbName, 1);
   openRequest.onerror = function(event) {
     callback(false, 'openRequest error');
   };
