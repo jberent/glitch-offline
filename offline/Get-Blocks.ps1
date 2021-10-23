@@ -26,7 +26,7 @@ function fetchBlock($urlName)
 }
 function writeHardware($bot)
 {
-    fetchHardware | Set-Content ".\$bot_repo\$bot\hardware.js"
+    fetchHardware | Set-Content ".\$bot_repo\$bot\js\hardware.js"
 }
 
 function writeBlocks($bot)
@@ -62,15 +62,21 @@ SSID 1 : CSDGuest
 $networks = netsh wlan show networks
 $ssid = $networks[4].split(":")[1].trim()
 
-if ($ssid.startsWith("11617-") -or $ssid.startsWith("11618-") -or $ssid.startsWith("11729-")) {
+if ($ssid.startsWith("11617-") -or $ssid.startsWith("11618-") -or $ssid.startsWith("11729-") -or $ssid.startsWith("BMS-")) {
     $bot = $ssid
 } else {
     $bot = $args[1]
 }
 
+$args
 $bot
-$args 
-if ($args[0] -eq "fetchBlocks")
+if ($args) {
+    $cmd = $args[0]
+} else {
+    $cmd = "fetchBlocks"
+}
+
+if ($cmd -eq "fetchBlocks")
 {
     if ( Test-Path ".\$bot_repo\$bot") {
     } else {
@@ -79,7 +85,10 @@ if ($args[0] -eq "fetchBlocks")
 
     writeHardware $bot
     writeBlocks $bot
-
+}
+if ($cmd -eq "saveBlock")
+{
+    # todo
 }
 
 #$blk = fetchBlock $name $urlName
