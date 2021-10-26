@@ -25,20 +25,61 @@
 <block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
 <field name="COMMENT">Put loop blocks here.</field>
 <next>
+<block type="controls_if" id="RXkJI#Dq.iFs~2d%zE:{">
+<mutation else="1"/>
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="nHRp$=hl$$r9H[BS@o{L">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">Y</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setProperty_Number" id="s+m,BTc@w!r7+{]UOulR">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="jdn^wUqM,(_=u9Pk|P0*">
+<field name="NUM">0.6</field>
+</shadow>
+</value>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setProperty_Number" id="Z7Q5PgG}RT#%@Dt(_,KY">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="dWbL##!kve=:*1seEyec">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</statement>
+<next>
 <block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
 </next>
 </block>
-</statement>
-</block>
 </next>
 </block>
 </statement>
 </block>
 </next>
 </block>
+</statement>
+</block>
+</next>
+</block>
 </next>
 </block>
 </statement>
 </block>
-</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" /><Enabled value="false" /></Extra>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
 

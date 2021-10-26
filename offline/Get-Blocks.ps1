@@ -24,6 +24,17 @@ function fetchBlock($urlName)
     Invoke-RestMethod $uri 
 
 }
+
+function saveBlock($projectName) {
+    $uri="$($server)"
+    $body = @{
+        name = $projectName
+        blk = $blk
+        js = $js
+    }
+    Write-Host $uri
+    Invoke-RestMethod -Method 'Post' -Uri $uri -Body $body
+}
 function writeHardware($bot)
 {
     fetchHardware | Set-Content ".\$bot_repo\$bot\js\hardware.js"
@@ -45,7 +56,7 @@ $gremlinsA = "11618-A-RC"
 $gremlinsB = "11618-B-RC"
 $crashA = "11729-A-RC"
 $crashB = "11729-B-RC"
-$testBot = "FTC-glitch"
+$testBot = "BMS-test-bot"
 
 
 <#

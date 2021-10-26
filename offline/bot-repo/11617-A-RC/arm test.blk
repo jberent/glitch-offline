@@ -789,9 +789,5 @@
 <field name="PROP">TargetPosition</field>
 <data>{"IDENTIFIER":"lift_arm_motor"}</data>
 </block>
-</xml>
-<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<Extra>
-<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
-<Enabled value="true" />
-</Extra>
+</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" /><Enabled value="false" /></Extra>
+
