@@ -9,7 +9,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="dcMotor_typedEnum_direction" id="^w%$7^n;?9SLX_^7V=-E">
-<field name="DIRECTION">FORWARD</field>
+<field name="DIRECTION">REVERSE</field>
 </shadow>
 </value>
 <next>
@@ -19,7 +19,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="dcMotor_typedEnum_direction" id="$[8o,;jBv#!)8?GD+ckJ">
-<field name="DIRECTION">FORWARD</field>
+<field name="DIRECTION">REVERSE</field>
 </shadow>
 </value>
 <next>
@@ -29,7 +29,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="dcMotor_typedEnum_direction" id="Y@6H{GWc~~.{}boG?rx)">
-<field name="DIRECTION">REVERSE</field>
+<field name="DIRECTION">FORWARD</field>
 </shadow>
 </value>
 <next>
@@ -39,7 +39,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="dcMotor_typedEnum_direction" id="F}8![#/W06B?-7JJ9ljk">
-<field name="DIRECTION">REVERSE</field>
+<field name="DIRECTION">FORWARD</field>
 </shadow>
 </value>
 <next>
@@ -97,7 +97,7 @@
 <block type="linearOpMode_sleep_Number" id="6mUgf44j0hi^fgQRxI+A">
 <value name="MILLISECONDS">
 <shadow type="math_number" id="xehp[aFMXEuO6[;yKlZA">
-<field name="NUM">4500</field>
+<field name="NUM">1095</field>
 </shadow>
 </value>
 <next>

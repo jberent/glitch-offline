@@ -25,16 +25,17 @@ function fetchBlock($urlName)
 
 }
 
-function saveBlock($projectName) {
-    $uri="$($server)"
+function saveBlock($projectName, $blk, $js) {
+    $uri="$($server)save"
     $body = @{
         name = $projectName
         blk = $blk
         js = $js
     }
     Write-Host $uri
-    Invoke-RestMethod -Method 'Post' -Uri $uri -Body $body
+    Invoke-RestMethod -Method 'Post' -Uri $uri -Body $body -ContentType 'application/x-www-form-urlencoded'
 }
+
 function writeHardware($bot)
 {
     fetchHardware | Set-Content ".\$bot_repo\$bot\js\hardware.js"
@@ -100,6 +101,12 @@ if ($cmd -eq "fetchBlocks")
 if ($cmd -eq "saveBlock")
 {
     # todo
+    $blk = gc .\bot-repo\11617-A-RC\basic-op-mode.blk
+    # $blk[$blk.length - 2] = "</xml>"
+
+    $projectName = "basic-op-mode"
+    $js = "function none(){}"
+    saveBlock $projectName $blk $js
 }
 
 #$blk = fetchBlock $name $urlName
