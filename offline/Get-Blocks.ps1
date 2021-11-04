@@ -28,12 +28,24 @@ function fetchBlock($urlName)
 function saveBlock($projectName, $blk, $js) {
     $uri="$($server)save"
     $body = @{
-        name = $projectName
-        blk = $blk
-        js = $js
+        name = [uri]::EscapeUriString($projectName)
+        blk = [uri]::EscapeUriString($blk)
+        js = [uri]::EscapeUriString($js)
     }
+    $body2 = @{name=$projectName;blk=$blk;js=$js}
+    
+    $params = 'name=' + [uri]::EscapeUriString($projectName) +
+        '&blk=' + [uri]::EscapeUriString($blk) +
+        '&js=' + [uri]::EscapeUriString($js)
+    $contentType = 'application/x-www-form-urlencoded' 
+
     Write-Host $uri
-    Invoke-RestMethod -Method 'Post' -Uri $uri -Body $body -ContentType 'application/x-www-form-urlencoded'
+    Write-Host $body.name
+    #Write-Host $params
+    # Invoke-RestMethod -Method Post -Uri $uri -Body $params -ResponseHeadersVariable header -StatusCodeVariable code -TransferEncoding Gzip
+    $response = Invoke-WebRequest -Method POST -Uri $uri -Body $body2 -ContentType $contentType
+    Write-Host $response.StatusCode
+    #write-host $header
 }
 
 function writeHardware($bot)
@@ -104,8 +116,20 @@ if ($cmd -eq "saveBlock")
     $blk = gc .\bot-repo\11617-A-RC\basic-op-mode.blk
     # $blk[$blk.length - 2] = "</xml>"
 
-    $projectName = "basic-op-mode"
-    $js = "function none(){}"
+    $projectName = "basic op mode"
+    $js = @'
+/*
+* 
+* This function is executed when this Op Mode is selected from the Driver Station. 
+*/ function runOpMode() {
+     linearOpMode.waitForStart();
+    if (linearOpMode.opModeIsActive()) { 
+        while (linearOpMode.opModeIsActive()) {
+             telemetry.update(); 
+        } 
+    } 
+}
+'@
     saveBlock $projectName $blk $js
 }
 
