@@ -4,7 +4,7 @@
 <comment pinned="false" h="32" w="532">This function is executed when this Op Mode is selected from the Driver Station.</comment>
 <statement name="STACK">
 <block type="comment" id="Lc#BFtj*NTB48YL;eBl.">
-<field name="COMMENT">Put initialization blocks here.</field>
+<field name="COMMENT">Put init blocks here.</field>
 <next>
 <block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
 <next>

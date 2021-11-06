@@ -29,9 +29,9 @@
 <mutation else="1"/>
 <value name="IF0">
 <block type="gamepad_getProperty_Boolean" id="nHRp$=hl$$r9H[BS@o{L">
-<field name="IDENTIFIER">gamepad1</field>
-<field name="PROP">Y</field>
-<data>{"IDENTIFIER":"gamepad1"}</data>
+<field name="IDENTIFIER">gamepad2</field>
+<field name="PROP">DpadDown</field>
+<data>{"IDENTIFIER":"gamepad2"}</data>
 </block>
 </value>
 <statement name="DO0">
@@ -59,7 +59,43 @@
 </block>
 </statement>
 <next>
+<block type="controls_if" id="x=.g5e#?YlL7i9xb}?)u">
+<mutation else="1"/>
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="h)++DcuXZaN}(+*4DadP">
+<field name="IDENTIFIER">gamepad2</field>
+<field name="PROP">DpadUp</field>
+<data>{"IDENTIFIER":"gamepad2"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setProperty_Number" id="cZ@6x_8ZaK]U!Ykl~w{U">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="vF[lE}76l*7gMC)ATyqD">
+<field name="NUM">-0.6</field>
+</shadow>
+</value>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setProperty_Number" id="a|Kyw,krzrJgYM3$0@Be">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="i.M3,XDLp-@fQWD8t:wF">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</statement>
+<next>
 <block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
+</next>
+</block>
 </next>
 </block>
 </next>

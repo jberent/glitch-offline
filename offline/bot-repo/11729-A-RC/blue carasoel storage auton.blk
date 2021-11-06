@@ -1,0 +1,717 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<variables>
+<variable id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</variable>
+<variable id="nb*T]dJEc=OQ;A~n!qaF">fowardend</variable>
+<variable id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</variable>
+<variable id="vXHQ)M}WLXp1KPZ%dzOR">endstrafe</variable>
+<variable id="iwj{`K7kjze2[{?`oS:0">foward1</variable>
+<variable id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</variable>
+<variable id="YL}g.laCjyTy%iDWJ$_(">strafe</variable>
+</variables>
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="-93" y="87">
+<field name="NAME">runOpMode</field>
+<comment pinned="false" h="32" w="532">This function is executed when this Op Mode is selected from the Driver Station.</comment>
+<statement name="STACK">
+<block type="comment" id="Lc#BFtj*NTB48YL;eBl.">
+<field name="COMMENT">Put initialization blocks here.</field>
+<next>
+<block type="dcMotor_setProperty_Direction" id="c%d!U8QA3)gJ-G}R=/qN">
+<field name="IDENTIFIER">back_leftAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"back_left"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="um=$Yb!3jV%iD@hUUP~y">
+<field name="DIRECTION">FORWARD</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id=".o#SE)mV=!5WKUbtTVg{">
+<field name="IDENTIFIER">back_rightAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"back_right"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="DoQ/R/nd5y`ORBZq]ZJC">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="[?E`q^nrFR%RjUo1L8,l">
+<field name="IDENTIFIER">front_rightAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"front_right"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="2abk~2)bJ[(cZgFWTfJb">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="r|zP/?$=Xs}I*ikNp$+V">
+<field name="IDENTIFIER">front_leftAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"front_left"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="14r2YU1vth9C*:?r3UYp">
+<field name="DIRECTION">FORWARD</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Direction" id="M.!0^Q8o`tmiLG-gH5f7">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Direction</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_direction" id="##=i]_rvLr)}G@ljG(Lp">
+<field name="DIRECTION">REVERSE</field>
+</shadow>
+</value>
+<next>
+<block type="variables_set" id="by;DzJgkQmG,QZee=7U9">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="L_{4J{MO]KgizXmx6RM)">
+<field name="IDENTIFIER">distence_rightAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_right"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="pZl(;s-vY:doxl^44..G">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="?(#;WA$GxeP+XFYs.=s=">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="MD:T-sFUbuw421F^{%mU">
+<field name="IDENTIFIER">distence_backAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_back"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="ggoZixEv9!vaE|wJfKb7">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="linearOpMode_waitForStart" id="^6hi*6G3]HC[HUw`ov_D">
+<next>
+<block type="procedures_callnoreturn" id="OSPD^RBSwpJ%`+D5k:wQ">
+<mutation name="foward"/>
+<next>
+<block type="procedures_callnoreturn" id="7Tnua[}#s^v1HY@y^^~]">
+<mutation name="strafe"/>
+<next>
+<block type="procedures_callnoreturn" id="/atCk7#^~dvW=sbxZOrN">
+<mutation name="carasoel"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="Hv{vpI/MgQs$-({;d~G|" x="778" y="145">
+<field name="NAME">carasoel</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id=":Bb9kdEMd5b{h/Hi3242">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="w(0yzXX?p-P%It)l^m6/"/>
+</value>
+<statement name="DO">
+<block type="variables_set" id="l.UXcv-eoZhLId{*)Ihk">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="0_=]@2csLZ{%d2_?%j:8">
+<field name="IDENTIFIER">distence_rightAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_right"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="/?61W/6CGUIMK%Uecd9^">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="n[pNT_22e.VR-yqartOV">
+<field name="VAR" id="vXHQ)M}WLXp1KPZ%dzOR">endstrafe</field>
+<value name="VALUE">
+<block type="logic_compare" id="6CD^xX}-:*qauQ-he1ov">
+<field name="OP">LTE</field>
+<value name="A">
+<block type="variables_get" id="8I(!Se.RT4}8$zE/9)zz">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="FhQuonyJUR|1K*UI7_2(">
+<field name="NUM">6</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="vulAV0x8N[%6pJBF[6lh">
+<value name="IF0">
+<block type="variables_get" id="!LWl|x@QJK7vyVD7uXh=">
+<field name="VAR" id="vXHQ)M}WLXp1KPZ%dzOR">endstrafe</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="NGIlSh3:{W0AP?!@$KI.">
+<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
+<value name="VALUE">
+<block type="math_number" id="cd+Rja~2R6~R?H8;hzxd">
+<field name="NUM">10</field>
+</block>
+</value>
+<next>
+<block type="controls_whileUntil" id="E/#HucDkh6!*SFj%o/BA">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="variables_get" id=")zU(qp]Twi[J5zBPX%FC">
+<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
+</block>
+</value>
+<statement name="DO">
+<block type="dcMotor_setProperty_Number" id="r$)b4h]Iv_A,,zT[P6LA">
+<field name="IDENTIFIER">carausolAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carausol"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="o6r=.g5+V!m,W1;Yz){L">
+<field name="NUM">-0.2</field>
+</shadow>
+</value>
+<next>
+<block type="math_change" id="DLHE(qXIba9BO%*u0Ysa">
+<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
+<value name="DELTA">
+<shadow type="math_number" id="~8cY_eZ9a384otV5c~uY">
+<field name="NUM">-2</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="procedures_callnoreturn" id="c~XRv(!!tg32q^u=ckCF">
+<mutation name="showTelemetry"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="TMF]E,|dDCGw^q+z}U/e" x="1501" y="287">
+<field name="NAME">park</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id="0#N[GVWI$ClY9q@y@Pru">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="}6.Dzwtj:{89x.@y?n;G"/>
+</value>
+<statement name="DO">
+<block type="variables_set" id="7;t(h_-#/_sg)$pq/QH/">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+<value name="VALUE">
+<block type="logic_compare" id=":S5coh}i|k^fax,5mg,!">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="variables_get" id=";Y[wWgnI+`,FK~QJH5kp">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="}#(Qfz!FgTuBg=+VC-Fe">
+<field name="NUM">6.75</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="-$AZYar/+er/aaLba!1B">
+<mutation else="1"/>
+<next>
+<block type="procedures_callnoreturn" id="h$Qa|=dZQDY7(Wms-N8L">
+<mutation name="showTelemetry"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="UM~.Z,oLZ$_U;0i6f=dU" x="207" y="424">
+<field name="NAME">foward</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id="RLe7@4~Mpyk8BS|}1riB">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="-EV7=vZaRW;Seu!JU_qL"/>
+</value>
+<statement name="DO">
+<block type="variables_set" id="=SABgG(_nL@E(+;CQ+w@">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="AalctGtWzdow8QMt+:jx">
+<field name="IDENTIFIER">distence_backAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_back"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="^=Z^u8+ZkM:$z!=HYF4[">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="c~Bxx9Yi)Ap-Q_3$/gdW">
+<field name="VAR" id="iwj{`K7kjze2[{?`oS:0">foward1</field>
+<value name="VALUE">
+<block type="logic_compare" id="P]pi0vxzI*7~J5~h}+Jp">
+<field name="OP">LTE</field>
+<value name="A">
+<block type="variables_get" id="fsE.GaFD)c2~]G|~O(tk">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="EurMM3zTmnKgT6J,a:M+">
+<field name="NUM">5</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="%GkiQVXakvZuY;i(~y-p">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+<value name="VALUE">
+<block type="logic_compare" id="jf3qf@l4UZQmnN7QB~lb">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="variables_get" id=";.:rEB=#@uqPr}GKl8Bj">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="Wo5^6UXcedekJXC9szAI">
+<field name="NUM">6.75</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="x3%o@Z1t;]T8XYGt[w_/">
+<mutation else="1"/>
+<value name="IF0">
+<block type="variables_get" id="m0@B^/N*[msADezWe(#|">
+<field name="VAR" id="iwj{`K7kjze2[{?`oS:0">foward1</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setDualProperty_Number" id="Ao`fBhQw40vNMp*bh~8.">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">front_rightAsDcMotor</field>
+<field name="IDENTIFIER2">back_rightAsDcMotor</field>
+<data>{"IDENTIFIER1":"front_right","IDENTIFIER2":"back_right"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="U2yv)3BV6lX|ZaK}jplI">
+<field name="NUM">0.15</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="pq?wZNYI$y}(7.KJQKR~">
+<field name="NUM">0.15</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="=.u]xWcb)X6B/MO]kBmD">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">front_leftAsDcMotor</field>
+<field name="IDENTIFIER2">back_leftAsDcMotor</field>
+<data>{"IDENTIFIER1":"front_left","IDENTIFIER2":"back_left"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="0UOLHrEuMWp8OMJ!AY,P">
+<field name="NUM">0.15</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="78``6dtH#@{/`z0?s*m[">
+<field name="NUM">0.15</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setDualProperty_Number" id="*8}QG|tEzSWgy[tOmc^(">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">front_rightAsDcMotor</field>
+<field name="IDENTIFIER2">back_rightAsDcMotor</field>
+<data>{"IDENTIFIER1":"front_right","IDENTIFIER2":"back_right"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="LoDm*keIR#T(^G5Yi:C~">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="[vi.GMw:U_x2)e(sR;M]">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="AuS^#qj.#oQ]u#YA^|T|">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">back_leftAsDcMotor</field>
+<field name="IDENTIFIER2">front_leftAsDcMotor</field>
+<data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="66w[StOv=T3/h8g$8vll">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="zg?7l]PVcq3XsB((DpU{">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="controls_flow_statements" id="_$rdo-b]rZm~h-6cj,5b">
+<field name="FLOW">BREAK</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="procedures_callnoreturn" id="Q]07O;yPfmfDV~:hNz=.">
+<mutation name="showTelemetry"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="?Q09qH1|[7GP~($_w3pr" x="-273" y="503">
+<field name="NAME">showTelemetry</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="telemetry_addNumericData_Number" id="K0cowkr[)yL;j9/]goH1">
+<value name="KEY">
+<shadow type="text" id="Z-?Q,n06bhaaKGcN`SyB">
+<field name="TEXT">rightinches</field>
+</shadow>
+<block type="text" id="-to%kdF5dDH(F^a3,T]}">
+<field name="TEXT">right_Dist</field>
+</block>
+</value>
+<value name="NUMBER">
+<shadow type="math_number" id=",kTd:N/zQ-51ty;s9ZNT">
+<field name="NUM">123</field>
+</shadow>
+<block type="variables_get" id="n%C2x(wttVr/,VTcy)rR">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addNumericData_Number" id="eYv-JrQkY.Xy,T9[d%]:">
+<value name="KEY">
+<shadow type="text" id="pDs0]gw2H.dFti/VQQ(q">
+<field name="TEXT">backinches</field>
+</shadow>
+<block type="text" id="]RjPRHv1-*VV.*i4hw_@">
+<field name="TEXT">Back_Dist</field>
+</block>
+</value>
+<value name="NUMBER">
+<shadow type="math_number" id="L){=q9U7c9y_D:UJk[`z">
+<field name="NUM">123</field>
+</shadow>
+<block type="variables_get" id="QZL1i^Ge*rF#:!X%a.4y">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="/66GGeZTuIf/|7T(z%O|">
+<value name="KEY">
+<shadow type="text" id="/F:ydL9X6:p;,G9vWfRe">
+<field name="TEXT">foward1</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="%$!w.]$7c)[;xZDrZ6Y}">
+<field name="TEXT">text</field>
+</shadow>
+<block type="variables_get" id="fj@k@kJS5UCmWXQw__Xt">
+<field name="VAR" id="iwj{`K7kjze2[{?`oS:0">foward1</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="yv]Xu/YNY8Ew@BgI7r1r">
+<value name="KEY">
+<shadow type="text" id="H5~#A6)I)I)]-M%cEx!H">
+<field name="TEXT">endstrafe</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text">
+<field name="TEXT">text</field>
+</shadow>
+<block type="variables_get" id="uR)ybz*)u;[N.w[FZXT_">
+<field name="VAR" id="vXHQ)M}WLXp1KPZ%dzOR">endstrafe</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="(8%n4j7La`U26mOun9?y">
+<value name="KEY">
+<shadow type="text" id="B,#qF:Qj}=Hk(Ek^Vwl^">
+<field name="TEXT">strafe</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text">
+<field name="TEXT">text</field>
+</shadow>
+<block type="variables_get" id="hrJSoL]A6w_y5=^{Fs^B">
+<field name="VAR" id="YL}g.laCjyTy%iDWJ$_(">strafe</field>
+</block>
+</value>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="t[?#BpsfMy}5c*GV$_Fh" x="957" y="593">
+<field name="NAME">strafe</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="variables_set" id="@ZgSHr|AkR]/wJ7d-@l*">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="/Db{R$Zp_%6#Hjp[e:Wo">
+<field name="IDENTIFIER">distence_backAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_back"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="MwN+g^]C/{deY;^5#uUm">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="G6a6*_cT7`=|q0~YRK[~">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="+;4YZbX@sW-v}PZfIVE_">
+<field name="IDENTIFIER">distence_rightAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_right"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="le=EE0}xyFPL,=KiYJw;">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="YAzTX+^h%ef$=}?vIUMH">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+<value name="VALUE">
+<block type="logic_compare" id="Xu8sgjP4Tm]ryy/ve36l">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="variables_get" id="(?G[NuJSdkfrw!d+-Df~">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="TP@||VT_S:lhc|uf9ZH1">
+<field name="NUM">6.75</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="CnH~Xgk`InElSeva%G[b">
+<field name="VAR" id="YL}g.laCjyTy%iDWJ$_(">strafe</field>
+<value name="VALUE">
+<block type="logic_compare" id=";uDzI:)bd}%HF2Zkk(D*">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="variables_get" id="Vw*m1UQUb;b@Y[O;tXVr">
+<field name="VAR" id="^:y$*6kcH:WSdwN4jcxN">sensor_dist</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="eIVqTl.bo*md9GN/;XqR">
+<field name="NUM">3</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="lmXrKK?z7;/c]Qc75?n?">
+<mutation else="1"/>
+<value name="IF0">
+<block type="variables_get" id="Uj%5BUVMWd_s.jE5nTYM">
+<field name="VAR" id="YL}g.laCjyTy%iDWJ$_(">strafe</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setDualProperty_Number" id="5o/R2Gc/zHm%4l@Id:b=">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">back_leftAsDcMotor</field>
+<field name="IDENTIFIER2">front_leftAsDcMotor</field>
+<data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="h]kKOs6G*4*3?e@@l?8E">
+<field name="NUM">-0.3</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="7ngcJmL4si#)/m=2Qt;Y">
+<field name="NUM">0.3</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="*p[SGnwN~rwN:[9]:z;`">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">back_rightAsDcMotor</field>
+<field name="IDENTIFIER2">front_rightAsDcMotor</field>
+<data>{"IDENTIFIER1":"back_right","IDENTIFIER2":"front_right"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="TNwq),7]L;N2D.zIj+sC">
+<field name="NUM">0.3</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="i:HvFj$j@jGT$)8t)pFs">
+<field name="NUM">-0.3</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setDualProperty_Number" id="Y-j]:-2~5,#-ChOY@np3">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">back_leftAsDcMotor</field>
+<field name="IDENTIFIER2">front_leftAsDcMotor</field>
+<data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="bP0?7M$Z(V:Sz~I=kg!w">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="!T*PBUSyMO?,O:O.*%Z@">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setDualProperty_Number" id="o625^8dWt8)`BcF}8HQW">
+<field name="PROP">Power</field>
+<field name="IDENTIFIER1">back_rightAsDcMotor</field>
+<field name="IDENTIFIER2">front_rightAsDcMotor</field>
+<data>{"IDENTIFIER1":"back_right","IDENTIFIER2":"front_right"}</data>
+<value name="VALUE1">
+<shadow type="math_number" id="z)1(=!7QW?tlXyz2f%*K">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="VALUE2">
+<shadow type="math_number" id="$:N`fL[nJ%R:Vh[RB*9?">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
+<block type="controls_flow_statements" id="(CYbCQOK`X_V/l.fOwC@">
+<field name="FLOW">BREAK</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="procedures_callnoreturn" id=";?,%z/dDMkAY6a1uWdFi">
+<mutation name="showTelemetry"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="AUTONOMOUS" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
+

@@ -26,25 +26,29 @@ function fetchBlock($urlName)
 }
 
 function saveBlock($projectName, $blk, $js) {
-    $uri="$($server)save"
-    $body = @{
-        name = [uri]::EscapeUriString($projectName)
-        blk = [uri]::EscapeUriString($blk)
-        js = [uri]::EscapeUriString($js)
-    }
-    $body2 = @{name=$projectName;blk=$blk;js=$js}
-    
-    $params = 'name=' + [uri]::EscapeUriString($projectName) +
-        '&blk=' + [uri]::EscapeUriString($blk) +
-        '&js=' + [uri]::EscapeUriString($js)
-    $contentType = 'application/x-www-form-urlencoded' 
+    $blks = Invoke-WebRequest "$($server)list" -SessionVariable 'session'
+    $session
 
+    $uri="$($server)save"
+
+    $body2 = @{name=$projectName;blk=$blk;js=$js}
     Write-Host $uri
-    Write-Host $body.name
+    Write-Host $body2.name
+    $response = Invoke-WebRequest -Method Post -Uri $uri -Body $body2 -ContentType $contentType -WebSession $session
+    Write-Host $response.StatusCode
+    
+    # $body = @{
+    #     name = [uri]::EscapeUriString($projectName)
+    #     blk = [uri]::EscapeUriString($blk)
+    #     js = [uri]::EscapeUriString($js)
+    # }
+    # $params = 'name=' + [uri]::EscapeUriString($projectName) +
+    #     '&blk=' + [uri]::EscapeUriString($blk) +
+    #     '&js=' + [uri]::EscapeUriString($js)
+    # $contentType = 'application/x-www-form-urlencoded' 
+
     #Write-Host $params
     # Invoke-RestMethod -Method Post -Uri $uri -Body $params -ResponseHeadersVariable header -StatusCodeVariable code -TransferEncoding Gzip
-    $response = Invoke-WebRequest -Method POST -Uri $uri -Body $body2 -ContentType $contentType
-    Write-Host $response.StatusCode
     #write-host $header
 }
 
@@ -113,16 +117,17 @@ if ($cmd -eq "fetchBlocks")
 if ($cmd -eq "saveBlock")
 {
     # todo
-    $blk = gc .\bot-repo\11617-A-RC\basic-op-mode.blk
+    #$blk = gc .\bot-repo\11617-A-RC\basic-op-mode.blk
+    $blk = gc '.\bot-repo\BMS-test-bot\Save Test.blk'
     # $blk[$blk.length - 2] = "</xml>"
 
-    $projectName = "basic op mode"
+    $projectName = "Save Test"
     $js = @'
-/*
-* 
+/** 
 * This function is executed when this Op Mode is selected from the Driver Station. 
-*/ function runOpMode() {
-     linearOpMode.waitForStart();
+*/ 
+function runOpMode() {
+    linearOpMode.waitForStart();
     if (linearOpMode.opModeIsActive()) { 
         while (linearOpMode.opModeIsActive()) {
              telemetry.update(); 
