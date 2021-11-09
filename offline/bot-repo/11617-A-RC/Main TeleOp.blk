@@ -535,6 +535,9 @@
 <block type="procedures_callnoreturn" id="nrp7SZp~3+0Qba|C,JJ]">
 <mutation name="initMotors"/>
 <next>
+<block type="procedures_callnoreturn" id="],hQM(csa%ag`_,Fqd9w">
+<mutation name="initializeGrabber"/>
+<next>
 <block type="linearOpMode_waitForStart" id=":K8^U;yjvZn8aWa~t|#1">
 <next>
 <block type="controls_if" id="V4vcz1^;$q.ACQvg4=Rg">
@@ -574,6 +577,8 @@
 </next>
 </block>
 </statement>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -993,12 +998,17 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="Nh[!*9b?2/)I[uKh~02-" x="63" y="319">
+<block type="procedures_defnoreturn" id="Nh[!*9b?2/)I[uKh~02-" x="95" y="213">
 <field name="NAME">handleDriver</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
 <block type="procedures_callnoreturn" id="mlHn|p~ps8wf=SOG!CW0">
 <mutation name="handleDrive"/>
+<next>
+<block type="procedures_callnoreturn" id="n4!%QdKM2CRlT$Kv+sWq">
+<mutation name="handleGrabber"/>
+</block>
+</next>
 </block>
 </statement>
 </block>
@@ -1728,6 +1738,137 @@
 </block>
 </statement>
 </block>
+<block type="comment" id="!em8C_88zUOrLbZ9BFPu" x="2141" y="713">
+<field name="COMMENT">GRABER HANDLER</field>
+</block>
+<block type="procedures_defnoreturn" id="z}hWS%9{Bp$=y*{cTfX[" x="2134" y="756">
+<field name="NAME">initializeGrabber</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="procedures_callnoreturn" id="yMQt-2UW,3+5MDTw.w*-">
+<mutation name="moveGrabberToTop"/>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="Z$I}W}U[,!:txEcW~|CC" x="2134" y="854">
+<field name="NAME">moveGrabberToTop</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="servo_setProperty_Number" id="CPU{NdU3.y(OCUsdra,i">
+<field name="IDENTIFIER">grabber_arm_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"grabber_arm_servo"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="=hpPuE9/s4Cn%qw[AK@i">
+<field name="NUM">0.45</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="rqt_mwS(/MX%qHQI3l%." x="2590" y="863">
+<field name="NAME">handleGrabber</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_if" id="hi2Y5%~(8Dcu/_Z4sFt0">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="=OQC6fF7-kKjnBc+)FU2">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">Y</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="procedures_callnoreturn" id="F{r./#[^6p]D!VxzCNeZ">
+<mutation name="moveGrabberToTop"/>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="KN_0irw6:`}4o{8Y|2KA">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="0{iN4en94LH`UG^u#^dM">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">X</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="procedures_callnoreturn" id="E354_NR%]LmEV]Ahw$p{">
+<mutation name="moveGrabberToMiddle"/>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="~v.v.Xn!r6#00yYfOSBk">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="mw?iC;mj7h_$U8B/@8r}">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">A</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="procedures_callnoreturn" id="dX-S/zEE,~Y4S9WcMdw_">
+<mutation name="moveGrabberToBottom"/>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="uMfrX6h6~sO}:p#@R4^u">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id=";{l#2_b9HSW%P4w*43!R">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">LeftBumper</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="procedures_callnoreturn" id="-A5*FxAwd4`~eB7IEJkU">
+<mutation name="closeGrabber"/>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="}65Xx$QiDCoiI]bkyrz#">
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id="#8:Ao)}9gnh,N%z,zjuI">
+<field name="IDENTIFIER">gamepad1</field>
+<field name="PROP">RightBumper</field>
+<data>{"IDENTIFIER":"gamepad1"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="procedures_callnoreturn" id="oA59JG,;XZXDxkb`,,4!">
+<mutation name="openGrabber"/>
+</block>
+</statement>
+<next>
+<block type="telemetry_update" id="I%XpKtMle3Z~h1t1LU-$"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="Xo=TIEi~)kkEU}`4iKQG" x="2129" y="957">
+<field name="NAME">moveGrabberToMiddle</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="servo_setProperty_Number" id="A^t`fPGubm(so]iH;#=2">
+<field name="IDENTIFIER">grabber_arm_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"grabber_arm_servo"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="l4zBk*+3O6;406~BNEU]">
+<field name="NUM">0.8</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
 <block type="procedures_defnoreturn" id="FC370[E[0~x%%fB*0s3U" x="66" y="1103">
 <field name="NAME">sweatMotorCommand</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
@@ -1781,5 +1922,58 @@
 </block>
 </statement>
 </block>
-</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" autoTransition="Main TeleOp" /><Enabled value="false" /></Extra>
+<block type="procedures_defnoreturn" id="Y{6;%y!KX0q,Mkjt-Ji4" x="2127" y="1048">
+<field name="NAME">moveGrabberToBottom</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="servo_setProperty_Number" id="bA[@S!F1y^]@IYew2ds-">
+<field name="IDENTIFIER">grabber_arm_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"grabber_arm_servo"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="mTbpmnZ_k15P7vAe^[*=">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="nd.RX]xJXJM|_;[hA9SX" x="2128" y="1137">
+<field name="NAME">openGrabber</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="servo_setProperty_Number" id="I/%smUGCm^[Y*O_)Epm?">
+<field name="IDENTIFIER">grabber_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"grabber_servo"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="Y*6~*j#e|NY1ipnMQMN0">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="1t!`OT_]Cf,*9?JvEJly" x="2116" y="1223">
+<field name="NAME">closeGrabber</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="servo_setProperty_Number" id="/k%5aS,cdQkl70y7wc^b">
+<field name="IDENTIFIER">grabber_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"grabber_servo"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="vv7AEcP#ResDUs=~37:-">
+<field name="NUM">0.38</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
 
