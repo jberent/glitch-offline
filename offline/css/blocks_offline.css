@@ -20,9 +20,22 @@ td, th {
 
 input[type="radio"], input[type="checkbox"] {
   margin: 4px 0 0;
-  margin-top: 1px \9; // IE8-9
+  margin-top: 1px;
   line-height: normal;
 }
+
+input[type="file"] {
+  cursor: pointer;
+  color: white;
+}
+label {
+  color: white;
+}
+
+#downloadImageButton, #saveSuccess, #saveFailure {
+  display: none;
+}
+
 
 * {
   box-sizing: border-box;

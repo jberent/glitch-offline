@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <!--
     MODS: Jonathan Berent - glitch -2021
   Original Author: lizlooney@google.com (Liz Looney)
@@ -122,14 +122,14 @@
     <tr>
       <td class="buttons_td" colspan="2">
         <table width="100%"><tr><td>
-          <button onclick="saveButtonClicked()">Save Op Mode</button>
+          <label for="uploadProjectFileInput">Load Op Mode</label>
           <input type="file" id="uploadProjectFileInput" accept=".blk" onchange="uploadButtonClicked(this)">
-          <button onclick="downloadButtonClicked()">Download Op Mode</button>
-          <button id="downloadImageButton" style="display: none" disabled="true"
-                  onclick="downloadImageButtonClicked()">Download Image of Blocks</button>
+          
+          <button onclick="downloadButtonClicked()">Save Op Mode</button>
+          <button id="downloadImageButton" disabled="true" onclick="downloadImageButtonClicked()">Download Image of Blocks</button>
           <a id="download_link"></a>
-          <span id="saveSuccess" style="display: none">Save completed successfully.</span>
-          <span id="saveFailure" style="display: none"></span>
+          <span id="saveSuccess">Save completed successfully.</span>
+          <span id="saveFailure"></span>
         </td></tr></table>
       </td>
     </tr>
