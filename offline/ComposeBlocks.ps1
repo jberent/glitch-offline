@@ -1,22 +1,69 @@
-$blk = gc '.\bot-repo\11617-A-RC\handleArm.module.blk'
-$blk.length
-$blk.IndexOf("<?xml");
-#$blk[$blk.length - 2] # = "</xml>"
-[xml] $doc = $blk.Substring(0, $blk.IndexOf("<?xml"));
+
+function LoadModule($path) {
+    
+    $blk = gc $path
+    if ($blk[$blk.length-1] -eq '</xml>') {
+        # file is lines
+        [xml] $doc = $blk;
+    } else {
+        # file is one line
+        [xml] $doc = $blk.Substring(0, $blk.IndexOf("<?xml"));
+    }
+
+    $xml = $doc.xml
+    #$xmlns = $xml.xmlns
+    $variables = $xml.variables.variable | select-object -ExpandProperty `#text
+    
+    #$functionNames = $doc.xml.block.field.InnerText
+    $blocks = $doc.xml.block
+    
+    $runOpMode = $blocks.Where({$_.deletable -eq 'false'}, 'First')
+    $functions = $blocks.Where({$_.deletable -ne 'false'})
+    
+    $initFunction = $runOpMode.statement.block.next.block
+    # findInitCode $runOpMode.statement.block.next
+    # $initFunctionName = $initFunction.mutation.name
+
+    @{
+        'variables' = $variables
+        'functions' = $functions | % {
+            @{
+                'name' = $_.field.InnerText
+                'body' = $_
+            }
+        }
+        'initFunction' = $initFunction
+    }
+}
+
+function findInitCode($next) {
+    if ($next) {
+        $block = $next.block
+        # $block.mutation.name
+        findInitCode $block.next
+    }
+} 
+
+$module = LoadModule '.\bot-repo\11617-A-RC\handleArm.module.blk'
+$module.functions[2]
+$module2 = LoadModule '.\bot-repo\11617-A-RC\ps.blk'
+$module2.variables
+
+# $blk.length
+# $blk.IndexOf("<?xml");
+# $blk[$blk.length - 2] # = "</xml>"
 # $doc.GetType(); #XmlDocument
-#$doc.FirstChild.GetType(); #XmlElement
+# $doc.FirstChild.GetType(); #XmlElement
+# $variables #[1] #| get-member
 
-$variables = $doc.xml.variables.variable | select-object -ExpandProperty `#text
-$variables #[1] #| get-member
+# $functions.field.InnerText
+# $functions.y
 
-$functionNames = $doc.xml.block.field.InnerText
-$blocks = $doc.xml.block
-
-$runOpMode = $blocks.Where({$_.deletable -eq 'false'}, 'First')
-$functions = $blocks.Where({$_.deletable -ne 'false'})
-$functions.field.InnerText
-$functions.y
 <#
+$var = $xml.CreateElement("variable");
+$var.InnerText = 'HD_HEX_40_COUNTS_PER_REV';
+$xml.variables.AppendChild($var);
+
 type      : procedures_defnoreturn
 id        : WtpyD@tEu+EoY=P9iY,D
 deletable : false
