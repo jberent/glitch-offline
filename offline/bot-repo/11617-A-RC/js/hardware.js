@@ -1,7 +1,6 @@
 
 var AUTO_TRANSITION_OPTIONS = [
   'Main TeleOp',
-  'servo control',
 ];
 
 var tfodCurrentGameName = 'Freight Frenzy';
