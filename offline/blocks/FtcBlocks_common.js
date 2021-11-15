@@ -832,10 +832,60 @@ function pasteContent(clipboardContent) {
 
 function downloadBlocks(blkFileContent) {
   var a = document.getElementById('download_link');
+  blkFileContent = formatXML(blkFileContent);
   a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(blkFileContent);
   a.download = currentProjectName + '.blk';
   a.target = '_blank';
   a.click();
+}
+
+function formatXML(blkFileContent) {
+  var lines = [];
+  var endPos = 0;
+  var nextPos = 0;
+  while (nextPos < blkFileContent.length) {
+
+    var open = blkFileContent.indexOf("<", nextPos);
+    var solidus = blkFileContent.indexOf("/", open + 1);
+    var qm = blkFileContent.indexOf("?", open + 1);
+    var sp = blkFileContent.indexOf(" ", open + 1);
+    var gt = blkFileContent.indexOf(">", open + 1);
+    
+    if (open != nextPos) {
+      break;
+    }
+
+    if (qm == open + 1) { // e.g., <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+      endPos = blkFileContent.indexOf("?>", open + 1) + 1;
+
+    } else if (solidus == open + 1){ // END TAG
+      endPos = gt; // </ .* >
+
+    } else if (solidus > open && gt == solidus + 1){ // EMPTY TAG
+      endPos = gt; // <tag .* />
+
+    } else { // OPEN TAG, or FULL TAG
+      if (sp > open && sp < gt) {
+        var tag = blkFileContent.substring(open + 1, sp);
+      } else {
+        var tag = blkFileContent.substring(open + 1, gt);
+      }
+      
+      var closeTag = "</" + tag + ">";
+      var close = blkFileContent.indexOf(closeTag, open + 1) + closeTag.length - 1;
+      var nextGT = blkFileContent.indexOf(">", gt + 1);
+      if (close ==  nextGT) {
+        endPos = close;
+      } else {
+        endPos = gt;
+      }
+    }
+
+    nextPos = endPos + 1;
+    lines.push(blkFileContent.substring(open, nextPos));
+  }
+  lines.push("");
+  return lines.join('\n');
 }
 
 function checkDownloadImageFeature() {
