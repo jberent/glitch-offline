@@ -421,7 +421,7 @@
 </value>
 <value name="B">
 <shadow type="math_number" id="p2U(iRvMO#b1_A5`B|/p">
-<field name="NUM">0.7</field>
+<field name="NUM">0.75</field>
 </shadow>
 </value>
 </block>
@@ -789,5 +789,9 @@
 <field name="PROP">TargetPosition</field>
 <data>{"IDENTIFIER":"lift_arm_motor"}</data>
 </block>
-</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" /><Enabled value="false" /></Extra>
-
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
