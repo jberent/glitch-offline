@@ -15,7 +15,7 @@
 <variable id="{]L,?,E]Y(nz8b6-A$3T">success</variable>
 <variable id="|N@f6tm[1jhh)R%HI-QJ">arenaX</variable>
 <variable id="]ZP4/wui`_DN}Nc#;q0{">sideRed</variable>
-<variable id="UYHi2dg[U|%BJ)tf#jOS">isRotating</variable>
+<variable id="UYHi2dg[U|%BJ)tf#jOS">isEasing</variable>
 <variable id="|HeNZ}qJmkhh0iV~Ay5X">CORE_HEX_COUNTS_PER_REV</variable>
 <variable id=";{k,[?wf.#Vt~$scec0o">strafeX</variable>
 <variable id="x.yl*}OYvw*{oe?/8{sg">startTime</variable>
@@ -42,7 +42,6 @@
 <variable id="IXZVFRos]ct1__pj*,H/">CAROUSEL_POWER</variable>
 <variable id="GE^%evCjF815n#E%]([I">armPositions</variable>
 <variable id="))_g]:x))|6!C{O.Mk3)">COUNTS_PER_REV</variable>
-<variable id="A!h?Br8K0S_`ENO8@ieq">DISTANCE_A_TO_CAROUSEL_X</variable>
 <variable id="+vcnbm~.k74C6Hs12^)!">motor2Busy</variable>
 <variable id="ASg`K!2=hRvzJf{RVrlI">positionB</variable>
 <variable id=".NW~L@-0rAs2gj`d1#yZ">HD_HEX_60_COUNTS_PER_REV</variable>
@@ -51,6 +50,7 @@
 <variable id="0!w+V5hpe4yT+*KS!wl)">DISTANCE_A_TO_B</variable>
 <variable id="xQ_Lm/GQ+UE8G!XDW8sy">ARM_POWER</variable>
 <variable id="zV{bp-u[C9W.`d,~TRHb">INCHES_PER_REV</variable>
+<variable id="A!h?Br8K0S_`ENO8@ieq">DISTANCE_A_TO_CAROUSEL_X</variable>
 <variable id="_bj__`r$I)A%u_QIAynJ">motor3Busy</variable>
 <variable id="}y5/{L?*p`Y;gTOG@ATA">BASE_VELOCITY_RUN_TO_POSITION</variable>
 <variable id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</variable>
@@ -61,6 +61,9 @@
 <variable id="G@{UT=#Ea!)4aE(y]hG$">motorsDone</variable>
 <variable id="^Ua6aUU=7oJo+PZKqKpy">LEVEL_MAX</variable>
 </variables>
+<block type="comment" id="nS4[zU-6qc?jZ$,c1M(/" x="-185" y="-1832">
+<field name="COMMENT">change top level from 0.70.to 0.75</field>
+</block>
 <block type="comment" id="w_SoT=Z_@;yZ[SXLxUX?" x="-153" y="-1646">
 <field name="COMMENT">====  AUTONOMOUS  ====</field>
 </block>
@@ -723,10 +726,10 @@
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
 <block type="variables_set" id="xUosP+bQE^;:=1/1]k%T">
-<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isRotating</field>
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
 <value name="VALUE">
 <block type="logic_boolean" id="}:}.Ugt6T[oxNCe6~}lR">
-<field name="BOOL">TRUE</field>
+<field name="BOOL">FALSE</field>
 </block>
 </value>
 <next>
@@ -746,10 +749,10 @@
 </value>
 <next>
 <block type="variables_set" id="k^tF85$UQ~ZAI%.leRpK">
-<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isRotating</field>
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
 <value name="VALUE">
 <block type="logic_boolean" id="s@}()~E]k1bmH~E@7Jja">
-<field name="BOOL">FALSE</field>
+<field name="BOOL">TRUE</field>
 </block>
 </value>
 </block>
@@ -851,140 +854,6 @@
 </next>
 </block>
 </statement>
-</block>
-</statement>
-</block>
-<block type="procedures_defnoreturn" id="^NJDGD3B4][/HqnR*X{4" x="-1963" y="-989">
-<mutation>
-<arg name="level" varid="hq`#:XMDT2J$hyxnk1Mh"/>
-</mutation>
-<field name="NAME">unloadToHub</field>
-<comment pinned="false" h="42" w="195">6 pts, +10 if correct level</comment>
-<statement name="STACK">
-<block type="procedures_callnoreturn" id="wWQna$i7#1d$L3eozBwx">
-<mutation name="goLeft">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="math_arithmetic" id="uV1~m[o[CT~]hEt(Vu`@">
-<field name="OP">MULTIPLY</field>
-<value name="A">
-<shadow type="math_number">
-<field name="NUM">1</field>
-</shadow>
-<block type="variables_get" id="XD`[xQI?MNdC]f^)bV1G">
-<field name="VAR" id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</field>
-</block>
-</value>
-<value name="B">
-<shadow type="math_number">
-<field name="NUM">1</field>
-</shadow>
-<block type="variables_get" id="qFa)DdRg49@jcaKU.cFd">
-<field name="VAR" id="|N@f6tm[1jhh)R%HI-QJ">arenaX</field>
-</block>
-</value>
-</block>
-</value>
-<next>
-<block type="procedures_callnoreturn" id="U?M{UU7QXeG_Xv!?SD2Q">
-<mutation name="backIntoWall"/>
-<next>
-<block type="procedures_callnoreturn" id="anX(Atk[K@*qsqth*h-B">
-<mutation name="setArmTarget">
-<arg name="armTargetNumber"/>
-</mutation>
-<value name="ARG0">
-<block type="variables_get" id="_mu0jlD0wbKY`0j2)Ezx">
-<field name="VAR" id="hq`#:XMDT2J$hyxnk1Mh">level</field>
-</block>
-</value>
-<next>
-<block type="procedures_callnoreturn" id="s_q1Q5IjYxJW6j4D:6p!">
-<mutation name="goForward">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="variables_get" id="^-Mazl;v*C#Kr{f{H(@]">
-<field name="VAR" id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</field>
-</block>
-</value>
-<next>
-<block type="procedures_callnoreturn" id="]vHt07H00)x#]s8{5/z9">
-<mutation name="depositFreight"/>
-<next>
-<block type="procedures_callnoreturn" id="wYi}TBqHr@8q$moSfHp|">
-<mutation name="goBackward">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="variables_get" id="iaD^;=ti?7:w$=UrcYs;">
-<field name="VAR" id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</field>
-</block>
-</value>
-<next>
-<block type="procedures_callnoreturn" id="aBc_BWp!r(^|*^x@|D)w">
-<mutation name="liftArmToDrive"/>
-<next>
-<block type="procedures_callnoreturn" id="V%yQ_LhWXz`/KYD80*hj">
-<mutation name="backIntoWall"/>
-<next>
-<block type="procedures_callnoreturn" id="`Tmnl1HMX)=)?0R1IZYo">
-<mutation name="moveAwayFromWall"/>
-<next>
-<block type="procedures_callnoreturn" id="P$|G%(6Yrb%mn=6c14%N">
-<mutation name="goRight">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="math_arithmetic" id="wy,Ii3=c@=:LtN4M8Su/">
-<field name="OP">MULTIPLY</field>
-<value name="A">
-<shadow type="math_number">
-<field name="NUM">1</field>
-</shadow>
-<block type="variables_get" id="2H3YcSQx2K1/M9Si0?Yf">
-<field name="VAR" id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</field>
-</block>
-</value>
-<value name="B">
-<shadow type="math_number">
-<field name="NUM">1</field>
-</shadow>
-<block type="variables_get" id="[hXiFvW)G:3ot2GDl1Ly">
-<field name="VAR" id="|N@f6tm[1jhh)R%HI-QJ">arenaX</field>
-</block>
-</value>
-</block>
-</value>
-<next>
-<block type="procedures_callnoreturn" id="Dr#__zI0P5#DI@81i|oS">
-<mutation name="backIntoWall"/>
-<next>
-<block type="procedures_callnoreturn" id="OVc|VdC8ZV4$;z#@2.!x">
-<mutation name="moveAwayFromWall"/>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
 </block>
 </statement>
 </block>
@@ -1220,6 +1089,14 @@
 <field name="NUM">-1</field>
 </block>
 </value>
+<next>
+<block type="variables_set" id="%k/gs5F2wbW`H}Dv]W`K">
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
+<value name="VALUE">
+<block type="logic_boolean" id="Qdm}DDfVzM-)Zk4(nMMv">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
 </block>
 </next>
 </block>
@@ -1244,6 +1121,44 @@
 </next>
 </block>
 </next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="L}X:k:~+xX|}Eo_aOVc," x="-2023" y="-689">
+<field name="NAME">backIntoWall</field>
+<comment pinned="false" h="80" w="160">Help straighten robot before next move</comment>
+<statement name="STACK">
+<block type="variables_set" id="+CTrEflh;=2M2KQ31Exh">
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
+<value name="VALUE">
+<block type="logic_boolean" id="?ksr(Cch;zCQ]m%yHBeV">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="=wMf{Oeh3v@_tR]7@9ax">
+<mutation name="goBackward">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="math_number" id="=tjlklhn}mpSl=NEUUJK">
+<field name="NUM">1</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="tJir6E0Rk8.l0y+5m/aw">
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
+<value name="VALUE">
+<block type="logic_boolean" id="AY`*Y{2dQ2QCw{L^OI}}">
+<field name="BOOL">TRUE</field>
+</block>
+</value>
 </block>
 </next>
 </block>
@@ -1283,6 +1198,42 @@
 <shadow type="math_number" id="JC~;gt3jZ:kFanZJ-;gX">
 <field name="NUM">0</field>
 </shadow>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="0q`BJ?Q3%Ka:^)[s0!r=" x="-1711" y="-690">
+<field name="NAME">moveAwayFromWall</field>
+<comment pinned="false" h="80" w="160">Help straighten robot before next move</comment>
+<statement name="STACK">
+<block type="variables_set" id="M^NG_p[c1R{#T0.R+q]P">
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
+<value name="VALUE">
+<block type="logic_boolean" id="a5q-_vf;YB)=ji@g+UDX">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="tfevCy;yq*pGaM%!cs4)">
+<mutation name="goBackward">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="math_number" id="Y.i/i,h1qHH%?H8u?EE7">
+<field name="NUM">0.5</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="$Ob?W_aB5.q1!t+/u^i0">
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
+<value name="VALUE">
+<block type="logic_boolean" id=";|V8(W!d!RZ;!=9C)^Gv">
+<field name="BOOL">TRUE</field>
+</block>
 </value>
 </block>
 </next>
@@ -1524,7 +1475,7 @@
 <block type="comment" id="1l`]IpmdoK#12HNvFgFW" x="2611" y="-697">
 <field name="COMMENT">=== ARM CONTROL  ===</field>
 </block>
-<block type="procedures_defnoreturn" id="m)O%kPn|WpgaYs{s5{oQ" x="1805" y="-608">
+<block type="procedures_defnoreturn" id="m)O%kPn|WpgaYs{s5{oQ" x="1829" y="-643">
 <field name="NAME">initializeCarousel</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -1569,6 +1520,29 @@
 </value>
 </block>
 </value>
+<next>
+<block type="telemetry_addTextData_All" id="nB%MhV5/C}X`q%668d5}">
+<value name="KEY">
+<shadow type="text" id="Z5,i+`86dxC)cKf5~mP*">
+<field name="TEXT">touching duck</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="zYz!lsNL}eO:SehfchsK">
+<field name="TEXT">text</field>
+</shadow>
+<block type="logic_negate" id="}vkT2.RXCND}aSb9lr1u">
+<value name="BOOL">
+<block type="digitalChannel_getProperty_Boolean" id="z|cE7/,@r-_PnWn`n(m7">
+<field name="IDENTIFIER">carousel_switchAsDigitalChannel</field>
+<field name="PROP">State</field>
+<data>{"IDENTIFIER":"carousel_switch"}</data>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -1667,7 +1641,7 @@
 </value>
 <value name="B">
 <shadow type="math_number" id="gwbO#3F}{syHkKlL@*Mo">
-<field name="NUM">0.7</field>
+<field name="NUM">0.72</field>
 </shadow>
 </value>
 </block>
@@ -1994,42 +1968,10 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="L}X:k:~+xX|}Eo_aOVc," x="-1962" y="-215">
-<field name="NAME">backIntoWall</field>
-<comment pinned="false" h="80" w="160">Help straighten robot before next move</comment>
-<statement name="STACK">
-<block type="procedures_callnoreturn" id="=wMf{Oeh3v@_tR]7@9ax">
-<mutation name="goBackward">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="math_number" id="=tjlklhn}mpSl=NEUUJK">
-<field name="NUM">1</field>
-</block>
-</value>
-</block>
-</statement>
-</block>
-<block type="procedures_defnoreturn" id="0q`BJ?Q3%Ka:^)[s0!r=" x="-1745" y="-221">
-<field name="NAME">moveAwayFromWall</field>
-<comment pinned="false" h="80" w="160">Help straighten robot before next move</comment>
-<statement name="STACK">
-<block type="procedures_callnoreturn" id="tfevCy;yq*pGaM%!cs4)">
-<mutation name="goBackward">
-<arg name="inches"/>
-</mutation>
-<value name="ARG0">
-<block type="math_number" id="Y.i/i,h1qHH%?H8u?EE7">
-<field name="NUM">0.5</field>
-</block>
-</value>
-</block>
-</statement>
-</block>
 <block type="comment" id="%^E{`5_Wfbau8}P{]2~;" x="-1391" y="-230">
 <field name="COMMENT">=== RED ===</field>
 </block>
-<block type="procedures_defnoreturn" id="DdM9Ene9#JycL:H+pAa!" x="1809" y="-392">
+<block type="procedures_defnoreturn" id="DdM9Ene9#JycL:H+pAa!" x="1841" y="-386">
 <field name="NAME">rotateDuck</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -2255,6 +2197,140 @@
 <block type="comment" id="e,xh=_MV}Ge0z0hX=-Z," x="-652" y="-240">
 <field name="COMMENT">=== BLUE ===</field>
 </block>
+<block type="procedures_defnoreturn" id="^NJDGD3B4][/HqnR*X{4" x="99" y="-252">
+<mutation>
+<arg name="level" varid="hq`#:XMDT2J$hyxnk1Mh"/>
+</mutation>
+<field name="NAME">unloadToHub</field>
+<comment pinned="false" h="42" w="195">6 pts, +10 if correct level</comment>
+<statement name="STACK">
+<block type="procedures_callnoreturn" id="wWQna$i7#1d$L3eozBwx">
+<mutation name="goLeft">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="math_arithmetic" id="uV1~m[o[CT~]hEt(Vu`@">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="XD`[xQI?MNdC]f^)bV1G">
+<field name="VAR" id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="qFa)DdRg49@jcaKU.cFd">
+<field name="VAR" id="|N@f6tm[1jhh)R%HI-QJ">arenaX</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="U?M{UU7QXeG_Xv!?SD2Q">
+<mutation name="backIntoWall"/>
+<next>
+<block type="procedures_callnoreturn" id="anX(Atk[K@*qsqth*h-B">
+<mutation name="setArmTarget">
+<arg name="armTargetNumber"/>
+</mutation>
+<value name="ARG0">
+<block type="variables_get" id="_mu0jlD0wbKY`0j2)Ezx">
+<field name="VAR" id="hq`#:XMDT2J$hyxnk1Mh">level</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="s_q1Q5IjYxJW6j4D:6p!">
+<mutation name="goForward">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="variables_get" id="^-Mazl;v*C#Kr{f{H(@]">
+<field name="VAR" id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="]vHt07H00)x#]s8{5/z9">
+<mutation name="depositFreight"/>
+<next>
+<block type="procedures_callnoreturn" id="wYi}TBqHr@8q$moSfHp|">
+<mutation name="goBackward">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="variables_get" id="iaD^;=ti?7:w$=UrcYs;">
+<field name="VAR" id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</field>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="aBc_BWp!r(^|*^x@|D)w" disabled="true">
+<mutation name="liftArmToDrive"/>
+<next>
+<block type="procedures_callnoreturn" id="V%yQ_LhWXz`/KYD80*hj">
+<mutation name="backIntoWall"/>
+<next>
+<block type="procedures_callnoreturn" id="`Tmnl1HMX)=)?0R1IZYo">
+<mutation name="moveAwayFromWall"/>
+<next>
+<block type="procedures_callnoreturn" id="P$|G%(6Yrb%mn=6c14%N">
+<mutation name="goRight">
+<arg name="inches"/>
+</mutation>
+<value name="ARG0">
+<block type="math_arithmetic" id="wy,Ii3=c@=:LtN4M8Su/">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="2H3YcSQx2K1/M9Si0?Yf">
+<field name="VAR" id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="[hXiFvW)G:3ot2GDl1Ly">
+<field name="VAR" id="|N@f6tm[1jhh)R%HI-QJ">arenaX</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="Dr#__zI0P5#DI@81i|oS">
+<mutation name="backIntoWall"/>
+<next>
+<block type="procedures_callnoreturn" id="OVc|VdC8ZV4$;z#@2.!x">
+<mutation name="moveAwayFromWall"/>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
 <block type="procedures_defnoreturn" id="=xJq/vb~44FU$OxIBDbF" x="-1411" y="-171">
 <field name="NAME">planRedA</field>
 <comment pinned="false" h="80" w="160">Red "A" - no cables installed</comment>
@@ -2283,7 +2359,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="Jxui:_HgBrWlSQEemu8j" x="-1959" y="-96">
+<block type="procedures_defnoreturn" id="Jxui:_HgBrWlSQEemu8j" x="-1929" y="-78">
 <mutation>
 <arg name="level" varid="hq`#:XMDT2J$hyxnk1Mh"/>
 <arg name="inches" varid="i3[}b|4@+2~yp|fIcO:l"/>
@@ -2519,8 +2595,21 @@
 <arg name="inches"/>
 </mutation>
 <value name="ARG0">
+<block type="math_arithmetic" id="d/zFgp-.@C0AsUgKd;W#">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number" id="#BsTfU(!j#lr(sIQ)R`=">
+<field name="NUM">1</field>
+</shadow>
 <block type="variables_get" id="Y!oj6iLTuDg$Vb7p]%+r">
 <field name="VAR" id="B@mGF1Lg~l_8k$^/ivpo">DISTANCE_A_TO_STORAGE_UNIT_Y</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="%;|g6wOLHMiZ$=J{`I(4">
+<field name="NUM">3</field>
+</shadow>
+</value>
 </block>
 </value>
 <next>
@@ -2536,7 +2625,7 @@
 <field name="NUM">1</field>
 </shadow>
 <block type="math_number" id="]SS2)tpK.PcNj-qOQm;7">
-<field name="NUM">4</field>
+<field name="NUM">6</field>
 </block>
 </value>
 <value name="B">
@@ -3687,8 +3776,21 @@
 <arg name="inches"/>
 </mutation>
 <value name="ARG0">
+<block type="math_arithmetic" id="*vdGgs}tXDGu$Ra.P@f,">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number" id="gl}lFu;yE66,l=/Scr$A">
+<field name="NUM">1</field>
+</shadow>
 <block type="variables_get" id="6*Dii)W)8CQt$R,ZZ+a+">
 <field name="VAR" id="A!h?Br8K0S_`ENO8@ieq">DISTANCE_A_TO_CAROUSEL_X</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="d69OL}56-J$_6#I2?$Vk">
+<field name="NUM">1</field>
+</shadow>
+</value>
 </block>
 </value>
 <next>
@@ -4405,7 +4507,7 @@
 </value>
 <next>
 <block type="variables_set" id="pulrOu_`yd]_5GbOC:Kn">
-<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isRotating</field>
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
 <value name="VALUE">
 <block type="logic_boolean" id="t?5tc-8uorMj`jKl0{u=">
 <field name="BOOL">FALSE</field>
@@ -5218,11 +5320,12 @@
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
 <block type="controls_if" id="+gC*-{Q*}-Q2V~{pXj)n">
+<mutation else="1"/>
 <value name="IF0">
 <block type="logic_negate" id="3*zF;~*c?Z0Kp+./vWsI">
 <value name="BOOL">
 <block type="variables_get" id=")!H~J(s%$xIZ9ygi3Iak">
-<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isRotating</field>
+<field name="VAR" id="UYHi2dg[U|%BJ)tf#jOS">isEasing</field>
 </block>
 </value>
 </block>
@@ -5429,6 +5532,34 @@
 </value>
 </block>
 </statement>
+<next>
+<block type="telemetry_addTextData_All" id="%`G5w(S)L_/pGNG*:?O{">
+<value name="KEY">
+<shadow type="text" id="}@DpfhJ-a9sRm7/CJCjj">
+<field name="TEXT">easing</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="D.ooYW7$7|@9raK|)wYn">
+<field name="TEXT">false</field>
+</shadow>
+</value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="telemetry_addTextData_All" id="zi0e@mB%a!c3LwKO}1;#">
+<value name="KEY">
+<shadow type="text" id="Zr+uh5BJ7Bo[7kPqJKB+">
+<field name="TEXT">easing</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id=".8KaBX|R-F=Saxm7!%@!">
+<field name="TEXT">false</field>
+</shadow>
+</value>
 </block>
 </statement>
 </block>
