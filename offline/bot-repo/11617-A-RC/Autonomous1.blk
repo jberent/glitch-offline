@@ -2,9 +2,9 @@
 <variables>
 <variable id="i3[}b|4@+2~yp|fIcO:l">inches</variable>
 <variable id=":H=Z^G:R6Fv$iL2lt|w*">deg</variable>
-<variable id="hq`#:XMDT2J$hyxnk1Mh">level</variable>
 <variable id="|ry6{A5f7{IT!nAi?MxW">x</variable>
 <variable id="40H@Y!bYnNfUHNBjNjpY">y</variable>
+<variable id="hq`#:XMDT2J$hyxnk1Mh">level</variable>
 <variable id="tDap2.HWLAff_#sJd|iG">timeout</variable>
 <variable id="iLz$f]-B*Ou#IN7kqWB:">armTargetNumber</variable>
 <variable id="0#`Y`OkBgmY)J7E!,AQS">tgt1</variable>
@@ -35,12 +35,12 @@
 <variable id=")DcT({}Vnt/hZka0RU^k">autonStartTime</variable>
 <variable id="lMm_x#z}oN.u*v5,@5MD">DISTANCE_A_TO_STORAGE_UNIT_X</variable>
 <variable id="}3R-CrP75+?z3dSlRk$O">positionA</variable>
-<variable id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</variable>
 <variable id="JC:r6(NilwP5hQz;J_)H">HD_HEX_40_COUNTS_PER_REV</variable>
 <variable id=":dZ}%G$]wB`C[TnY`7(%">INTAKE_OUT_POWER</variable>
 <variable id="B@mGF1Lg~l_8k$^/ivpo">DISTANCE_A_TO_STORAGE_UNIT_Y</variable>
 <variable id="IXZVFRos]ct1__pj*,H/">CAROUSEL_POWER</variable>
 <variable id="GE^%evCjF815n#E%]([I">armPositions</variable>
+<variable id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</variable>
 <variable id="))_g]:x))|6!C{O.Mk3)">COUNTS_PER_REV</variable>
 <variable id="+vcnbm~.k74C6Hs12^)!">motor2Busy</variable>
 <variable id="ASg`K!2=hRvzJf{RVrlI">positionB</variable>
@@ -970,6 +970,9 @@
 </shadow>
 </value>
 <next>
+<block type="comment" id="t{oz^Gx~GfiCGPyTd=L+">
+<field name="COMMENT">CONTROL PORT 1 | HD MOTOR 20:1</field>
+<next>
 <block type="dcMotor_setProperty_Direction" id="g};77;jfeG)OQE{O.}R#">
 <field name="IDENTIFIER">back_left_motorAsDcMotor</field>
 <field name="PROP">Direction</field>
@@ -980,6 +983,9 @@
 </shadow>
 </value>
 <next>
+<block type="comment" id="/~?$vl9)zh5fYjbFezZh">
+<field name="COMMENT">CONTROL PORT 2 | HD MOTOR 20:1</field>
+<next>
 <block type="dcMotor_setProperty_Direction" id="e+QDJUmMXk3J$iOm[0I[">
 <field name="IDENTIFIER">front_right_motorAsDcMotor</field>
 <field name="PROP">Direction</field>
@@ -989,6 +995,9 @@
 <field name="DIRECTION">FORWARD</field>
 </shadow>
 </value>
+<next>
+<block type="comment" id="x4(PC$K`}APO)%phunz?">
+<field name="COMMENT">CONTROL PORT 3 | HD MOTOR 20:1</field>
 <next>
 <block type="dcMotor_setProperty_Direction" id="Se?=#h7}e5DY*jIB`mc|">
 <field name="IDENTIFIER">back_right_motorAsDcMotor</field>
@@ -1062,7 +1071,7 @@
 </value>
 <next>
 <block type="comment" id="EB3tf=8OUi-A^]-WmhT$">
-<field name="COMMENT">CORE HEX MOTOR</field>
+<field name="COMMENT">EXPANSION PORT 1 | CORE HEX MOTOR</field>
 <next>
 <block type="dcMotor_setProperty_Direction" id="wfml[-nKkTch.Q(F2#J}">
 <field name="IDENTIFIER">intake_motorAsDcMotor</field>
@@ -1097,6 +1106,12 @@
 <field name="BOOL">FALSE</field>
 </block>
 </value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -1480,7 +1495,7 @@
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
 <block type="comment" id="-iNAa390xb~O^.+p|1:S">
-<field name="COMMENT">EXPANSION PORT 1 | HD HEX 60:1 | REVERSED</field>
+<field name="COMMENT">EXPANSION PORT 3 | HD HEX 60:1 | REVERSED</field>
 <next>
 <block type="dcMotor_setProperty_Direction" id="%Uv}w[P,qjRk6*KW~oZk">
 <field name="IDENTIFIER">carousel_motorAsDcMotor</field>
@@ -1877,7 +1892,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id=":#Oj0jC;t0`ce/:zmag/" x="1015" y="-420">
+<block type="procedures_defnoreturn" id=":#Oj0jC;t0`ce/:zmag/" x="1045" y="-404">
 <mutation>
 <arg name="x" varid="|ry6{A5f7{IT!nAi?MxW"/>
 <arg name="y" varid="40H@Y!bYnNfUHNBjNjpY"/>
@@ -5822,4 +5837,3 @@
 <OpModeMeta flavor="AUTONOMOUS" group="" autoTransition="Main TeleOp" />
 <Enabled value="true" />
 </Extra>
-
