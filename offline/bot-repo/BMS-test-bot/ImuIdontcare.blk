@@ -1,13 +1,13 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
 <variables>
-<variable id="p@*s:i]jUk+kENX={w28">inches</variable>
 <variable id="o8L?~F?P#h/M{wn$|o=(">deg</variable>
+<variable id="p@*s:i]jUk+kENX={w28">inches</variable>
 <variable id="U9|%:r)]uNDI%CMpoGx#">TICKS_PER_REVELUTION</variable>
 <variable id="FbaKvU!;|Tlp/}9nA2Ob">imuParameters</variable>
 <variable id="JuwQ^TV!hK5zxv+^;I5d">WHEEL_DIAMETER_INCHES</variable>
+<variable id="~LUL9~Z;enziZiH||`!?">angles</variable>
 <variable id="4fZ}y#Be_TG(Kka3:+N$">INCHES_PER_360</variable>
 <variable id="51A1$sjC~_sg-,UB]1tr">WHEEL_BASE_INCHES</variable>
-<variable id="~LUL9~Z;enziZiH||`!?">angles</variable>
 <variable id="lOJaSL6Pi0bC+$duNLj?">TICKS_PER_INCH</variable>
 <variable id="#]v^/7$}[x}*;PPYGOk(">gravity</variable>
 </variables>
@@ -870,5 +870,10 @@
 </block>
 </statement>
 </block>
-</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="AUTONOMOUS" group="" /><Enabled value="false" /></Extra>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="AUTONOMOUS" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
 

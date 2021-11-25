@@ -1,27 +1,126 @@
+$hostaddr = "http://192.168.43.1:8080"
 $server = "http://192.168.43.1:8080/"
 $bot_repo = "bot-repo"
         
-$bot = "test-bot"
+$bot = "BMS-test-bot"
 
+$session = ""
 
-function fetchHardware()
-{
+$newblkjs = @'
+/** 
+* This function is executed when this Op Mode is selected from the Driver Station. 
+*/ 
+function runOpMode() {
+    linearOpMode.waitForStart();
+    if (linearOpMode.opModeIsActive()) { 
+        while (linearOpMode.opModeIsActive()) {
+             telemetry.update(); 
+        } 
+    } 
+}
+'@
+
+function fetchHardware() {
     $uri="$($server)hardware"
     Write-Host $uri
     Invoke-RestMethod $uri 
 }
 
-function fetchBlocks($bot)
-{
+function fetchBlocks {
     $blks = Invoke-RestMethod "$($server)list"
     $blks
 }
 
-function fetchBlock($urlName)
-{
+function fetchBlock($blkName) {
+    $urlName = [Web.HttpUtility]::UrlEncode($blkName)
     $uri="$($server)fetch_blk?name=$urlName"
-    Write-Host $uri
-    Invoke-RestMethod $uri 
+    # Write-Host $uri
+    Invoke-WebRequest $uri -SessionVariable 'session' 
+    $Global:session = $session
+}
+
+function testSave {
+    # testDelete
+    # testSave2
+    updateBotMode
+}
+
+function botStatus {
+    # /server  -- these URIs
+    "ping"
+    Invoke-WebRequest "$($host)/ping?name=offline" -SessionVariable 'session'
+    # {"serial":"8c1ec90b50a2b5df","connectedDevices":[{"currentPage":"offline","identity":"d8ba1c2c-bf2d-447c-a5f4-4d061bf8b26e","machineName":"Windows #1"}]} 
+    "get_config_name"
+    Invoke-WebRequest "$($host)/get_config_name" -SessionVariable 'session' 
+    # basicBot1
+    Invoke-WebRequest "$($host)/get_blocks_java_class_name?name=botMode" -SessionVariable 'session' 
+    # botMode
+    Invoke-WebRequest "$($host)/fetch_blk?name=$urlName" -SessionVariable 'session' 
+    # \enable name: enable:
+
+    # ws:192.168.43.1:8081 101 WebSocket Protocol Handshake
+    #{"namespace":"system","type":"subscribeToNamespace","payload":"ControlHubUpdater"}
+} 
+function updateBotMode {
+    "session = $session"
+    $blkName = "botMode"
+    [string] $blk = fetchBlock $blkName
+    "session = $session - need global:session"
+    $lines = $blk.Split("`n")
+    $lines[3] = '<comment pinned="false" h="32" w="532">This file was saved from offline!.</comment>'
+    $Global:session.UserAgent
+
+    $blk =  [String]::Join("`n", $lines)
+    write-host "Save New" $blkName
+    #$js=$newblkjs
+    $js='/* no javascript */'
+    $body = @{name=$blkName;blk=$blk;js=$js}
+    #$body
+    $response = Invoke-WebRequest -Method Post -Uri "$($server)save" -Body $body -WebSession $Global:session
+    Write-Host $response.StatusCode
+}
+
+function testDelete {
+    $list = Invoke-WebRequest "$($server)list" -SessionVariable 'session'
+    $blkName = "testBlk*testBlk1"
+    write-host "Test Delete" $blkName
+    $body = @{name=$blkName}
+    $response = Invoke-WebRequest -Method Post -Uri "$($server)delete" -Body $body -WebSession $session
+    Write-Host $response.StatusCode
+}
+
+function testSave2 {
+    write-host "Test Save"
+    $blkName = "testBlk"
+    write-host "Test New" $blkName
+    $blk = Invoke-WebRequest "$($server)new?name=$blkName" -SessionVariable 'session'
+    #write-host "WebSession" $session.Cookies
+    write-host $blk[0]
+    
+    write-host "Save New" $blkName
+    #$js=$newblkjs
+    $js='/* no javascript */'
+    $body = @{name=$blkName;blk=$blk;js=$js}
+    $response = Invoke-WebRequest -Method Post -Uri "$($server)save" -Body $body -WebSession $session
+    Write-Host $response.StatusCode
+
+    $uriName = [Web.HttpUtility]::UrlEncode($blkName)
+    write-host "Fetch Blk" $uriName
+    $fetch = Invoke-WebRequest "$($server)fetch_blk?name=$uriName" -SessionVariable 'session'
+    if ($fetch) {
+        $blkName = $uriName
+        write-host "Test Delete" $blkName
+        $body = @{name=$blkName}
+        $response = Invoke-WebRequest -Method Post -Uri "$($server)delete" -Body $body -WebSession $session
+        Write-Host $response.StatusCode
+    
+    } else {
+        Write-Host "FETCH FAILED"
+    }
+
+    # $body = @{name=$projectName;blk=$blk;js=$newblkjs}
+    # $response = Invoke-WebRequest -Method Post -Uri "$($server)save" -Body $body -ContentType $contentType -WebSession $session
+    # Write-Host $response.StatusCode
 
 }
 
@@ -31,10 +130,10 @@ function saveBlock($projectName, $blk, $js) {
 
     $uri="$($server)save"
 
-    $body2 = @{name=$projectName;blk=$blk;js=$js}
+    $body = @{name=$projectName;blk=$blk;js=$js}
     Write-Host $uri
-    Write-Host $body2.name
-    $response = Invoke-WebRequest -Method Post -Uri $uri -Body $body2 -ContentType $contentType -WebSession $session
+    Write-Host $body.name
+    $response = Invoke-WebRequest -Method Post -Uri "$($server)save" -Body $body -ContentType $contentType -WebSession $session
     Write-Host $response.StatusCode
     
     # $body = @{
@@ -59,11 +158,13 @@ function writeHardware($bot)
 
 function writeBlocks($bot)
 {
-    fetchBlocks | % {        
+    $list = fetchBlocks
+    $list | Set-Content ".\$bot_repo\$bot\list.json"
+    $list | % {        
         $file = ".\$bot_repo\$bot\$($_.name).blk"
-        #$uri = [uri]::EscapeUriString($_.escapedName)
-        $uri = [Web.HttpUtility]::UrlEncode($_.escapedName)
-        fetchBlock $uri | Set-Content $file #escapedName _NOT_ espaced ?!?
+        # no -$uri = [uri]::EscapeUriString($_.escapedName)
+        # yes -$uri = [Web.HttpUtility]::UrlEncode($_.escapedName)
+        fetchBlock $_.escapedName | Set-Content $file #escapedName _NOT_ espaced ?!?
     }
 }
 
@@ -104,6 +205,9 @@ if ($args) {
     $cmd = "fetchBlocks"
 }
 
+if ($cmd -eq "test") {
+    testSave
+}
 if ($cmd -eq "fetchBlocks")
 {
     if ( Test-Path ".\$bot_repo\$bot") {
