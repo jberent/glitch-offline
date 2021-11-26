@@ -1,4 +1,4 @@
-$hostaddr = "http://192.168.43.1:8080"
+$botHost = "http://192.168.43.1:8080"
 $server = "http://192.168.43.1:8080/"
 $bot_repo = "bot-repo"
         
@@ -153,29 +153,61 @@ function saveBlock($projectName, $blk, $js) {
 
 function writeHardware($bot)
 {
+    write-host ".\$bot_repo\$bot\js\hardware.js"
     fetchHardware | Set-Content ".\$bot_repo\$bot\js\hardware.js"
 }
 
 function writeBlocks($bot)
 {
     $list = fetchBlocks
+    write-host ".\$bot_repo\$bot\list.json"
     $list | Set-Content ".\$bot_repo\$bot\list.json"
     $list | % {        
         $file = ".\$bot_repo\$bot\$($_.name).blk"
+        write-host $file
         # no -$uri = [uri]::EscapeUriString($_.escapedName)
         # yes -$uri = [Web.HttpUtility]::UrlEncode($_.escapedName)
         fetchBlock $_.escapedName | Set-Content $file #escapedName _NOT_ espaced ?!?
     }
 }
 
-$glitchA = "11617-A-RC"
-$glitchB = "11617-B-RC"
-$gremlinsA = "11618-A-RC"
-$gremlinsB = "11618-B-RC"
-$crashA = "11729-A-RC"
-$crashB = "11729-B-RC"
-$testBot = "BMS-test-bot"
+function SaveBot ([string] $msg){
+    $bot = BotNetwork
+    if ($bot) {
 
+        $path = ".\$bot_repo\$bot"
+        if ( Test-Path $path) {
+        } else {
+            md $path
+        }
+        
+        $branch = git rev-parse --abbrev-ref HEAD
+        
+        $resp = Invoke-WebRequest "$($botHost)/get_config_name" -SessionVariable 'session' 
+        if ($resp.StatusCode -eq 200) {
+            $botConfig = $resp.Content
+            
+            $botBranch = "$bot/$botConfig"
+            write-host "Saving Bot Pt 1" $path $botConfig "ON" $branch
+            git status --short
+            if ($botBranch -ne $branch){
+                if (git rev-parse --verify --quiet $botBranch) {
+                    git checkout $botBranch
+                } else {
+                    git checkout -b $botBranch
+                }
+            }
+            $branch = git rev-parse --abbrev-ref HEAD
+            write-host "Saving bot Pt 2" $path $botConfig "ON" $branch
+            writeHardware $bot
+            writeBlocks $bot
+            if ($msg) {
+                git add .
+                git commit -m $msg
+            }
+        }
+    }
+}
 
 <#
 Interface name : Wi-Fi
@@ -187,7 +219,18 @@ SSID 1 : CSDGuest
     Encryption              : None
 #>
 
+function BotNetwork {
+    $networks = netsh wlan show networks
+    $ssid = $networks[4].split(":")[1].trim()
+    
+    if ($ssid.startsWith("11617-") -or $ssid.startsWith("11618-") -or $ssid.startsWith("11729-") -or $ssid.startsWith("BMS-")) {
+        $ssid
+    } else {
+        # ??
+    } 
+}
 
+function cli {
 $networks = netsh wlan show networks
 $ssid = $networks[4].split(":")[1].trim()
 
@@ -210,13 +253,7 @@ if ($cmd -eq "test") {
 }
 if ($cmd -eq "fetchBlocks")
 {
-    if ( Test-Path ".\$bot_repo\$bot") {
-    } else {
-        md ".\$bot_repo\$bot"
-    }
-
-    writeHardware $bot
-    writeBlocks $bot
+    SaveBot
 }
 if ($cmd -eq "saveBlock")
 {
@@ -244,3 +281,4 @@ function runOpMode() {
 
 #$blk = fetchBlock $name $urlName
 #$blk | Set-Content .\$bot_repo\$bot\$name.blk
+}
