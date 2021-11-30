@@ -14,8 +14,8 @@
 <variable id="r7hKRGy~KjR7a7o7==bp">power</variable>
 <variable id="{]L,?,E]Y(nz8b6-A$3T">success</variable>
 <variable id="|N@f6tm[1jhh)R%HI-QJ">arenaX</variable>
-<variable id="]ZP4/wui`_DN}Nc#;q0{">sideRed</variable>
 <variable id="UYHi2dg[U|%BJ)tf#jOS">isEasing</variable>
+<variable id="]ZP4/wui`_DN}Nc#;q0{">sideRed</variable>
 <variable id="|HeNZ}qJmkhh0iV~Ay5X">CORE_HEX_COUNTS_PER_REV</variable>
 <variable id=";{k,[?wf.#Vt~$scec0o">strafeX</variable>
 <variable id="x.yl*}OYvw*{oe?/8{sg">startTime</variable>
@@ -2602,8 +2602,14 @@
 <block type="comment" id="Z2cF|?pxu6E990dR67n3">
 <field name="COMMENT">deposit freight 6 - pts</field>
 <next>
-<block type="procedures_callnoreturn" id="0Pk/e]65L5C-aAMA+^M1">
+<block type="procedures_callnoreturn" id="0Pk/e]65L5C-aAMA+^M1" disabled="true">
 <mutation name="depositFreightOnTop"/>
+<next>
+<block type="procedures_callnoreturn" id=":l^)YG**y=9I:ak2![u%" disabled="true">
+<mutation name="depositFreightOnMiddle"/>
+<next>
+<block type="procedures_callnoreturn" id="D6~JRHX.*e09AO(:zYr5">
+<mutation name="depositFreightOnBottom"/>
 <next>
 <block type="comment" id="w]y2?avnQ.p4zx@FjHuK">
 <field name="COMMENT">rotate duck - 10 pts</field>
@@ -2736,6 +2742,10 @@
 <next>
 <block type="comment" id="PzT`h+4)D;5fZ@;EtW${">
 <field name="COMMENT">TOTAL 12 to 36 pts</field>
+</block>
+</next>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -3293,7 +3303,7 @@
 </value>
 <value name="ARG1">
 <block type="math_number" id="XrP{~NM{fdl;!_@m+9J]">
-<field name="NUM">6</field>
+<field name="NUM">9</field>
 </block>
 </value>
 </block>
@@ -3303,6 +3313,29 @@
 <field name="NAME">cuddleDuck</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
+<block type="dcMotor_setProperty_RunMode" id="Usp%6{rd8Pnh}wo/0QW3">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Mode</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_runMode" id="~Y!}XpJ*IFavIZ$;}!ac">
+<field name="RUN_MODE">RUN_WITHOUT_ENCODER</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Number" id="h=KeOGGh2(ud[{?qa9I+">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+<value name="VALUE">
+<shadow type="math_number">
+<field name="NUM">0</field>
+</shadow>
+<block type="variables_get" id="Hm#Qu@/Zp2$8(n8Yksl_">
+<field name="VAR" id="IXZVFRos]ct1__pj*,H/">CAROUSEL_POWER</field>
+</block>
+</value>
+<next>
 <block type="controls_whileUntil" id="N1mQ}oH(r$v9P6P[O2@4">
 <field name="MODE">WHILE</field>
 <value name="BOOL">
@@ -3365,9 +3398,13 @@
 </block>
 </next>
 </block>
+</next>
+</block>
+</next>
+</block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="J^+uJ$tRi(8%G*HJancb" x="-1410" y="500">
+<block type="procedures_defnoreturn" id="J^+uJ$tRi(8%G*HJancb" x="-1383" y="507">
 <field name="NAME">gotoCarouselFromHub</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -3824,7 +3861,7 @@
 </value>
 <value name="ARG1">
 <block type="math_number" id="pwVTwLCH*U=yBIm}H.wc">
-<field name="NUM">7</field>
+<field name="NUM">9</field>
 </block>
 </value>
 </block>

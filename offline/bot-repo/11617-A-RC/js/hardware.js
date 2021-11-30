@@ -2,7 +2,6 @@
 var AUTO_TRANSITION_OPTIONS = [
   'Main TeleOp',
   'duck test',
-  'max velocity test',
 ];
 
 var tfodCurrentGameName = 'Freight Frenzy';

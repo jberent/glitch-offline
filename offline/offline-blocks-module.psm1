@@ -1,4 +1,4 @@
-
+# import-module .\offline-blocks-module.psm1
 
 . .\Get-Blocks.ps1
 
