@@ -1,16 +1,50 @@
 
+
+$functionTypes = @(
+    'procedures_defnoreturn' # - procedures_callnoreturn
+    'procedures_defreturn' # - procedures_callreturn
+    'procedures_ifreturn'
+)
+$varRefs = @(
+    'variables_set' #<field name="VAR" id="R.KGs,DU0;~[^DGlGX,R">max1</field>
+)
+
 function LoadModule($path) {
+    write-host $path
     
     $blk = gc $path
-    if ($blk[$blk.length-1] -eq '</xml>') {
-        # file is lines
-        [xml] $doc = $blk;
-    } else {
+    
+    if ($blk.GetType().Name -eq 'String') {
         # file is one line
         [xml] $doc = $blk.Substring(0, $blk.IndexOf("<?xml"));
+    } else {
+        $lastLine = $blk.Length
+        do {
+            $lastLine--
+        } until ($blk[$lastLine].StartsWith("</xml>"))
+        
+        if ($blk[$lastLine] -eq "</xml>"){
+            [xml] $extra = $blk[($lastLine+1)..($blk.Length-1)]
+            # file is lines
+        } else {
+            [xml] $extra = $blk[$lastLine].Substring(6)
+            $blk[$lastLine] = "</xml>"
+        }
+        [xml] $doc = $blk[0..$lastLine];       
     }
+    @{
+        'project' = $doc.xml    # xml
+        'extra' = $extra        # #document
+    }
+}
+function CleanModule($path) {
+    $blocks = LoadBlocks (LoadModule $path)
+    $blocks.variables
+}
 
-    $xml = $doc.xml
+function LoadBlocks($module) {
+    
+    $xml = $module.project
     #$xmlns = $xml.xmlns
     $variables = $xml.variables.variable | select-object -ExpandProperty `#text
     
@@ -18,7 +52,7 @@ function LoadModule($path) {
     $blocks = $doc.xml.block
     
     $runOpMode = $blocks.Where({$_.deletable -eq 'false'}, 'First')
-    $functions = $blocks.Where({$_.deletable -ne 'false'})
+    $functions = $blocks.Where({$_.deletable -ne 'false' -and ($functionTypes -contains $_.type)})
     
     $initFunction = $runOpMode.statement.block.next.block
     # findInitCode $runOpMode.statement.block.next
@@ -28,6 +62,7 @@ function LoadModule($path) {
         'variables' = $variables
         'functions' = $functions | % {
             @{
+                'type' = $_.Type
                 'name' = $_.field.InnerText
                 'body' = $_
             }
@@ -43,11 +78,13 @@ function findInitCode($next) {
         findInitCode $block.next
     }
 } 
+#
 
-$module = LoadModule '.\bot-repo\11617-A-RC\handleArm.module.blk'
-$module.functions[2]
-$module2 = LoadModule '.\bot-repo\11617-A-RC\ps.blk'
-$module2.variables
+CleanModule $args[0] # '.\bot-repo\11617-A-RC\handleArm.module.blk'
+
+#$module.functions
+# $module2 = LoadModule '.\bot-repo\11617-A-RC\ps.blk'
+# $module2.variables
 
 # $blk.length
 # $blk.IndexOf("<?xml");
