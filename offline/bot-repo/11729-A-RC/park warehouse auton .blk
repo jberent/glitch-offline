@@ -1,106 +1,188 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
 <variables>
-<variable id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</variable>
+<variable id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</variable>
+<variable id="nb*T]dJEc=OQ;A~n!qaF">fowardend</variable>
 </variables>
-<block type="procedures_defnoreturn" id="J@K2CX{TiEXB~qi+RCwW" x="573" y="17">
-<field name="NAME">foward</field>
+<block type="procedures_defnoreturn" id="8e;MiXli|t|,.5yETtK^" x="-389" y="-109">
+<field name="NAME">telemerty</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
-<block type="dcMotor_setDualProperty_Number" id="3/@.QkF~{TOAFwiocF4_">
+<block type="telemetry_addNumericData_Number" id="6X;1Rg#$yAOOP}eG8D-0">
+<value name="KEY">
+<shadow type="text" id="t@t@-v}^H]8}H:/v4[yB">
+<field name="TEXT">back</field>
+</shadow>
+</value>
+<value name="NUMBER">
+<shadow type="math_number" id="#mlKr2[_a`#:g8|s7ykK">
+<field name="NUM">123</field>
+</shadow>
+<block type="variables_get" id="mAe%}O+xfaEk6R?/Y{#6">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<next>
+<block type="telemetry_addTextData_All" id="EfK:0#h;UINhTY2CoIV/">
+<value name="KEY">
+<shadow type="text" id="(k5}qNxmP.XalE]wvoOO">
+<field name="TEXT">fowardend</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="%ySm.]5rbT5%XiPOKe0z">
+<field name="TEXT">text</field>
+</shadow>
+<block type="variables_get" id="n?o66{yKaG10f@~`2or_">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+</block>
+</value>
+<next>
+<block type="telemetry_update" id="-(L$g1fzZU2^_ib.LSDi"/>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="f(6otu$;.Q;yuCUXo9;o" x="437" y="-125">
+<field name="NAME">Back</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id="rgUH0iso}SM+[w:`}|wJ">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="Of;2pzn;!BqEQ$-T{[Y!"/>
+</value>
+<statement name="DO">
+<block type="variables_set" id="c.$qm_Q2(GrCiY-95%BE">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+<value name="VALUE">
+<block type="logic_compare" id="U/(m{o@}e04}`{A?pj$%">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="variables_get" id="47~x,8R:pe@AB}`!y0SN">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="/=|DsoJnXU(dOPOQ7u,Z">
+<field name="NUM">5</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="PI7fKho#Zig1fczJ!d4b">
+<field name="VAR" id="ZE5lsZIoZ=BFoNsX*}KT">sensor_back</field>
+<value name="VALUE">
+<block type="distanceSensor_getDistance" id="6t^$T?5}Rwzb)}Q]gJ}v">
+<field name="IDENTIFIER">distence_backAsDistanceSensor</field>
+<data>{"IDENTIFIER":"distence_back"}</data>
+<value name="DISTANCE_UNIT">
+<shadow type="navigation_typedEnum_distanceUnit" id="*#r#)G*w%cBJQ{l~mJkY">
+<field name="DISTANCE_UNIT">INCH</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="controls_if" id="aF[PaRO$ryGn-W7NLSR?">
+<mutation else="1"/>
+<value name="IF0">
+<block type="variables_get" id=";Yk!B=;jvGD*%PoDR[RG">
+<field name="VAR" id="nb*T]dJEc=OQ;A~n!qaF">fowardend</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setDualProperty_Number" id="n9!1sf9empnEPns];;cb">
 <field name="PROP">Power</field>
 <field name="IDENTIFIER1">back_leftAsDcMotor</field>
 <field name="IDENTIFIER2">front_leftAsDcMotor</field>
 <data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
 <value name="VALUE1">
-<shadow type="math_number" id="zwYN^naO0=^wdpGaW^Lm">
-<field name="NUM">0.65</field>
+<shadow type="math_number" id="vHpuf7*p{.}yh=Bd|$Eg">
+<field name="NUM">-0.5</field>
 </shadow>
 </value>
 <value name="VALUE2">
-<shadow type="math_number" id="x]Z;{.Z6y.dhEj=;HvEt">
-<field name="NUM">0.65</field>
+<shadow type="math_number" id="Se?U$)T6nN[.1j;@x.D|">
+<field name="NUM">-0.5</field>
 </shadow>
 </value>
 <next>
-<block type="dcMotor_setDualProperty_Number" id="Du-1pk1.xurB`MQeYW,$">
+<block type="dcMotor_setDualProperty_Number" id="1~|xyr/gn~/|djHgoNN}">
 <field name="PROP">Power</field>
-<field name="IDENTIFIER1">back_rightAsDcMotor</field>
-<field name="IDENTIFIER2">front_rightAsDcMotor</field>
-<data>{"IDENTIFIER1":"back_right","IDENTIFIER2":"front_right"}</data>
-<value name="VALUE1">
-<shadow type="math_number" id="N~@|Z5/q4o3fg.($eJcv">
-<field name="NUM">0.65</field>
-</shadow>
-</value>
-<value name="VALUE2">
-<shadow type="math_number" id=")qV=qNT}Pa0fDVckUZm3">
-<field name="NUM">0.65</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setDualProperty_Number" id="QZJ)oP@F#[3dqJjBSN7Y">
-<field name="PROP">TargetPosition</field>
-<field name="IDENTIFIER1">back_leftAsDcMotor</field>
-<field name="IDENTIFIER2">front_leftAsDcMotor</field>
-<data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
-<value name="VALUE1">
-<shadow type="math_number" id="g|CIwpo.`h%Xeo?_3ib=">
-<field name="NUM">6000</field>
-</shadow>
-</value>
-<value name="VALUE2">
-<shadow type="math_number" id="}Hu$^1~g]Z[tTM0^3EG9">
-<field name="NUM">6000</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setDualProperty_Number" id="s:wU%`==?Fi`[,[dsl%0">
-<field name="PROP">TargetPosition</field>
 <field name="IDENTIFIER1">front_rightAsDcMotor</field>
 <field name="IDENTIFIER2">back_rightAsDcMotor</field>
 <data>{"IDENTIFIER1":"front_right","IDENTIFIER2":"back_right"}</data>
 <value name="VALUE1">
-<shadow type="math_number" id="V-^X0ZMig`uf(pQq+,7G">
-<field name="NUM">6000</field>
+<shadow type="math_number" id="TD=C+)AH6%0uQw)w/ep{">
+<field name="NUM">-0.5</field>
 </shadow>
 </value>
 <value name="VALUE2">
-<shadow type="math_number" id="kq^$?*e!G#~|JQ*:,W`_">
-<field name="NUM">6000</field>
+<shadow type="math_number" id="Mz[pVLsP2^H^y7o/xr={">
+<field name="NUM">-0.5</field>
 </shadow>
 </value>
-<next>
-<block type="dcMotor_setDualProperty_RunMode" id="D~@qoCBdUx!h@0mzT{b,">
-<field name="PROP">Mode</field>
+</block>
+</next>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setDualProperty_Number" id="~W6btsyAJOA_jLYD8CS,">
+<field name="PROP">Power</field>
 <field name="IDENTIFIER1">back_leftAsDcMotor</field>
 <field name="IDENTIFIER2">front_leftAsDcMotor</field>
 <data>{"IDENTIFIER1":"back_left","IDENTIFIER2":"front_left"}</data>
 <value name="VALUE1">
-<shadow type="dcMotor_typedEnum_runMode" id="tw0-LNgToFm}xCJKT2r4">
-<field name="RUN_MODE">RUN_TO_POSITION</field>
+<shadow type="math_number" id="V6lB}JuNzfne.bA;{*,v">
+<field name="NUM">0</field>
 </shadow>
 </value>
 <value name="VALUE2">
-<shadow type="dcMotor_typedEnum_runMode" id="V4qRmaP+,x`o[UqJ|0l)">
-<field name="RUN_MODE">RUN_TO_POSITION</field>
+<shadow type="math_number" id="2MPqe~c6fP($=kc$$2@L">
+<field name="NUM">0</field>
 </shadow>
 </value>
 <next>
-<block type="dcMotor_setDualProperty_RunMode" id="YVV|~$IGiH^ALi?EO?7f">
-<field name="PROP">Mode</field>
+<block type="dcMotor_setDualProperty_Number" id="?aJ6pZ7ROk}5GjqF)p?p">
+<field name="PROP">Power</field>
 <field name="IDENTIFIER1">back_rightAsDcMotor</field>
 <field name="IDENTIFIER2">front_rightAsDcMotor</field>
 <data>{"IDENTIFIER1":"back_right","IDENTIFIER2":"front_right"}</data>
 <value name="VALUE1">
-<shadow type="dcMotor_typedEnum_runMode" id="3tA7n}$GD3:k,h5^1l5h">
-<field name="RUN_MODE">RUN_TO_POSITION</field>
+<shadow type="math_number" id="Oh@vTo,j!A!#1?_WHB8O">
+<field name="NUM">0</field>
 </shadow>
 </value>
 <value name="VALUE2">
-<shadow type="dcMotor_typedEnum_runMode" id="3dv]9oA.d+s=zwT//]4F">
-<field name="RUN_MODE">RUN_TO_POSITION</field>
+<shadow type="math_number" id="N~tVxxUivm)~CGmDN^Xv">
+<field name="NUM">0</field>
 </shadow>
 </value>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="procedures_callnoreturn" id="o=;PPjTjx*J5A#qUF[N7">
+<mutation name="showTelemetry"/>
+<next>
+<block type="linearOpMode_sleep_Number" id="Ek^^50@A4)juPpULeZN}">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="t!H8hwioTXTmBINli=^I">
+<field name="NUM">3000</field>
+</shadow>
+</value>
+<next>
+<block type="procedures_callnoreturn" id="/FX+YVNCBBn)wK4CEK8t">
+<mutation name="telemerty"/>
+<next>
+<block type="controls_flow_statements" id="rIyQ{m0+#PU4$$/#R9p5">
+<field name="FLOW">BREAK</field>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -114,7 +196,9 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="50" y="50">
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="-28" y="-86">
 <field name="NAME">runOpMode</field>
 <comment pinned="false" h="32" w="532">This function is executed when this Op Mode is selected from the Driver Station.</comment>
 <statement name="STACK">
@@ -165,38 +249,8 @@
 <block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
 </value>
 <statement name="DO0">
-<block type="variables_set" id="_*fF{{4SCk)N?bFGnM/0">
-<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
-<value name="VALUE">
-<block type="math_number" id="|?i0ESswKFqD0Otdo)ao">
-<field name="NUM">200</field>
-</block>
-</value>
-<next>
-<block type="controls_whileUntil" id="79W%B)Ie;Ah6%t(5cR`A">
-<field name="MODE">WHILE</field>
-<value name="BOOL">
-<block type="variables_get" id="#!Qv@JTHB%D-ET(ek7B4">
-<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
-</block>
-</value>
-<statement name="DO">
-<block type="procedures_callnoreturn" id="o)V[/9h^,,j;FoEHRf$h">
-<mutation name="foward"/>
-<next>
-<block type="math_change" id="NglXG(n9^E`fzsjxHqw}">
-<field name="VAR" id="Xa~Wu~vqLfSPSx5i*sn|">{elapsedTimeVariable}</field>
-<value name="DELTA">
-<shadow type="math_number" id="6G[Q@*v*V|m53oo2P0+j">
-<field name="NUM">-1</field>
-</shadow>
-</value>
-</block>
-</next>
-</block>
-</statement>
-</block>
-</next>
+<block type="procedures_callnoreturn" id="},ePM.9y!]5mgSn=GC*R">
+<mutation name="Back"/>
 </block>
 </statement>
 </block>
@@ -211,6 +265,10 @@
 </next>
 </block>
 </statement>
+</block>
+<block type="procedures_defnoreturn" id="l%Zj~_@ShDTfv^_?7PJc" x="1176" y="766">
+<field name="NAME">showTelemetry</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
 </block>
 </xml>
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
