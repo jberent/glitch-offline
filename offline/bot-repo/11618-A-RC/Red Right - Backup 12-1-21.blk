@@ -49,76 +49,6 @@
 </shadow>
 </value>
 <next>
-<block type="dcMotor_setProperty_RunMode" id="SCWZsX$@x~ViO/Q,+;5P">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">Mode</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="dcMotor_typedEnum_runMode" id="(drxAC;Ynp17khn:nV;k">
-<field name="RUN_MODE">STOP_AND_RESET_ENCODER</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_RunMode" id=",_wiOgJ!aVazWHd@f245">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">Mode</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="dcMotor_typedEnum_runMode" id="HjXiw%},?//RR5ISWcK$">
-<field name="RUN_MODE">RUN_USING_ENCODER</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_ZeroPowerBehavior" id="miae$:%+-XK~f{,v0#6Z">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">ZeroPowerBehavior</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="dcMotor_typedEnum_zeroPowerBehavior" id="sC2Y|4{U,Y,ZRFcmF5Ij">
-<field name="ZERO_POWER_BEHAVIOR">BRAKE</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_Number" id="TI[OETsLJWkrTKOjXgB?">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">TargetPosition</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="F::O6AT%+eM_Rc;t;6yi">
-<field name="NUM">0</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_Number" id="aG+~H:p1iydnlsdf+3;0">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="9C!rKc:b/~h94Qb;oYn#">
-<field name="NUM">1</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_Number" id="HopXN;).FLfK!49v9^t6">
-<field name="IDENTIFIER">hand_motorAsDcMotor</field>
-<field name="PROP">TargetPositionTolerance</field>
-<data>{"IDENTIFIER":"hand_motor"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="+BdMr[9@`8[?P5{B2wr*">
-<field name="NUM">1</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_RunMode" id="#1WbC~HaoL8)x`j]cZ)P">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">Mode</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="dcMotor_typedEnum_runMode" id="o81_{g9AhuimnNVdVECs">
-<field name="RUN_MODE">RUN_TO_POSITION</field>
-</shadow>
-</value>
-<next>
 <block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
 <next>
 <block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
@@ -138,13 +68,30 @@
 <block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
 <field name="COMMENT">starts driving here</field>
 <next>
-<block type="dcMotor_setProperty_Number" id="E^`~NR3lT=i$Z~~FHW%X">
+<block type="dcMotor_setProperty_Number" id="oH#jo3n-%C7,25;OAOb]">
 <field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">TargetPosition</field>
+<field name="PROP">Power</field>
 <data>{"IDENTIFIER":"lift_motor"}</data>
 <value name="VALUE">
-<shadow type="math_number" id="rmTGo9p7j9O(CV2v,5Sm">
-<field name="NUM">349</field>
+<shadow type="math_number" id="ed.jo;@zGe(3:nT=flm[">
+<field name="NUM">0.5</field>
+</shadow>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="F|%i4-}5?eVxfD8oFmsk">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="BrQkPxB8lN[EMzC*]*?(">
+<field name="NUM">4400</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Number" id="w;Sv!!Itb6[#1yJ~]B$)">
+<field name="IDENTIFIER">lift_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"lift_motor"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="g?AeviG2[nvkZ_kDyM3#">
+<field name="NUM">0</field>
 </shadow>
 </value>
 <next>
@@ -325,6 +272,33 @@
 <block type="procedures_callnoreturn" id="fg:-%F5Ud={dy(Yf}3AQ">
 <mutation name="stop"/>
 <next>
+<block type="dcMotor_setProperty_Number" id="/1jkm7GchJ*U-8-fiLpL">
+<field name="IDENTIFIER">lift_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"lift_motor"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="G7YT/F.]Krbc@FO=m.mk">
+<field name="NUM">-0.5</field>
+</shadow>
+</value>
+<next>
+<block type="linearOpMode_sleep_Number" id="_VsNlx{{n4i^s{B$EIN}">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="#^0YmP[%hFP{s.n*/=^e">
+<field name="NUM">1000</field>
+</shadow>
+</value>
+<next>
+<block type="dcMotor_setProperty_Number" id="trKvb.^l@I^#c`X$]-Pw">
+<field name="IDENTIFIER">lift_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"lift_motor"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="WKh#PglAYBNcMi;QMlyk">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<next>
 <block type="comment" id="*B+*1?YqV1)mnD+YD-B/">
 <field name="COMMENT">robot at wall, going to storage unit next</field>
 <next>
@@ -347,16 +321,6 @@
 <next>
 <block type="procedures_callnoreturn" id="V0Kc3qOQhAtpA/~;#rKk">
 <mutation name="stop"/>
-<next>
-<block type="dcMotor_setProperty_Number" id="xy8j*8PH/D=sFP2`##r1">
-<field name="IDENTIFIER">lift_motorAsDcMotor</field>
-<field name="PROP">TargetPosition</field>
-<data>{"IDENTIFIER":"lift_motor"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="gMj-%{!ZZ~sy78Jq#:J;">
-<field name="NUM">0</field>
-</shadow>
-</value>
 <next>
 <block type="linearOpMode_sleep_Number" id="^wqANTkQh]/tV:Z|r^tJ">
 <value name="MILLISECONDS">
@@ -434,25 +398,19 @@
 </block>
 </next>
 </block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
 </statement>
 </block>
 </next>
 </block>
 </statement>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
 </block>
 </next>
 </block>
@@ -817,10 +775,5 @@
 </block>
 </statement>
 </block>
-</xml>
-<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<Extra>
-<OpModeMeta flavor="AUTONOMOUS" group="" autoTransition="" />
-<Enabled value="true" />
-</Extra>
+</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="AUTONOMOUS" group="" /><Enabled value="false" /></Extra>
 
