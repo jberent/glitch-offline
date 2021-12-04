@@ -408,7 +408,7 @@
 <block type="tfodCustomModel_setModelFromFile" id="Sw6c{!M{a`ZMz?;csW~q">
 <value name="TFLITE_MODEL_FILENAME">
 <shadow type="text" id="D`9]8n/m+e#.r*O#xytH">
-<field name="TEXT">model_20211202_215805.tflite</field>
+<field name="TEXT">model_20211203_235640.tflite</field>
 </shadow>
 </value>
 <value name="LABELS">
