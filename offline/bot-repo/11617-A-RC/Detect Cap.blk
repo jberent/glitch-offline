@@ -7,10 +7,11 @@
 <variable id="-i*%CvPAT`RrA=1UHn$0">bestSample</variable>
 <variable id="#+xN9nEoHHy4+I*cyjY$">PARTITION_23</variable>
 <variable id="L=xphD[KIH%ds1]+P(I?">bestConfidence</variable>
+<variable id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</variable>
 <variable id="vP~n9zf$lW%hYD/C.j_-">recognition</variable>
 <variable id="R/hcY0Gqttk)58X_B^j3">bestPosition</variable>
-<variable id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</variable>
 <variable id="C-j=_t;@/fsV)+=e~^La">recognitions</variable>
+<variable id="2?D*X0pzw%]@:F1fFVw%">MAX_SAMPLES</variable>
 <variable id="A7n%5a@8jC6}[rgS1GS8">index</variable>
 </variables>
 <block type="procedures_defnoreturn" id="WtpyD@tEu+EoY=P9iY,D" deletable="false" editable="false" x="0" y="0">
@@ -26,6 +27,302 @@
 <block type="comment" id="pPGDw!e4C3d-Twgqi%I~">
 <field name="COMMENT">images.</field>
 <next>
+<block type="procedures_callnoreturn" id="7K#uzpCO$jxU+:[_KZ]l">
+<mutation name="initTFOD"/>
+<next>
+<block type="telemetry_addTextData_All" id="/Zm[n8^)(`(S}Ab9j!;|">
+<value name="KEY">
+<shadow type="text" id="E)4aB(Zb2,Da/0v0AiN=">
+<field name="TEXT">&gt;</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="^u5_oh+s(.Vs1Kk;$yw9">
+<field name="TEXT">Press Play to start</field>
+</shadow>
+</value>
+<next>
+<block type="telemetry_update" id="CcM7+$syN,5p}u1NCi8q">
+<next>
+<block type="comment" id="ucY]w(tl5$!{2RX}=X;C">
+<field name="COMMENT">Wait for start command from Driver Station.</field>
+<next>
+<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
+<next>
+<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
+<value name="IF0">
+<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
+</value>
+<statement name="DO0">
+<block type="comment" id="(rU-p_T_/B|vExcs}liL">
+<field name="COMMENT">Put run blocks here.</field>
+<next>
+<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
+</value>
+<statement name="DO">
+<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="math_change" id="@=A[nGudA_J-%Phap6.b">
+<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
+<value name="DELTA">
+<shadow type="math_number" id="a5)776vZeU-j`7).]+;(">
+<field name="NUM">1</field>
+</shadow>
+</value>
+<next>
+<block type="variables_set" id="G3vz:RD7CO6.%Sw)ZFK_">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+<comment pinned="false" h="66" w="177">Get a list of recognitions from TFOD.</comment>
+<value name="VALUE">
+<block type="tfodCustomModel_getRecognitions" id="GX+3lS*1)2{~?7v^L,E?"/>
+</value>
+<next>
+<block type="controls_if" id="ca@sg0@jzk|H6L@P2e^L">
+<mutation else="1"/>
+<comment pinned="false" h="102" w="202">If list is empty, inform the user. Otherwise, go through list and display info for each recognition.</comment>
+<value name="IF0">
+<block type="logic_compare" id="=%o)vlFkvhu-xL,X/eo$">
+<field name="OP">EQ</field>
+<value name="A">
+<block type="lists_length" id="t!{SnHLGoo~PaP6awyK.">
+<value name="VALUE">
+<block type="variables_get" id="ZNj(tw{-HQNlj-7{iU](">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="4XseN,4~X=LIU%~64FvC">
+<field name="NUM">0</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="telemetry_addTextData_All" id="GlID$m:#pV1$]_9Xwr2R">
+<value name="KEY">
+<shadow type="text" id="M^km_K-P,B!{$$O:vELn">
+<field name="TEXT">TFOD</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="p48vyO#GC!;Z;9]M-St7">
+<field name="TEXT">No items detected.</field>
+</shadow>
+</value>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="variables_set" id="-$r0NK]~Nh7SKIq7SfSd">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+<value name="VALUE">
+<block type="math_number" id="P1f]4HSIe|E0?Cj7x0B[">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="controls_forEach" id="|@Y$y8D~],V(MRQ+Cyv{">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+<comment pinned="false" h="81" w="199">Iterate through list and call a function to display info for each recognized object.</comment>
+<value name="LIST">
+<block type="variables_get" id="W,d1s!eFWeDT0X}~eq,n">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+</block>
+</value>
+<statement name="DO">
+<block type="procedures_callnoreturn" id="W];R,SytcVbY]7s,)e[!">
+<mutation name="testSample"/>
+<next>
+<block type="comment" id="U@Dkpel-LMa.00jJsqA-">
+<field name="COMMENT">Display info.</field>
+<next>
+<block type="procedures_callnoreturn" id="y}U|mkh1O(P}iHuwM$^|">
+<mutation name="displaySample"/>
+<next>
+<block type="procedures_callnoreturn" id="}Ed*Qv]2hqyM9x`y/=fq">
+<mutation name="displayInfo">
+<arg name="i"/>
+</mutation>
+<value name="ARG0">
+<block type="variables_get" id="1ynw+j_dMgW{E_t3}D|E">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+</block>
+</value>
+<next>
+<block type="comment" id=",1(:%n^0JKFq_SFwTg^H">
+<field name="COMMENT">Increment index.</field>
+<next>
+<block type="variables_set" id="}(~W?+spH%5lnSN8((?=">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="?6nQyMGz}aU1fC+utj9g">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number" id="A(cWTP6GX-7F%pan2;S:">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="_Qa|p#!QpQ?:hR:4$)Ki">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="cZn5/PfoHlpMu|xN+~eL">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="comment" id="x3Da[L*)xMh=3e7zy7*{">
+<field name="COMMENT">Deactivate TFOD.</field>
+<next>
+<block type="tfodCustomModel_deactivate" id="`zBI4[E-mb|Bi4MFMvKz"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="9$kS4PMF}dg_u[!ZfiKP" x="892" y="92">
+<field name="NAME">initDetections</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="variables_set" id="B4w8-B[{1+%*^Njr5u!c">
+<field name="VAR" id="Whmstn{}VapUl1[8{;82">MIN_WIDTH</field>
+<value name="VALUE">
+<block type="math_number" id="=^/cyrY?du)_}:3k?PQZ">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="EYc?KtQ,4;z{[2o{+I)b">
+<field name="VAR" id="}-bP[WBbPqmzo,IDJ)_E">MAX_WIDTH</field>
+<value name="VALUE">
+<block type="math_number" id="}UNZ~lP)ajcKF7}7mWnV">
+<field name="NUM">100</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="tERtDbj^OQ#vd,njJkbO">
+<field name="VAR" id="#+xN9nEoHHy4+I*cyjY$">PARTITION_23</field>
+<value name="VALUE">
+<block type="math_number" id="7b^T[q6OznZ.tu1le*6]">
+<field name="NUM">400</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="A[63ldtFI`znZ,=ZQ4,?">
+<field name="VAR" id="L=xphD[KIH%ds1]+P(I?">bestConfidence</field>
+<value name="VALUE">
+<block type="math_number" id="wO[x6mB_ikC/u[WUD^7r">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="pp}Jp[wB2_ATcj%23eaS">
+<field name="VAR" id="R/hcY0Gqttk)58X_B^j3">bestPosition</field>
+<value name="VALUE">
+<block type="math_number" id="S^w+#nc0y?rPt?d$DiBk">
+<field name="NUM">1</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="kmdxQjii5W)2nqw|Q13S">
+<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
+<value name="VALUE">
+<block type="math_number" id="=sPkd#k`yu2nJ7bQ.ta%">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="xO*^S#Zq_h$-hlhwJdyr">
+<field name="VAR" id="-i*%CvPAT`RrA=1UHn$0">bestSample</field>
+<value name="VALUE">
+<block type="math_number" id="Z=95Zh4%Guf!~(cOnZFT">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="WWO1/u?fGwC!kS`WE2U@">
+<field name="VAR" id="2?D*X0pzw%]@:F1fFVw%">MAX_SAMPLES</field>
+<value name="VALUE">
+<block type="math_number" id="!ec#Nm??v,H(u2noegoU">
+<field name="NUM">5</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="upSZb,/?^h1wwLs-]}m(" x="896" y="359">
+<field name="NAME">initTFOD</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
 <block type="comment" id="85/da`3R16Z~@4ac,}/8">
 <field name="COMMENT">The following block uses a webcam.</field>
 <next>
@@ -208,211 +505,8 @@
 </shadow>
 </value>
 <next>
-<block type="telemetry_addTextData_All" id="/Zm[n8^)(`(S}Ab9j!;|">
-<value name="KEY">
-<shadow type="text" id="E)4aB(Zb2,Da/0v0AiN=">
-<field name="TEXT">&gt;</field>
-</shadow>
-</value>
-<value name="TEXT">
-<shadow type="text" id="^u5_oh+s(.Vs1Kk;$yw9">
-<field name="TEXT">Press Play to start</field>
-</shadow>
-</value>
-<next>
-<block type="telemetry_update" id="CcM7+$syN,5p}u1NCi8q">
-<next>
-<block type="comment" id="ucY]w(tl5$!{2RX}=X;C">
-<field name="COMMENT">Wait for start command from Driver Station.</field>
-<next>
-<block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
-<next>
-<block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
-<value name="IF0">
-<block type="linearOpMode_opModeIsActive" id=")o%YFX/#9kvv^sgXr4~5"/>
-</value>
-<statement name="DO0">
-<block type="comment" id="(rU-p_T_/B|vExcs}liL">
-<field name="COMMENT">Put run blocks here.</field>
-<next>
-<block type="procedures_callnoreturn" id="cPG{bP3=15A;#J#DM-ep">
+<block type="procedures_callnoreturn" id="IK=KE1RCTkVGKE(,R.Bt">
 <mutation name="initDetections"/>
-<next>
-<block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
-<field name="MODE">WHILE</field>
-<value name="BOOL">
-<block type="linearOpMode_opModeIsActive" id="e)cr{!2VIET83s,JWC.="/>
-</value>
-<statement name="DO">
-<block type="comment" id="Jh/;L$n@JuX8AQJDFCul">
-<field name="COMMENT">Put loop blocks here.</field>
-<next>
-<block type="math_change" id="@=A[nGudA_J-%Phap6.b">
-<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
-<value name="DELTA">
-<shadow type="math_number" id="a5)776vZeU-j`7).]+;(">
-<field name="NUM">1</field>
-</shadow>
-</value>
-<next>
-<block type="variables_set" id="G3vz:RD7CO6.%Sw)ZFK_">
-<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
-<comment pinned="false" h="66" w="177">Get a list of recognitions from TFOD.</comment>
-<value name="VALUE">
-<block type="tfodCustomModel_getRecognitions" id="GX+3lS*1)2{~?7v^L,E?"/>
-</value>
-<next>
-<block type="controls_if" id="ca@sg0@jzk|H6L@P2e^L">
-<mutation else="1"/>
-<comment pinned="false" h="102" w="202">If list is empty, inform the user. Otherwise, go through list and display info for each recognition.</comment>
-<value name="IF0">
-<block type="logic_compare" id="=%o)vlFkvhu-xL,X/eo$">
-<field name="OP">EQ</field>
-<value name="A">
-<block type="lists_length" id="t!{SnHLGoo~PaP6awyK.">
-<value name="VALUE">
-<block type="variables_get" id="ZNj(tw{-HQNlj-7{iU](">
-<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
-</block>
-</value>
-</block>
-</value>
-<value name="B">
-<block type="math_number" id="4XseN,4~X=LIU%~64FvC">
-<field name="NUM">0</field>
-</block>
-</value>
-</block>
-</value>
-<statement name="DO0">
-<block type="telemetry_addTextData_All" id="GlID$m:#pV1$]_9Xwr2R">
-<value name="KEY">
-<shadow type="text" id="M^km_K-P,B!{$$O:vELn">
-<field name="TEXT">TFOD</field>
-</shadow>
-</value>
-<value name="TEXT">
-<shadow type="text" id="p48vyO#GC!;Z;9]M-St7">
-<field name="TEXT">No items detected.</field>
-</shadow>
-</value>
-</block>
-</statement>
-<statement name="ELSE">
-<block type="variables_set" id="-$r0NK]~Nh7SKIq7SfSd">
-<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
-<value name="VALUE">
-<block type="math_number" id="P1f]4HSIe|E0?Cj7x0B[">
-<field name="NUM">0</field>
-</block>
-</value>
-<next>
-<block type="controls_forEach" id="|@Y$y8D~],V(MRQ+Cyv{">
-<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
-<comment pinned="false" h="81" w="199">Iterate through list and call a function to display info for each recognized object.</comment>
-<value name="LIST">
-<block type="variables_get" id="W,d1s!eFWeDT0X}~eq,n">
-<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
-</block>
-</value>
-<statement name="DO">
-<block type="procedures_callnoreturn" id="W];R,SytcVbY]7s,)e[!">
-<mutation name="testSample"/>
-<next>
-<block type="comment" id="U@Dkpel-LMa.00jJsqA-">
-<field name="COMMENT">Display info.</field>
-<next>
-<block type="procedures_callnoreturn" id="y}U|mkh1O(P}iHuwM$^|">
-<mutation name="displaySample"/>
-<next>
-<block type="procedures_callnoreturn" id="}Ed*Qv]2hqyM9x`y/=fq">
-<mutation name="displayInfo">
-<arg name="i"/>
-</mutation>
-<value name="ARG0">
-<block type="variables_get" id="1ynw+j_dMgW{E_t3}D|E">
-<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
-</block>
-</value>
-<next>
-<block type="comment" id=",1(:%n^0JKFq_SFwTg^H">
-<field name="COMMENT">Increment index.</field>
-<next>
-<block type="variables_set" id="}(~W?+spH%5lnSN8((?=">
-<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
-<value name="VALUE">
-<block type="math_arithmetic" id="?6nQyMGz}aU1fC+utj9g">
-<field name="OP">ADD</field>
-<value name="A">
-<shadow type="math_number" id="A(cWTP6GX-7F%pan2;S:">
-<field name="NUM">1</field>
-</shadow>
-<block type="variables_get" id="_Qa|p#!QpQ?:hR:4$)Ki">
-<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
-</block>
-</value>
-<value name="B">
-<shadow type="math_number" id="cZn5/PfoHlpMu|xN+~eL">
-<field name="NUM">1</field>
-</shadow>
-</value>
-</block>
-</value>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</statement>
-</block>
-</next>
-</block>
-</statement>
-<next>
-<block type="telemetry_update" id="exvivmft-pX$n!1,8Ea$"/>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</statement>
-</block>
-</next>
-</block>
-</next>
-</block>
-</statement>
-<next>
-<block type="comment" id="x3Da[L*)xMh=3e7zy7*{">
-<field name="COMMENT">Deactivate TFOD.</field>
-<next>
-<block type="tfodCustomModel_deactivate" id="`zBI4[E-mb|Bi4MFMvKz"/>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
 </block>
 </next>
 </block>
@@ -442,81 +536,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="9$kS4PMF}dg_u[!ZfiKP" x="880" y="1237">
-<field name="NAME">initDetections</field>
-<comment pinned="false" h="80" w="160">Describe this function...</comment>
-<statement name="STACK">
-<block type="variables_set" id="B4w8-B[{1+%*^Njr5u!c">
-<field name="VAR" id="Whmstn{}VapUl1[8{;82">MIN_WIDTH</field>
-<value name="VALUE">
-<block type="math_number" id="=^/cyrY?du)_}:3k?PQZ">
-<field name="NUM">0</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="EYc?KtQ,4;z{[2o{+I)b">
-<field name="VAR" id="}-bP[WBbPqmzo,IDJ)_E">MAX_WIDTH</field>
-<value name="VALUE">
-<block type="math_number" id="}UNZ~lP)ajcKF7}7mWnV">
-<field name="NUM">100</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="tERtDbj^OQ#vd,njJkbO">
-<field name="VAR" id="#+xN9nEoHHy4+I*cyjY$">PARTITION_23</field>
-<value name="VALUE">
-<block type="math_number" id="7b^T[q6OznZ.tu1le*6]">
-<field name="NUM">400</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="A[63ldtFI`znZ,=ZQ4,?">
-<field name="VAR" id="L=xphD[KIH%ds1]+P(I?">bestConfidence</field>
-<value name="VALUE">
-<block type="math_number" id="wO[x6mB_ikC/u[WUD^7r">
-<field name="NUM">0</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="pp}Jp[wB2_ATcj%23eaS">
-<field name="VAR" id="R/hcY0Gqttk)58X_B^j3">bestPosition</field>
-<value name="VALUE">
-<block type="math_number" id="S^w+#nc0y?rPt?d$DiBk">
-<field name="NUM">1</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="kmdxQjii5W)2nqw|Q13S">
-<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
-<value name="VALUE">
-<block type="math_number" id="=sPkd#k`yu2nJ7bQ.ta%">
-<field name="NUM">0</field>
-</block>
-</value>
-<next>
-<block type="variables_set" id="xO*^S#Zq_h$-hlhwJdyr">
-<field name="VAR" id="-i*%CvPAT`RrA=1UHn$0">bestSample</field>
-<value name="VALUE">
-<block type="math_number" id="Z=95Zh4%Guf!~(cOnZFT">
-<field name="NUM">0</field>
-</block>
-</value>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</next>
-</block>
-</statement>
-</block>
-<block type="procedures_defnoreturn" id="q)W$f,i1|+joXdq`XLIN" x="875" y="1496">
+<block type="procedures_defnoreturn" id="q)W$f,i1|+joXdq`XLIN" x="904" y="1523">
 <field name="NAME">testSample</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -723,10 +743,7 @@
 </block>
 </statement>
 </block>
-<block type="math_number" id="!ec#Nm??v,H(u2noegoU" x="1235" y="1481">
-<field name="NUM">0</field>
-</block>
-<block type="procedures_defnoreturn" id="bdgfxfnpKCz^ubS_*?dX" x="873" y="2000">
+<block type="procedures_defnoreturn" id="bdgfxfnpKCz^ubS_*?dX" x="908" y="2035">
 <field name="NAME">displaySample</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -781,7 +798,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="yrA.?,jSqW-)W/]41!C6" x="4" y="2120">
+<block type="procedures_defnoreturn" id="yrA.?,jSqW-)W/]41!C6" x="-67" y="2279">
 <mutation>
 <arg name="i" varid="ZHu7]h(iKQ-7Q9eq/q3X"/>
 </mutation>
@@ -975,10 +992,171 @@
 </block>
 </statement>
 </block>
+<block type="procedures_defnoreturn" id="$fZ^0-5{qUJ^%V*d-t.B" x="907" y="2330">
+<field name="NAME">detectObject</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_whileUntil" id="wEZ*Ri=,F43Zdp#5J?Se">
+<field name="MODE">WHILE</field>
+<value name="BOOL">
+<block type="logic_operation" id="v/utypsAhhmG`~([M#4;">
+<field name="OP">AND</field>
+<value name="A">
+<block type="linearOpMode_opModeIsActive" id="cd?t_rh@aL4k]]#9_tI2"/>
+</value>
+<value name="B">
+<block type="logic_compare" id="}e58N-y#~AZ|VIwx{whk">
+<field name="OP">EQ</field>
+<value name="A">
+<block type="variables_get" id="wF:{IVS@6d$]*[c.j|!Z">
+<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
+</block>
+</value>
+<value name="B">
+<block type="variables_get" id="`IAKD:q`[v.Z!b?c[2y/">
+<field name="VAR" id="2?D*X0pzw%]@:F1fFVw%">MAX_SAMPLES</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO">
+<block type="comment" id="~U[u.u-;f0[0S9@yDu[X">
+<field name="COMMENT">Put loop blocks here.</field>
+<next>
+<block type="math_change" id="2wDbZ(Go8$e(68LXY?2O">
+<field name="VAR" id=",?Bsn3SQ@D03L7sTe[1Z">sampleNumber</field>
+<value name="DELTA">
+<shadow type="math_number" id="(XpD=cC.{|`y=;F4oJT(">
+<field name="NUM">1</field>
+</shadow>
+</value>
+<next>
+<block type="variables_set" id="uU|^mF~.W_gubl.-nJU`">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+<comment pinned="false" h="66" w="177">Get a list of recognitions from TFOD.</comment>
+<value name="VALUE">
+<block type="tfodCustomModel_getRecognitions" id=")ZDr/e=jEsf)zyS;_CQv"/>
+</value>
+<next>
+<block type="controls_if" id="*`S+u(D@Zz=H=[FFP(z]">
+<mutation else="1"/>
+<comment pinned="false" h="102" w="202">If list is empty, inform the user. Otherwise, go through list and display info for each recognition.</comment>
+<value name="IF0">
+<block type="logic_compare" id="},d24E)!!K1[dTSgksB6">
+<field name="OP">EQ</field>
+<value name="A">
+<block type="lists_length" id="=l[rI/p3WqmeqXw2fp:B">
+<value name="VALUE">
+<block type="variables_get" id="U?f|+VQvaGO=j}b,AX%.">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<block type="math_number" id="ug}Vkt/{|jz+{wlCz$mf">
+<field name="NUM">0</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="telemetry_addTextData_All" id=")JmB*u~XBg89lBF=oe.]">
+<value name="KEY">
+<shadow type="text" id="Xr=#l3-OnB0}s*hdc$[v">
+<field name="TEXT">TFOD</field>
+</shadow>
+</value>
+<value name="TEXT">
+<shadow type="text" id="}m.g)x??m-}X*M%G:H5s">
+<field name="TEXT">No items detected.</field>
+</shadow>
+</value>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="variables_set" id="h*x@(MT0R*)o)BSmUmq:">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+<value name="VALUE">
+<block type="math_number" id=".)Gt{={VqjJsz3A-_^fI">
+<field name="NUM">0</field>
+</block>
+</value>
+<next>
+<block type="controls_forEach" id="pnk,zeD38;z,v:M|F+FL">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+<comment pinned="false" h="81" w="199">Iterate through list and call a function to display info for each recognized object.</comment>
+<value name="LIST">
+<block type="variables_get" id="(24#x9rgeXl7}^?/gQlW">
+<field name="VAR" id="C-j=_t;@/fsV)+=e~^La">recognitions</field>
+</block>
+</value>
+<statement name="DO">
+<block type="procedures_callnoreturn" id="V2|JXV`NL(m2X|W:|dQA">
+<mutation name="testSample"/>
+<next>
+<block type="comment" id="@/!_abyO.Fo6*pdi!Qn%">
+<field name="COMMENT">Display info.</field>
+<next>
+<block type="procedures_callnoreturn" id="o,3nXd1k6`,bx`Z],*@L">
+<mutation name="displaySample"/>
+<next>
+<block type="comment" id="}Ea-HL3$0{YvQ-pPxzY0">
+<field name="COMMENT">Increment index.</field>
+<next>
+<block type="variables_set" id="}haf_[Mpe/j.C:PSH}I=">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="]1Vnn_#)5Y7xDHg4,bWz">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="u2eB+f2KJhESu/99@$+V">
+<field name="VAR" id="A7n%5a@8jC6}[rgS1GS8">index</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="w4V7*+v?ad%/-|}$WFe|">
+<field name="NUM">1</field>
+</shadow>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="telemetry_update" id="WflJ6%mhO{)D3]n%I[~X"/>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
 </xml>
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <Extra>
 <OpModeMeta flavor="TELEOP" group="" autoTransition="" />
 <Enabled value="true" />
 </Extra>
-
