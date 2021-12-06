@@ -48,8 +48,8 @@
 <variable id="JC:r6(NilwP5hQz;J_)H">HD_HEX_40_COUNTS_PER_REV</variable>
 <variable id="B@mGF1Lg~l_8k$^/ivpo">DISTANCE_A_TO_STORAGE_UNIT_Y</variable>
 <variable id="IXZVFRos]ct1__pj*,H/">CAROUSEL_POWER</variable>
-<variable id="H=:40v-.oVyHkVI;E%ci">DROOP_COMPENSATION</variable>
 <variable id="#+xN9nEoHHy4+I*cyjY$">PARTITION_23</variable>
+<variable id="H=:40v-.oVyHkVI;E%ci">DROOP_COMPENSATION</variable>
 <variable id="ZUKlZu}%!K#z?HgMFbpQ">DISTANCE_TO_HUB_Y</variable>
 <variable id="hiY/M0gNax6m~.@McY6m">DISTANCE_TO_HUB_X</variable>
 <variable id="R/hcY0Gqttk)58X_B^j3">bestPosition</variable>
@@ -2717,7 +2717,7 @@
 <block type="tfodCustomModel_setModelFromFile" id="@5Ywsj@:uID?{`xfaB-q">
 <value name="TFLITE_MODEL_FILENAME">
 <shadow type="text" id="x;Myl$.6+?S@O08V)G+H">
-<field name="TEXT">model_20211203_235640.tflite</field>
+<field name="TEXT">model_20211206_182903.tflite</field>
 </shadow>
 </value>
 <value name="LABELS">
