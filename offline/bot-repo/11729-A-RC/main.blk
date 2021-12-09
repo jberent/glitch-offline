@@ -451,7 +451,7 @@
 <data>{"IDENTIFIER":"carausol"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="Ap[5DMl*(wIUc9]s?R#K">
-<field name="NUM">-0.27</field>
+<field name="NUM">-0.245</field>
 </shadow>
 </value>
 </block>
@@ -470,7 +470,7 @@
 <data>{"IDENTIFIER":"carausol"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="ki(@ZS${fLU]VkK)zcQC">
-<field name="NUM">0.27</field>
+<field name="NUM">0.245</field>
 </shadow>
 </value>
 </block>

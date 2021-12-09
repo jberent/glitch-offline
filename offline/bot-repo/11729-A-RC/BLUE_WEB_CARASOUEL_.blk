@@ -512,7 +512,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="XvIy#5z=Bwis_uj*G(O(">
-<field name="NUM">-630</field>
+<field name="NUM">-650</field>
 </shadow>
 </value>
 <next>
@@ -522,7 +522,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="_Q_=jyZsO)vjve0;xT2?">
-<field name="NUM">-630</field>
+<field name="NUM">-650</field>
 </shadow>
 </value>
 <next>
@@ -532,7 +532,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="4yQyP!P,W5#LAa%_?Dq~">
-<field name="NUM">630</field>
+<field name="NUM">650</field>
 </shadow>
 </value>
 <next>
@@ -542,7 +542,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="HodP#yFIvFESeUiv3A5Y">
-<field name="NUM">630</field>
+<field name="NUM">650</field>
 </shadow>
 </value>
 <next>
@@ -875,7 +875,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="NC?rk%cb@tWnR=Z{dnE$">
-<field name="NUM">-1250</field>
+<field name="NUM">-1200</field>
 </shadow>
 </value>
 <next>
@@ -885,7 +885,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="Q=[$ML$Y)C,O;M[Yl069">
-<field name="NUM">-1250</field>
+<field name="NUM">-1200</field>
 </shadow>
 </value>
 <next>
@@ -895,7 +895,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="rX1(5o*f;c$G9r;q.n=(">
-<field name="NUM">-1250</field>
+<field name="NUM">-1200</field>
 </shadow>
 </value>
 <next>
@@ -905,7 +905,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="H^FVGKmWq.*kfzO^7RrB">
-<field name="NUM">-1250</field>
+<field name="NUM">-1200</field>
 </shadow>
 </value>
 <next>
@@ -1129,7 +1129,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="n;7WqLyHVK+Uk*aYCyM^">
-<field name="NUM">2300</field>
+<field name="NUM">1100</field>
 </shadow>
 </value>
 <next>
@@ -1139,7 +1139,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="mEh#;fCa?B;};,`OF96-">
-<field name="NUM">2300</field>
+<field name="NUM">1100</field>
 </shadow>
 </value>
 <next>
@@ -1149,7 +1149,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="shP1t:F;(CQmEOEL10SW">
-<field name="NUM">-2300</field>
+<field name="NUM">-1100</field>
 </shadow>
 </value>
 <next>
@@ -1159,7 +1159,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="9X)-7NxEC8MJzqrkt*=w">
-<field name="NUM">-2300</field>
+<field name="NUM">-1100</field>
 </shadow>
 </value>
 <next>
@@ -1246,7 +1246,7 @@
 <block type="linearOpMode_sleep_Number" id="xN,c:F;atLFPj5%GX!--">
 <value name="MILLISECONDS">
 <shadow type="math_number" id="(CZdQdkJk}4zEkE+JmD+">
-<field name="NUM">1700</field>
+<field name="NUM">1500</field>
 </shadow>
 </value>
 <next>
@@ -1503,7 +1503,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="EXPg?#IU.J4%itF}[![*">
-<field name="NUM">-950</field>
+<field name="NUM">-1190</field>
 </shadow>
 </value>
 <next>
@@ -1513,7 +1513,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="mDAl#-=nK7;14$LPc=E!">
-<field name="NUM">950</field>
+<field name="NUM">1190</field>
 </shadow>
 </value>
 <next>
@@ -1523,7 +1523,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="mD7rP89[9)qv7nn7LH80">
-<field name="NUM">950</field>
+<field name="NUM">1190</field>
 </shadow>
 </value>
 <next>
@@ -1533,7 +1533,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="]L)~aFModMUrO3[^gQ4m">
-<field name="NUM">-950</field>
+<field name="NUM">-1190</field>
 </shadow>
 </value>
 <next>
@@ -1709,7 +1709,7 @@
 <data>{"IDENTIFIER":"carausol"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="5L}z`Hi:TSVcz!s!y;R]">
-<field name="NUM">-0.4</field>
+<field name="NUM">0.2</field>
 </shadow>
 </value>
 <next>
@@ -1754,7 +1754,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="0@u|~jEPpENf]UeF2l%d" x="1351" y="1736">
+<block type="procedures_defnoreturn" id="0@u|~jEPpENf]UeF2l%d" x="1306" y="1695">
 <field name="NAME">fowrad2</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -1820,7 +1820,7 @@
 <data>{"IDENTIFIER":"back_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="j^H[22O+r6Q2j;~!4@i`">
-<field name="NUM">400</field>
+<field name="NUM">2700</field>
 </shadow>
 </value>
 <next>
@@ -1830,7 +1830,7 @@
 <data>{"IDENTIFIER":"front_left"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="d_.8:f6%]s62{9@nulg.">
-<field name="NUM">400</field>
+<field name="NUM">2700</field>
 </shadow>
 </value>
 <next>
@@ -1840,7 +1840,7 @@
 <data>{"IDENTIFIER":"back_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="Xz:K~V`_J=PxHt~mslVD">
-<field name="NUM">400</field>
+<field name="NUM">2700</field>
 </shadow>
 </value>
 <next>
@@ -1850,7 +1850,7 @@
 <data>{"IDENTIFIER":"front_right"}</data>
 <value name="VALUE">
 <shadow type="math_number" id=":fXyNPI}Qzp[+eQg=TU2">
-<field name="NUM">400</field>
+<field name="NUM">2700</field>
 </shadow>
 </value>
 <next>
@@ -1934,24 +1934,11 @@
 </shadow>
 </value>
 <next>
-<block type="controls_whileUntil" id="={bG^Pz+`m{WjG,R+Q?/">
-<field name="MODE">WHILE</field>
-<value name="BOOL">
-<block type="logic_compare" id="V;3d_`q,}}?TDR@FQF$,">
-<field name="OP">LTE</field>
-<value name="A">
-<block type="dcMotor_getProperty_Number" id="8|0S7oTO+:P0WB[_!fdl">
-<field name="IDENTIFIER">front_rightAsDcMotor</field>
-<field name="PROP">TargetPosition</field>
-<data>{"IDENTIFIER":"front_right"}</data>
-</block>
-</value>
-<value name="B">
-<block type="math_number" id="8Wr`$m|T)QqCngb=r{gR">
-<field name="NUM">400</field>
-</block>
-</value>
-</block>
+<block type="linearOpMode_sleep_Number" id="[G4kU{$XLb-{RY09CE*E">
+<value name="MILLISECONDS">
+<shadow type="math_number" id="QcB?ALbuC-qdMJKZ7{7u">
+<field name="NUM">3000</field>
+</shadow>
 </value>
 <next>
 <block type="controls_whileUntil" id="UBu4%-v4,hdH)F8|HpKe">
@@ -2266,16 +2253,6 @@
 </statement>
 </block>
 </statement>
-</block>
-<block type="controls_if" id="H]$1|]Ea%m@cKxs2)Nmm" x="1908" y="2008">
-<mutation else="1"/>
-</block>
-<block type="linearOpMode_sleep_Number" id="[G4kU{$XLb-{RY09CE*E" x="2001" y="2154">
-<value name="MILLISECONDS">
-<shadow type="math_number" id="QcB?ALbuC-qdMJKZ7{7u">
-<field name="NUM">1</field>
-</shadow>
-</value>
 </block>
 </xml>
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
