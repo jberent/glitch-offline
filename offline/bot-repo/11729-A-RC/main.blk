@@ -372,7 +372,66 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="U(RW(-;c^mcqP_f}A^Z|" x="1859" y="1366">
+<block type="procedures_defnoreturn" id="AP+%`$_|b}k@!lV1ekZ)" x="2239" y="1387">
+<field name="NAME">intake</field>
+<comment pinned="false" h="80" w="160">Describe this function...</comment>
+<statement name="STACK">
+<block type="controls_if" id="A_pGbylCUmIY[t*_M5[_">
+<mutation elseif="1" else="1"/>
+<value name="IF0">
+<block type="gamepad_getProperty_Boolean" id=")e#c9i2BQ({2wPY#9l@6">
+<field name="IDENTIFIER">gamepad2</field>
+<field name="PROP">A</field>
+<data>{"IDENTIFIER":"gamepad2"}</data>
+</block>
+</value>
+<statement name="DO0">
+<block type="dcMotor_setProperty_Number" id="%v#`JfbzpA?hS`WvK8wY">
+<field name="IDENTIFIER">intakeAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"intake"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="BCf2USV@HRYPS7Iqsv7+">
+<field name="NUM">0.85</field>
+</shadow>
+</value>
+</block>
+</statement>
+<value name="IF1">
+<block type="gamepad_getProperty_Boolean" id="12xz~??5+k^Y8w4aQ-eD">
+<field name="IDENTIFIER">gamepad2</field>
+<field name="PROP">B</field>
+<data>{"IDENTIFIER":"gamepad2"}</data>
+</block>
+</value>
+<statement name="DO1">
+<block type="dcMotor_setProperty_Number" id="wg(3[Tgo?b(Gf3R9Se[R">
+<field name="IDENTIFIER">intakeAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"intake"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="q0~;O5t2W!a.^Dl6[ixl">
+<field name="NUM">-0.85</field>
+</shadow>
+</value>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="dcMotor_setProperty_Number" id=")fM02mHIRa-0kdK4B}b.">
+<field name="IDENTIFIER">intakeAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"intake"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="a;QOvttB^p_6ydBx#O8G">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+<block type="procedures_defnoreturn" id="U(RW(-;c^mcqP_f}A^Z|" x="1892" y="1410">
 <field name="NAME">gamepad 2</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">
@@ -430,7 +489,7 @@
 </statement>
 <next>
 <block type="controls_if" id="k7G({{B,||~r.LTRfywN">
-<mutation elseif="2" else="1"/>
+<mutation elseif="1" else="1"/>
 <value name="IF0">
 <block type="gamepad_getProperty_Boolean" id="[JN~.h!6[)aLbwYeUBH`">
 <field name="IDENTIFIER">gamepad2</field>
@@ -448,16 +507,6 @@
 <field name="NUM">0.85</field>
 </shadow>
 </value>
-<next>
-<block type="variables_set" id="xMh?=ehf,s6[*d1.R?3X">
-<field name="VAR" id="bANvq1Z@5HDZNb+q%.Jm">holdArm</field>
-<value name="VALUE">
-<block type="logic_boolean" id="5c/U?w~Hk%4}vS]pbz$7">
-<field name="BOOL">TRUE</field>
-</block>
-</value>
-</block>
-</next>
 </block>
 </statement>
 <value name="IF1">
@@ -474,57 +523,18 @@
 <data>{"IDENTIFIER":"arm_tilt"}</data>
 <value name="VALUE">
 <shadow type="math_number" id="cSW81RgXvt]I!6;(-olw">
-<field name="NUM">0.05</field>
-</shadow>
-</value>
-<next>
-<block type="dcMotor_setProperty_Number" id="@LFp||3X7@?g`V_l=WSd">
-<field name="IDENTIFIER">arm_tiltAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"arm_tilt"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="jL~u|e@|6xFnpy}glZ7w">
-<field name="NUM">0</field>
-</shadow>
-</value>
-<next>
-<block type="variables_set" id="mwu@.{g^z2WAM9}]2Gpu">
-<field name="VAR" id="bANvq1Z@5HDZNb+q%.Jm">holdArm</field>
-<value name="VALUE">
-<block type="logic_boolean" id="_H3C=6b4+)b]9b)[%$0g">
-<field name="BOOL">FALSE</field>
-</block>
-</value>
-</block>
-</next>
-</block>
-</next>
-</block>
-</statement>
-<value name="IF2">
-<block type="variables_get" id="[l;kMD;@rX9.Tn`KLGG/">
-<field name="VAR" id="bANvq1Z@5HDZNb+q%.Jm">holdArm</field>
-</block>
-</value>
-<statement name="DO2">
-<block type="dcMotor_setProperty_Number" id="1tH?{[EZv+F|HqD+FmG.">
-<field name="IDENTIFIER">arm_tiltAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"arm_tilt"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="z;Fq!KSiRaV?Ns0h+]ho">
-<field name="NUM">0.2</field>
+<field name="NUM">-0.3</field>
 </shadow>
 </value>
 </block>
 </statement>
 <statement name="ELSE">
-<block type="dcMotor_setProperty_Number" id="ud?)Rj$.RtAIbO!V@|5O">
+<block type="dcMotor_setProperty_Number" id="ZZvvtZ{Q$5+V+Kd!;9CB">
 <field name="IDENTIFIER">arm_tiltAsDcMotor</field>
 <field name="PROP">Power</field>
 <data>{"IDENTIFIER":"arm_tilt"}</data>
 <value name="VALUE">
-<shadow type="math_number" id="YZy`?Sq*`M|q}fFU]RHX">
+<shadow type="math_number" id="w;c0IJm.SQyifU6l|[.m">
 <field name="NUM">0</field>
 </shadow>
 </value>
@@ -587,65 +597,6 @@
 </next>
 </block>
 </next>
-</block>
-</statement>
-</block>
-<block type="procedures_defnoreturn" id="AP+%`$_|b}k@!lV1ekZ)" x="2239" y="1387">
-<field name="NAME">intake</field>
-<comment pinned="false" h="80" w="160">Describe this function...</comment>
-<statement name="STACK">
-<block type="controls_if" id="A_pGbylCUmIY[t*_M5[_">
-<mutation elseif="1" else="1"/>
-<value name="IF0">
-<block type="gamepad_getProperty_Boolean" id=")e#c9i2BQ({2wPY#9l@6">
-<field name="IDENTIFIER">gamepad2</field>
-<field name="PROP">A</field>
-<data>{"IDENTIFIER":"gamepad2"}</data>
-</block>
-</value>
-<statement name="DO0">
-<block type="dcMotor_setProperty_Number" id="%v#`JfbzpA?hS`WvK8wY">
-<field name="IDENTIFIER">intakeAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"intake"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="BCf2USV@HRYPS7Iqsv7+">
-<field name="NUM">0.85</field>
-</shadow>
-</value>
-</block>
-</statement>
-<value name="IF1">
-<block type="gamepad_getProperty_Boolean" id="12xz~??5+k^Y8w4aQ-eD">
-<field name="IDENTIFIER">gamepad2</field>
-<field name="PROP">B</field>
-<data>{"IDENTIFIER":"gamepad2"}</data>
-</block>
-</value>
-<statement name="DO1">
-<block type="dcMotor_setProperty_Number" id="wg(3[Tgo?b(Gf3R9Se[R">
-<field name="IDENTIFIER">intakeAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"intake"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="q0~;O5t2W!a.^Dl6[ixl">
-<field name="NUM">-0.85</field>
-</shadow>
-</value>
-</block>
-</statement>
-<statement name="ELSE">
-<block type="dcMotor_setProperty_Number" id=")fM02mHIRa-0kdK4B}b.">
-<field name="IDENTIFIER">intakeAsDcMotor</field>
-<field name="PROP">Power</field>
-<data>{"IDENTIFIER":"intake"}</data>
-<value name="VALUE">
-<shadow type="math_number" id="a;QOvttB^p_6ydBx#O8G">
-<field name="NUM">0</field>
-</shadow>
-</value>
-</block>
-</statement>
 </block>
 </statement>
 </block>
@@ -865,7 +816,7 @@
 </value>
 <value name="B">
 <shadow type="math_number" id="c-~*|y+5Y0z=mZA2$z%_">
-<field name="NUM">5</field>
+<field name="NUM">3</field>
 </shadow>
 </value>
 </block>
@@ -885,27 +836,9 @@
 <field name="PROP">Position</field>
 <data>{"IDENTIFIER":"cap_servo"}</data>
 <value name="VALUE">
-<shadow type="math_number">
-<field name="NUM">0.1</field>
+<shadow type="math_number" id="L)V^/:Cf-HbeQ+aQOfLV">
+<field name="NUM">0.3</field>
 </shadow>
-<block type="math_arithmetic" id="4-70:Zeu4{2iI*]lQ$uw">
-<field name="OP">MINUS</field>
-<value name="A">
-<shadow type="math_number">
-<field name="NUM">1</field>
-</shadow>
-<block type="servo_getProperty_Number" id="1I1hp*8{ht)vjdc0bqOq">
-<field name="IDENTIFIER">cap_servoAsServo</field>
-<field name="PROP">Position</field>
-<data>{"IDENTIFIER":"cap_servo"}</data>
-</block>
-</value>
-<value name="B">
-<shadow type="math_number" id="ROo:CL$Ka5l.cTxxE1_E">
-<field name="NUM">5</field>
-</shadow>
-</value>
-</block>
 </value>
 </block>
 </statement>
@@ -976,6 +909,16 @@
 </shadow>
 </value>
 <next>
+<block type="dcMotor_setProperty_ZeroPowerBehavior" id="nfPhLP@41UxwASEq?a:_">
+<field name="IDENTIFIER">arm_tiltAsDcMotor</field>
+<field name="PROP">ZeroPowerBehavior</field>
+<data>{"IDENTIFIER":"arm_tilt"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_zeroPowerBehavior" id="`75aPyHhec#5)RwPkvp+">
+<field name="ZERO_POWER_BEHAVIOR">BRAKE</field>
+</shadow>
+</value>
+<next>
 <block type="variables_set" id=")]K`=nq:^.!P%nXrXqw0">
 <field name="VAR" id="4ctg#zRMk:lq(?K0]Rsz">STRAFE_BOOST</field>
 <value name="VALUE">
@@ -983,6 +926,8 @@
 <field name="NUM">1.1</field>
 </block>
 </value>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -1253,6 +1198,44 @@
 </next>
 </block>
 </statement>
+</block>
+<block type="dcMotor_setProperty_Number" id="1tH?{[EZv+F|HqD+FmG." x="1992" y="1848">
+<field name="IDENTIFIER">arm_tiltAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"arm_tilt"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="z;Fq!KSiRaV?Ns0h+]ho">
+<field name="NUM">0.2</field>
+</shadow>
+</value>
+</block>
+<block type="dcMotor_setProperty_Number" id="ud?)Rj$.RtAIbO!V@|5O" x="1990" y="1876">
+<field name="IDENTIFIER">arm_tiltAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"arm_tilt"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="YZy`?Sq*`M|q}fFU]RHX">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+<block type="math_arithmetic" id="4-70:Zeu4{2iI*]lQ$uw" x="1202" y="1987">
+<field name="OP">MINUS</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="servo_getProperty_Number" id="1I1hp*8{ht)vjdc0bqOq">
+<field name="IDENTIFIER">cap_servoAsServo</field>
+<field name="PROP">Position</field>
+<data>{"IDENTIFIER":"cap_servo"}</data>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="ROo:CL$Ka5l.cTxxE1_E">
+<field name="NUM">0.75</field>
+</shadow>
+</value>
 </block>
 <block type="procedures_defnoreturn" id="cA@;QR@=Gwq*9^$^cxoQ" x="496" y="2223">
 <field name="NAME">initMotor2</field>
