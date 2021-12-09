@@ -1,6 +1,8 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
 <variables>
 <variable id="ZHu7]h(iKQ-7Q9eq/q3X">i</variable>
+<variable id="4,kTHl+#mlgN,^.Y{|A~">xMid</variable>
+<variable id="=`)hBK.7wn^f2mRT`Joi">yMid</variable>
 <variable id="vP~n9zf$lW%hYD/C.j_-">recognition</variable>
 <variable id="C-j=_t;@/fsV)+=e~^La">recognitions</variable>
 <variable id="A7n%5a@8jC6}[rgS1GS8">index</variable>
@@ -88,7 +90,7 @@
 <block type="tfodCurrentGame_initialize" id="S?6y8$gBQja5ehCJI6Pi">
 <value name="MINIMUM_CONFIDENCE">
 <shadow type="math_number" id="iXlEJA=*Aq^$z~;?.MCb">
-<field name="NUM">0.5</field>
+<field name="NUM">0.4</field>
 </shadow>
 </value>
 <value name="USE_OBJECT_TRACKER">
@@ -342,18 +344,6 @@
 </block>
 </statement>
 </block>
-<block type="telemetry_addTextData_All" id="z=`J]B@!7iTg(:1ERyX)" x="522" y="848">
-<value name="KEY">
-<shadow type="text" id="[];W:D|}rgx~?z;B|y`x">
-<field name="TEXT">&gt;</field>
-</shadow>
-</value>
-<value name="TEXT">
-<shadow type="text" id="]K*GhcbQU#{CBa@%Yd#F">
-<field name="TEXT">Press Play to start</field>
-</shadow>
-</value>
-</block>
 <block type="procedures_defnoreturn" id=")21zCFQOO-Q6a!/Wu4LO" x="2" y="1592">
 <mutation>
 <arg name="i" varid="ZHu7]h(iKQ-7Q9eq/q3X"/>
@@ -363,6 +353,100 @@
 <statement name="STACK">
 <block type="comment" id="tlc0F80BdB`b([Xp;XEc">
 <field name="COMMENT">Display label info.</field>
+<next>
+<block type="variables_set" id="MwGv]{p^7RJF/%Oh`([k">
+<field name="VAR" id="4,kTHl+#mlgN,^.Y{|A~">xMid</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="baWwGSO;M@4{f(h;cy-L">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number" id="=B(5*x{R$Uw5k,+YMIlW">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="0MF#hzm}G:9BvvYQ_H|T">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number" id="-H3]U6@H0U?CsKKm-bP#">
+<field name="NUM">1</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="iZaIF)j`poM._`(0^f.s">
+<field name="PROP">Left</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="axtyI`+#EUZaMd^d3$xd">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="P]nfE5QpX2X1st9v^f}m">
+<field name="NUM">1</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="]n%IN1#-pn6fQ=f?+AO-">
+<field name="PROP">Right</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="S8@.Le892OmfA?nHWT1-">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="d0FbiGcvw)0KI8+8?oHI">
+<field name="NUM">2</field>
+</shadow>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="bT}lVLLogixtd}zJsO|W">
+<field name="VAR" id="=`)hBK.7wn^f2mRT`Joi">yMid</field>
+<value name="VALUE">
+<block type="math_arithmetic" id="=D51c8AM%Uepp(CpDI_i">
+<field name="OP">DIVIDE</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_arithmetic" id="`$([x[}?@Fiv:kZNX)c`">
+<field name="OP">ADD</field>
+<value name="A">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="x_1H$cC{wwV;.~vDQKlY">
+<field name="PROP">Top</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="1UX-t#7On%wJqKOtEH?o">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number">
+<field name="NUM">1</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="[mO})2JXHqfx+|$@k.4p">
+<field name="PROP">Bottom</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="xiWa_pDAHEiU/e$9H:PD">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="#spyQdO}01Pk:=%:*JzN">
+<field name="NUM">2</field>
+</shadow>
+</value>
+</block>
+</value>
 <next>
 <block type="telemetry_addTextData_All" id=";6SFb8haRI5qo45n}iJ8">
 <comment pinned="false" h="80" w="160">Display the label and index number for the recognition.</comment>
@@ -388,12 +472,54 @@
 <shadow type="text" id="#+^2[kj(=_-pPWHzSDN^">
 <field name="TEXT">text</field>
 </shadow>
-<block type="tfodRecognition_getProperty_String" id="d7@$bcm+3wluc1@Wtq|u">
+<block type="tfodRecognition_getProperty_String" id="D}J/*+0/2}e*1OL~|@81">
 <field name="PROP">Label</field>
 <value name="TFOD_RECOGNITION">
 <block type="variables_get" id="}u)$1QfMPe1)p,Qs5Ku;">
 <field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
 </block>
+</value>
+</block>
+</value>
+<next>
+<block type="telemetry_addNumericData_Number" id="]VkmxV*Yff)5TaH!kS9e">
+<value name="KEY">
+<shadow type="text" id="C8*_WaEuNUqwb],o8.#a">
+<field name="TEXT">key</field>
+</shadow>
+<block type="text_join" id="MKjB;uf3/X_Nt:AIw~xS">
+<mutation items="2"/>
+<value name="ADD0">
+<block type="text" id=";dGM0M75q_|icO!pF%+V">
+<field name="TEXT">Confidence</field>
+</block>
+</value>
+<value name="ADD1">
+<block type="variables_get" id="Hdqu|M=M3xGQ?0!7MXkA">
+<field name="VAR" id="ZHu7]h(iKQ-7Q9eq/q3X">i</field>
+</block>
+</value>
+</block>
+</value>
+<value name="NUMBER">
+<block type="misc_roundDecimal" id=",.8HO)DRvn0kW%tqpdms">
+<value name="NUMBER">
+<shadow type="math_number" id="1LikXW27/x[=Lbhjh!AL">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="%~w}@#oQ%7Rm/)e|ETOq">
+<field name="PROP">Confidence</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="rlQ`8;-`7G=hB}lF?.Hz">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="~W%[d(41O}l80QD6gkc9">
+<field name="NUM">2</field>
+</shadow>
 </value>
 </block>
 </value>
@@ -569,6 +695,156 @@
 </value>
 </block>
 </value>
+<next>
+<block type="comment" id="YuGy:YZHe9jFBBmaI@}1">
+<field name="COMMENT">Display object mid points</field>
+<next>
+<block type="telemetry_addTextData_All" id="O*/|@}_^r46lxXu}oDK*">
+<comment pinned="false" h="100" w="200">Display the location of the bottom right corner of the detection boundary for the recognition</comment>
+<value name="KEY">
+<shadow type="text">
+<field name="TEXT">key</field>
+</shadow>
+<block type="text_join" id=".Dg/-X?m*A(%p=x9ngOO">
+<mutation items="2"/>
+<value name="ADD0">
+<block type="text" id="QCQC{u5#w+0asK`#B%_u">
+<field name="TEXT">x / y Mid Point, Width, Height</field>
+</block>
+</value>
+<value name="ADD1">
+<block type="variables_get" id="!H#myXMcg3.wKkJD-pPV">
+<field name="VAR" id="ZHu7]h(iKQ-7Q9eq/q3X">i</field>
+</block>
+</value>
+</block>
+</value>
+<value name="TEXT">
+<shadow type="text">
+<field name="TEXT">text</field>
+</shadow>
+<block type="text_join" id="O,a6ATo.MzdA5}a9]%=j">
+<mutation items="4"/>
+<value name="ADD0">
+<block type="misc_roundDecimal" id="c1Yny=6r:!j)QZ2~c@E[">
+<value name="NUMBER">
+<shadow type="math_number" id="iw(%g:cTN*_!]b8Dz[yz">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="variables_get" id="cD*-!.bsYNM^Jh.[~ns9">
+<field name="VAR" id="4,kTHl+#mlgN,^.Y{|A~">xMid</field>
+</block>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="v`E}o01bQbJubiY5a$q{">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+<value name="ADD1">
+<block type="text_join" id="sV4e.06Lo{D($o[S~;0W">
+<mutation items="2"/>
+<value name="ADD0">
+<block type="text" id="otnff]=nvQr;o2[~bH/g">
+<field name="TEXT">, </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_roundDecimal" id="V!sJxlc8VKP?AHE-Tk=_">
+<value name="NUMBER">
+<shadow type="math_number" id="oD0nFMAQj3b_8Zz*C:P{">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="variables_get" id="j^K~WKa,#]b@V/GMM.?.">
+<field name="VAR" id="=`)hBK.7wn^f2mRT`Joi">yMid</field>
+</block>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="eB`6D.:$zs64Q-VDI]Vh">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD2">
+<block type="text_join" id="8j`y5QyhO]ad4:3N*)f9">
+<mutation items="2"/>
+<value name="ADD0">
+<block type="text" id="EgR_xlng}x[7zV7|M?3T">
+<field name="TEXT">, </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_roundDecimal" id="09Ow=#[GT$Y;Nk-{o9@g">
+<value name="NUMBER">
+<shadow type="math_number" id="!f)1z)9*(Xp%nnD`D=T=">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="=w/H%-gm0dF`i?P`TAL~">
+<field name="PROP">Width</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id="Fng%JV9[~63sVaYAvgn^">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id=");r{!g;3C~(o[E(lx.7c">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+</block>
+</value>
+<value name="ADD3">
+<block type="text_join" id="XC=Vp87T;^[2l/z669=U">
+<mutation items="2"/>
+<value name="ADD0">
+<block type="text" id=":d{.QLSZ]~r,]G1wfQb)">
+<field name="TEXT">, </field>
+</block>
+</value>
+<value name="ADD1">
+<block type="misc_roundDecimal" id="HKr)l|qa$d|X7MlF3Lf%">
+<value name="NUMBER">
+<shadow type="math_number" id="enH:*]BAk%d1lVKdyR,a">
+<field name="NUM">3.14159265</field>
+</shadow>
+<block type="tfodRecognition_getProperty_Number" id="WXX5=:V*nB6namRQw:3*">
+<field name="PROP">Height</field>
+<value name="TFOD_RECOGNITION">
+<block type="variables_get" id=",{/4romFmFWL6tV_*mIn">
+<field name="VAR" id="vP~n9zf$lW%hYD/C.j_-">recognition</field>
+</block>
+</value>
+</block>
+</value>
+<value name="PRECISION">
+<shadow type="math_number" id="O;EIlM=5K]tOO/8@j,/W">
+<field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
 </block>
 </next>
 </block>
