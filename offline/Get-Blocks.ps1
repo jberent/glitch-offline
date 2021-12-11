@@ -185,9 +185,12 @@ function SaveBot ([string] $msg){
         
         $resp = Invoke-WebRequest "$($botHost)/get_config_name" -SessionVariable 'session' 
         if ($resp.StatusCode -eq 200) {
-            $botConfig = $resp.Content
-            
-            $botBranch = "$bot/$botConfig"
+            $bad = " ~^:?*[@{.\"
+            $botConfig = $resp.Content.split($bad) -join "-"            
+            $botBranch = git check-ref-format --branch "$bot/$botConfig"
+            if (!$botBranch) {
+                $botBranch = "$branch"
+            }
             write-host "Saving Bot Pt 1" $path $botConfig "ON" $branch
             git status --short
             if ($botBranch -ne $branch){
