@@ -30,12 +30,12 @@
 <variable id="}-bP[WBbPqmzo,IDJ)_E">MAX_WIDTH</variable>
 <variable id=":dZ}%G$]wB`C[TnY`7(%">INTAKE_OUT_POWER</variable>
 <variable id="u6,5v:6GHFkUKntgZC72">INTAKE_OUT_POWER_MAX</variable>
+<variable id="L59Mti{kO+[Yxeh/g/Yt">LEVEL_TOP</variable>
 <variable id="yoit9ipnWWfah!eer,1i">counts</variable>
 <variable id="m6YS#Xt}m7v.R?mBGI2m">strafeY</variable>
 <variable id="r*B-mH;F|u=f2|?9WdM8">LEVEL_BOTTOM</variable>
 <variable id="bPHH~+vXWh/~(2$].9O^">LEVEL_MIDDLE</variable>
 <variable id="3**f3Q#{}OFV%]Un!bdL">LEVEL_DRIVE</variable>
-<variable id="L59Mti{kO+[Yxeh/g/Yt">LEVEL_TOP</variable>
 <variable id="}o^}g)NC|t-Iu1`X,G4r">LEVEL_FLOOR</variable>
 <variable id="C[4`@Ch@K3Rq;A,pzuI,">motor1Busy</variable>
 <variable id="sH_kv)Cb?y{08@Cuzz_B">elapsedTime</variable>
@@ -2182,10 +2182,10 @@
 <field name="NAME">planRedA</field>
 <comment pinned="false" h="80" w="160">Red "A" - no cables installed</comment>
 <statement name="STACK">
-<block type="procedures_callnoreturn" id="y_?E6[jt-I2*SXq2!K9_" disabled="true">
+<block type="procedures_callnoreturn" id="y_?E6[jt-I2*SXq2!K9_">
 <mutation name="planRedA2"/>
 <next>
-<block type="procedures_callnoreturn" id="K:-hLcr,Wt}U_;eiYhgt">
+<block type="procedures_callnoreturn" id="K:-hLcr,Wt}U_;eiYhgt" disabled="true">
 <mutation name="planRed3"/>
 </block>
 </next>
@@ -2623,7 +2623,7 @@
 </block>
 </statement>
 </block>
-<block type="procedures_defnoreturn" id="z/6sETZC@*9!7.;/4oq2" x="-1450" y="-17">
+<block type="procedures_defnoreturn" id="z/6sETZC@*9!7.;/4oq2" disabled="true" x="-1450" y="-17">
 <field name="NAME">planRed3</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">

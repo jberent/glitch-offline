@@ -1577,6 +1577,38 @@
 </statement>
 </block>
 </statement>
+<next>
+<block type="telemetry_addNumericData" id="KOoPr{)K:y0VdWcp0,OR">
+<value name="KEY">
+<block type="text" id="|G~h5Op-(70WIO(b$k*%">
+<field name="TEXT">carousel Pow</field>
+</block>
+</value>
+<value name="NUMBER">
+<block type="dcMotor_getProperty_Number" id="5]*U@RO}[rn%-pgLh63[">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+</block>
+</value>
+<next>
+<block type="telemetry_addNumericData" id="v{d3n2sdAy]a7!+^YXr9">
+<value name="KEY">
+<block type="text" id="aCoK(do%f~zdGEyewX2$">
+<field name="TEXT">carousel  Vel</field>
+</block>
+</value>
+<value name="NUMBER">
+<block type="dcMotor_getProperty_Number" id="fN!Fx|dAg+(9ezFZQF[W">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Velocity</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
 </block>
 </statement>
 </block>
@@ -2140,10 +2172,10 @@
 </block>
 </statement>
 </block>
-<block type="comment" id="!em8C_88zUOrLbZ9BFPu" x="2141" y="713">
+<block type="comment" id="!em8C_88zUOrLbZ9BFPu" x="2197" y="755">
 <field name="COMMENT">GRABER HANDLER</field>
 </block>
-<block type="procedures_defnoreturn" id="z}hWS%9{Bp$=y*{cTfX[" x="2134" y="756">
+<block type="procedures_defnoreturn" id="z}hWS%9{Bp$=y*{cTfX[" x="2180" y="806">
 <field name="NAME">initializeGrabber</field>
 <comment pinned="false" h="80" w="160">Describe this function...</comment>
 <statement name="STACK">

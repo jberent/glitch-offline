@@ -2,8 +2,8 @@
 <variables>
 <variable id="r7hKRGy~KjR7a7o7==bp">power</variable>
 <variable id="9:KX8c9sHx1/!T8;n8B+">v4</variable>
-<variable id="R.KGs,DU0;~[^DGlGX,R">max1</variable>
 <variable id="ZGw#72qf8FWuB:WFlm$L">oneTime</variable>
+<variable id="R.KGs,DU0;~[^DGlGX,R">max1</variable>
 <variable id="s)XtA1#6vFZET72)n%k}">max2</variable>
 <variable id="X=bXZzM1wbQz!#]D{@{,">ax3</variable>
 <variable id="dfr%I_ePyUH]e8TU#B;j">max4</variable>
@@ -69,6 +69,16 @@
 </shadow>
 </value>
 <next>
+<block type="dcMotor_setProperty_RunMode" id="C~R7A*SS]]?Tsc[L)MvJ">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Mode</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+<value name="VALUE">
+<shadow type="dcMotor_typedEnum_runMode" id="OtJCeMqP%mUYYtHrqL?|">
+<field name="RUN_MODE">RUN_WITHOUT_ENCODER</field>
+</shadow>
+</value>
+<next>
 <block type="variables_set" id="@ZR]K.eehk-VU,XpapS3">
 <field name="VAR" id="R.KGs,DU0;~[^DGlGX,R">max1</field>
 <value name="VALUE">
@@ -103,7 +113,7 @@
 <next>
 <block type="linearOpMode_waitForStart" id=":`$wN_ci`O;o6P0~.(+g">
 <next>
-<block type="procedures_callnoreturn" id="Mb7N0M8P,:EcT`NbpPMs">
+<block type="procedures_callnoreturn" id="Mb7N0M8P,:EcT`NbpPMs" disabled="true">
 <mutation name="check NegVeloctiy"/>
 <next>
 <block type="controls_if" id="}Q?5mbxSO8Di;i!__6[y">
@@ -114,7 +124,7 @@
 <block type="comment" id="(rU-p_T_/B|vExcs}liL">
 <field name="COMMENT">Put run blocks here.</field>
 <next>
-<block type="procedures_callnoreturn" id="=CqpL`}+B/iKc:hHzX$T">
+<block type="procedures_callnoreturn" id="=CqpL`}+B/iKc:hHzX$T" disabled="true">
 <mutation name="setDrivePower">
 <arg name="power"/>
 </mutation>
@@ -122,6 +132,16 @@
 <block type="math_number" id="hth~sDu,`v).sWzZn$nB">
 <field name="NUM">0.5</field>
 </block>
+</value>
+<next>
+<block type="dcMotor_setProperty_Number" id="S}G3-?H.A$aR*Delk0;k">
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
+<field name="PROP">Power</field>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
+<value name="VALUE">
+<shadow type="math_number" id="8K+zf7PB40zBAVqh`p*Q">
+<field name="NUM">1</field>
+</shadow>
 </value>
 <next>
 <block type="controls_whileUntil" id="^0Kagy/e+Ea{rbZPv2G6">
@@ -137,9 +157,9 @@
 <field name="VAR" id="DC(Ya4opZ:F1uHx5b8)L">v1</field>
 <value name="VALUE">
 <block type="dcMotor_getProperty_Number" id="Vvtp@0e8n^I.jWZzX-wJ">
-<field name="IDENTIFIER">front_left_motorAsDcMotor</field>
+<field name="IDENTIFIER">carousel_motorAsDcMotor</field>
 <field name="PROP">Velocity</field>
-<data>{"IDENTIFIER":"front_left_motor"}</data>
+<data>{"IDENTIFIER":"carousel_motor"}</data>
 </block>
 </value>
 <next>
@@ -374,7 +394,11 @@
 </block>
 </next>
 </block>
+</next>
+</block>
 </statement>
+</block>
+</next>
 </block>
 </next>
 </block>
@@ -685,5 +709,10 @@
 <block type="variables_get" id="/G,p#zfI9V6buQr=Z(V2" x="924" y="1338">
 <field name="VAR" id="9:KX8c9sHx1/!T8;n8B+">v4</field>
 </block>
-</xml><?xml version='1.0' encoding='UTF-8' standalone='yes' ?><Extra><OpModeMeta flavor="TELEOP" group="" /><Enabled value="false" /></Extra>
+</xml>
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Extra>
+<OpModeMeta flavor="TELEOP" group="" autoTransition="" />
+<Enabled value="true" />
+</Extra>
 
