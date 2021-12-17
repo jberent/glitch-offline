@@ -1,6 +1,7 @@
 @{name=Detect Cap; escapedName=Detect Cap; dateModifiedMillis=1638839655000; enabled=False}
 @{name=Main TeleOp; escapedName=Main TeleOp; dateModifiedMillis=1639511742000; enabled=True}
 @{name=Autonomous11; escapedName=Autonomous11; dateModifiedMillis=1639614106000; enabled=True}
+@{name=TryNewPlan; escapedName=TryNewPlan; dateModifiedMillis=1639702387000; enabled=True}
 @{name=duck test; escapedName=duck test; dateModifiedMillis=1638839651000; enabled=False}
 @{name=max velocity test; escapedName=max velocity test; dateModifiedMillis=1639511290000; enabled=True}
 @{name=notes design; escapedName=notes design; dateModifiedMillis=1638839649000; enabled=False}
